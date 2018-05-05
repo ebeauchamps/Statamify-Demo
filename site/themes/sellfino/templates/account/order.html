@@ -1,0 +1,262 @@
+{{ section:title }}Order Summary{{ /section:title }}
+
+{{ statamify:orders slug="{ slug }" }}
+
+  {{ if no_results }}
+
+    {{ redirect to='/account' }}
+  
+  {{ else }}
+
+    <section class="cart">
+      <div class="container">
+        <div class="grid">
+          <div class="col-24-sm">
+            <h2 class="text-center">Order {{ title }} <span><a href="/account">Go to account</a></span></h2>
+          </div>
+        </div>
+
+        <div class="inside">
+          <div class="grid">
+            <div class="col-16-md">
+              <div class="table">
+                <div class="head grid">
+                  <div class="col-8-sm">Product</div>
+                  <div class="col-4-sm text-center">Price</div>
+                  <div class="col-8-sm text-center">Quantity</div>
+                  <div class="col-4-sm text-right">Total</div>
+                </div>
+                <div class="body">
+
+                  {{ summary.items }}
+
+                    <div class="item" data-id="{{ item_id }}">
+                      <div class="grid vcenter-xs">
+
+                        <div class="col-8-sm main">
+                          <div class="grid vcenter-xs">
+
+                            <div class="thumb">
+
+                              <img src="{{ glide:image_original width='400' fit='max' }}">
+
+                            </div>
+
+                            <div class="details">
+
+                              <div class="product-name">{{ name }}</div>
+
+                              {{ if variant }}<div class="info">{{ variant.attrs | statamify.attrs }}</div>{{ /if }}
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6-xs col-4-sm text-center">
+
+                          <label>Price:</label> 
+
+                          {{ price | statamify.money }}
+
+                        </div>
+
+                        <div class="col-12-xs col-8-sm text-center">
+                          
+                          <label>Quantity:</label> 
+
+                          {{ quantity }}
+
+                        </div>
+
+                        <div class="col-6-xs col-4-sm text-right">
+
+                          <label>Total:</label> 
+
+                          {{ price | multiply:quantity | statamify.money }}
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                  {{ /summary.items }}
+
+                </div>
+              </div>
+            </div>
+            <div class="col-8-md">
+              <div class="totals">
+                <div class="line">
+                  <div class="grid vstart-xs">
+                    <div class="col-10-sm">
+                      <div class="title">Date</div>
+                    </div>
+                    <div class="col-14-sm total-sub">{{ date }}</div>
+                  </div>
+                </div>
+                <div class="line">
+                  <div class="grid vstart-xs">
+                    <div class="col-10-sm">
+                      <div class="title">Subtotal</div>
+                    </div>
+                    <div class="col-14-sm total-sub">{{ summary.total.sub | statamify.money }}</div>
+                  </div>
+                </div>
+                <div class="line">
+                  <div class="grid vstart-xs">
+                    <div class="col-10-sm">
+                      <div class="title">Discount</div>
+                    </div>
+                    <div class="col-14-sm total-discount">
+
+                      {{ summary.total.discount | statamify.money }}
+
+                      {{ if summary.coupons }}
+
+                        <span style="font-size: 85%">
+
+                          {{ summary.coupons }}
+
+                            <br/>Applied coupon: <strong>{{ value }}</strong>
+
+                          {{ /summary.coupons }}
+
+                        </span>
+
+                      {{ /if }}
+
+                    </div>
+                  </div>
+                </div>
+                <div class="line">
+                  <div class="grid vstart-xs">
+                    <div class="col-10-sm">
+                      <div class="title">Shipping</div>
+                    </div>
+                    <div class="col-14-sm total-shipping">{{ summary.total.shipping | statamify.money }}</div>
+                  </div>
+                </div>
+                <div class="line">
+                  <div class="grid vstart-xs">
+                    <div class="col-10-sm">
+                      <div class="title">Total</div>
+                    </div>
+
+                    <div class="col-14-sm total-grand">{{ summary.total.grand | statamify.money }}</div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid shipping-billing">
+          <div class="col-24-sm">
+            <div class="totals" style="margin: 0">
+              <div class="line">
+                <div class="grid vstart-xs">
+                  <div class="col-8-md">
+                    <div class="title">Shipping / Billing</div>
+                  </div>
+                  <div class="col-16-md">
+                    <div class="grid">
+
+                      <div class="col-12-sm">
+                        <label class="saved-address">
+
+                          <div class="block">
+
+                            <strong>Shipping Details:</strong> <br><br/>
+
+                            {{ shipping }}
+
+                              {{ first_name }} {{ last_name }}{{ if company }}, {{ company }}{{ /if }} <br/>
+                              {{ if phone }}{{ phone }}<br/>{{ /if }}
+                              {{ address }}{{ if address_2 }}, {{ address_2 }}{{ /if }}<br/>
+
+                              {{ statamify:location }}
+                              {{ city }} {{ postal }} {{ if region }}, {{ region }}{{ /if }} <br/>
+                              {{ country }}
+                              {{ /statamify:location }}
+
+                              <br/><br/>
+
+                              <strong>Shipping Method:&nbsp; </strong> {{ shipping_method.name }}
+
+                            {{ /shipping }}
+
+
+                          </div>
+
+                        </label>
+                      </div>
+
+                      <div class="col-12-sm">
+                        <label class="saved-address">
+
+                          <div class="block">
+
+                            <strong>Billing Details:</strong> <br>
+
+                            {{ if billing && billing_diff }}
+
+                              {{ first_name }} {{ last_name }}{{ if company }}, {{ company }}{{ /if }} <br/>
+                              {{ if phone }}{{ phone }}<br/>{{ /if }}
+                              {{ address }}{{ if address_2 }}, {{ address_2 }}{{ /if }}<br/>
+
+                              {{ statamify:location }}
+                              {{ city }} {{ postal }} {{ if region }}, {{ region }}{{ /if }} <br/>
+                              {{ country }}
+                              {{ /statamify:location }}
+
+                            {{ else }}
+
+                              The same as shipping details
+
+                            {{ /if }}
+
+                            <br/><br/>
+
+                            <strong>Payment Method:&nbsp; </strong> {{ payment_method.name }}
+
+                            {{ if payment_method.name == 'Cheque' }}
+    
+                              <div class="info" data-order="{{ title }}" style="font-size:80%">
+
+                                {{ statamify:cheque }}
+
+                                  {{ info | nl2br }}
+
+                                {{ /statamify:cheque }}
+
+                              </div>
+
+                              <script>
+                                info = document.querySelector('section.cart .info')
+                                order = info.dataset.order
+                                info.innerHTML = info.innerHTML.replace('Order Number', order)
+                              </script>
+
+                            {{ /if }}
+
+
+                          </div>
+
+                        </label>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  {{ /if }}
+
+{{ /statamify:orders }}

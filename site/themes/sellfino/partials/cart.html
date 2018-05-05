@@ -1,0 +1,68 @@
+<div id="cart">
+
+  <a href="" class="close"><i class="zmdi zmdi-close"></i></a>
+
+  <div class="title">Your Cart</div>
+
+  {{ statamify:cart }}
+
+    <div class="items">
+      <ul>
+
+        {{ unless ( items | length ) }}
+
+          <li>No products in cart</li>
+
+        {{ else }}
+
+          {{ items }}
+
+            <li data-id="{{ item_id }}" class="item">
+              <div class="grid vcenter-xs">
+                <div class="thumb">
+
+                  <a href="" class="remove"><i class="zmdi zmdi-close"></i></a>
+
+                  <img src="{{ glide:product.image width='120' fit='crop' }}"></div>
+
+                <div class="details">
+
+                  <div class="product-name">{{ product.title }} {{ if variant }}<small>{{ variant.attrs | statamify.attrs }}</small>{{ /if }}</div>
+
+                  <div class="cart-info">
+
+                    <span class="q">{{ quantity }}</span> x 
+
+                    {{ if variant && variant.price }}
+
+                      {{ variant.price | multiply:quantity | statamify.money }}
+
+                    {{ else }}
+
+                      {{ product.price | multiply:quantity | statamify.money }}
+
+                    {{ /if }}
+
+                  </div>
+
+                </div>
+              </div>
+            </li>
+          
+          {{ /items }}
+
+        {{ /unless }}
+
+      </ul>
+    </div>
+
+    <div class="total">Total: <span class="total-sub">{{ total.sub | statamify.money }}</span></div>
+
+    <div class="buttons">
+      <a href="/store/cart" class="btn alt">View Cart</a>
+      <a href="/store/checkout" class="btn alt">Checkout</a>
+    </div>
+
+  {{ /statamify:cart }}
+
+</div>

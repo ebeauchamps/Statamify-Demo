@@ -1,0 +1,174 @@
+{{ section:title }}My Cart{{ /section:title }}
+
+{{ statamify:cart }}
+
+  <section class="cart">
+    <div class="container">
+      <div class="grid">
+        <div class="col-24-sm">
+          <h2 class="text-center">My Cart</h2>
+        </div>
+      </div>
+
+      <div class="inside">
+
+        {{ if ( items | length ) }}
+
+          <div class="grid">
+            <div class="col-16-md">
+              <div class="table">
+                <div class="head grid">
+                  <div class="col-8-sm">Product</div>
+                  <div class="col-4-sm text-center">Price</div>
+                  <div class="col-8-sm text-center">Quantity</div>
+                  <div class="col-4-sm text-right">Total</div>
+                </div>
+                <div class="body">
+
+                  {{ items }}
+
+                    <div class="item" data-id="{{ item_id }}">
+                      <div class="grid vcenter-xs">
+
+                        <div class="col-8-sm main">
+                          <div class="grid vcenter-xs">
+
+                            <div class="thumb">
+
+                              <a href="" class="remove"><i class="zmdi zmdi-close"></i></a>
+
+                              <img src="{{ glide:product.image width='120' fit='crop' }}">
+
+                            </div>
+
+                            <div class="details">
+
+                              <div class="product-name">{{ product.title }}</div>
+
+                              {{ if variant }}<div class="info">{{ variant.attrs | statamify.attrs }}</div>{{ /if }}
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6-xs col-4-sm text-center">
+
+                          <label>Price:</label> 
+
+                          {{ if variant && variant.price }}
+
+                            {{ variant.price | statamify.money }}
+
+                          {{ else }}
+
+                            {{ product.price | statamify.money }}
+
+                          {{ /if }}
+
+                        </div>
+
+                        <div class="col-12-xs col-8-sm text-center">
+                          <div class="quantity">
+                            <div class="grid">
+
+                              <a href="" class="minus"><i class="fs-16 zmdi zmdi-minus"></i></a>
+
+                              <input name="quantity" value="{{ quantity }}" data-max="{{ if product.track_inventory }}{{ if variant }}{{ variant.inventory }}{{ else }}{{ product.inventory }}{{ /if }}{{ else }}999{{ /if }}">
+
+                              <a href="" class="plus"><i class="fs-16 zmdi zmdi-plus"></i></a>
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6-xs col-4-sm text-right">
+
+                          <label>Total:</label> 
+
+                          <span class="total">
+
+                            {{ if variant && variant.price }}
+
+                              {{ variant.price | multiply:quantity | statamify.money }}
+
+                            {{ else }}
+
+                              {{ product.price | multiply:quantity | statamify.money }}
+
+                            {{ /if }}
+
+                          </span>
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                  {{ /items }}
+
+                </div>
+              </div>
+            </div>
+            <div class="col-8-md">
+              <div class="totals">
+                <div class="line">
+                  <div class="grid vstart-xs">
+                    <div class="col-10-sm">
+                      <div class="title">Subtotal</div>
+                    </div>
+                    <div class="col-14-sm total-sub">{{ total.sub | statamify.money }}</div>
+                  </div>
+                </div>
+                <div class="line">
+                  <div class="grid vstart-xs">
+                    <div class="col-10-sm">
+                      <div class="title">Shipping</div>
+                    </div>
+                    <div class="col-14-sm total-shipping">
+
+                      {{ if shipping }}
+
+                        {{ total.shipping | statamify.money }}
+
+                      {{ else }}
+
+                        <div class="desc">There are no shipping methods available.</div>
+
+                      {{ /if }}
+
+                    </div>
+                  </div>
+                </div>
+                <div class="line">
+                  <div class="grid vstart-xs">
+                    <div class="col-10-sm">
+                      <div class="title">Total</div>
+                    </div>
+
+                    <div class="col-14-sm total-grand">{{ total.grand | statamify.money }}</div>
+
+                  </div>
+                </div>
+                <div class="action"><a href="/store/checkout" class="btn">Proceed to checkout</a></div>
+              </div>
+            </div>
+          </div>
+
+        {{ else }}
+
+        <div class="grid">
+          <div class="col-24-sm text-center">
+            <br/><br/> Nothing found here :( <br/><br/><br/><br/>
+            <a href="/store" class="btn">Go Shopping!</a>
+            <br/><br/><br/>
+          </div>
+        </div>
+
+        {{ /if }}
+
+      </div>
+
+    </div>
+  </section>
+
+{{ /statamify:cart }}

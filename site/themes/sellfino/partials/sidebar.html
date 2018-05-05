@@ -1,0 +1,233 @@
+<div class="filters">
+  <div class="grid">
+
+    <div class="filter">
+      <div class="title">Sort By</div>
+      <ul>
+        <li>
+          <a href="{{ statamify:url key='sort' type='remove' }}" {{ unless { statamify:url key='sort' type='get' } }}class="active"{{ /unless }}>Newness</a>
+        </li>
+        <li>
+          <a href="{{ statamify:url key='sort' value='price:asc' }}" {{ if { statamify:url key='sort' value='price@asc' type='get' } }}class="active"{{ /if }}>Price: low to high</a>
+        </li>
+        <li>
+          <a href="{{ statamify:url key='sort' value='price:desc' }}" {{ if { statamify:url key='sort' value='price@desc' type='get' } }}class="active"{{ /if }}>Price: high to low</a>
+        </li>
+        <li>
+          <a href="{{ statamify:url key='sort' value='title:asc' }}" {{ if { statamify:url key='sort' value='title@asc' type='get' } }}class="active"{{ /if }}>Alphabetically: A to Z</a>
+        </li>
+        <li>
+          <a href="{{ statamify:url key='sort' value='title:desc' }}" {{ if { statamify:url key='sort' value='title@desc' type='get' } }}class="active"{{ /if }}>Alphabetically: Z to A</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="filter">
+      <div class="title">Categories</div>
+      <ul>
+
+        {{ if collection == 'store_categories' }}
+
+          {{ collection from='store_categories' }}
+
+            <li>
+
+              <a href="{{ url }}" {{ if slug == page:slug }}class="active"{{ /if }}>
+                {{ title }}
+              </a>
+
+            </li>
+
+          {{ /collection }}
+
+        {{ else }}
+
+          <li>
+            <a href="{{ statamify:url key='filter' value='store_categories' type='remove' }}" {{ unless { statamify:url key='filter' value='store_categories' type='get' } }}class="active"{{ /unless }}>All</a>
+          </li>
+
+          {{ collection from='store_categories' }}
+
+            <li>
+
+              {{ if { statamify:url key='filter' value='store_categories:{ slug }' type='get' } }}
+
+                <a href="{{ statamify:url key='filter' value='store_categories:{ slug }' type='remove' }}" class="active">
+                  <i class="zmdi zmdi-close"></i> {{ title }}
+                </a>
+
+              {{ else }}
+
+                <a href="{{ statamify:url key='filter' value='store_categories:{ slug }' type='add' }}">
+                  {{ title }}
+                </a>
+
+              {{ /if }}
+
+            </li>
+
+          {{ /collection }}
+
+        {{ /if }}
+
+      </ul>
+    </div>
+
+    <div class="filter">
+      <div class="title">Types</div>
+      <ul>
+
+        {{ if collection == 'store_types' }}
+
+          {{ collection from='store_types' }}
+
+              <li>
+
+                <a href="{{ url }}" {{ if slug == page:slug }}class="active"{{ /if }}>
+                  {{ title }}
+                </a>
+
+              </li>
+
+            {{ /collection }}
+
+        {{ else }}
+
+          <li>
+            <a href="{{ statamify:url key='filter' value='store_types' type='remove' }}" {{ unless { statamify:url key='filter' value='store_types' type='get' } }}class="active"{{ /unless }}>All</a>
+          </li>
+
+          {{ collection from='store_types' }}
+
+            <li>
+
+              {{ if { statamify:url key='filter' value='store_types:{ slug }' type='get' } }}
+              
+                <a href="{{ statamify:url key='filter' value='store_types:{ slug }' type='remove' }}" class="active">
+                  <i class="zmdi zmdi-close"></i> {{ title }}
+                </a>
+
+              {{ else }}
+
+                <a href="{{ statamify:url key='filter' value='store_types:{ slug }' type='add' }}">
+                  {{ title }}
+                </a>
+
+              {{ /if }}
+
+            </li>
+
+          {{ /collection }}
+
+        {{ /if }}
+
+      </ul>
+    </div>
+
+    <div class="filter">
+      <div class="title">Vendor</div>
+      <ul>
+
+        {{ if collection == 'store_vendors' }}
+
+          {{ collection from='store_vendors' }}
+
+              <li>
+
+                <a href="{{ url }}" {{ if slug == page:slug }}class="active"{{ /if }}>
+                  {{ title }}
+                </a>
+
+              </li>
+
+            {{ /collection }}
+
+        {{ else }}
+
+          <li>
+            <a href="{{ statamify:url key='filter' value='store_vendors' type='remove' }}" {{ unless { statamify:url key='filter' value='store_vendors' type='get' } }}class="active"{{ /unless }}>All</a>
+          </li>
+
+          {{ collection from='store_vendors' }}
+
+            <li>
+
+              {{ if { statamify:url key='filter' value='store_vendors:{ slug }' type='get' } }}
+              
+                <a href="{{ statamify:url key='filter' value='store_vendors:{ slug }' type='remove' }}" class="active">
+                  <i class="zmdi zmdi-close"></i> {{ title }}
+                </a>
+
+              {{ else }}
+
+                <a href="{{ statamify:url key='filter' value='store_vendors:{ slug }' type='add' }}">
+                  {{ title }}
+                </a>
+
+              {{ /if }}
+
+            </li>
+
+          {{ /collection }}
+
+        {{ /if }}
+
+      </ul>
+
+    </div>
+
+    <div class="filter">
+      <div class="title">Price</div>
+      <ul>
+        <li>
+          <a href="{{ statamify:url key='filter' value='price' type='remove' }}" {{ unless { statamify:url key='filter' value='price' type='get' } }}class="active"{{ /unless }}>All</a>
+        </li>
+        <li>
+          <a href="{{ statamify:url key='filter' value='price:>0;price:<50' arg='price' }}" {{ if { statamify:url key='filter' value='price:>0' type='get' } }}class="active"{{ /if }}>$0.00 - $50.00</a>
+        </li>
+        <li>
+          <a href="{{ statamify:url key='filter' value='price:>50;price:<100' arg='price' }}" {{ if { statamify:url key='filter' value='price:>50' type='get' } }}class="active"{{ /if }}>$50.00 - $100.00</a>
+        </li>
+        <li>
+          <a href="{{ statamify:url key='filter' value='price:>100;price:<200' arg='price' }}" {{ if { statamify:url key='filter' value='price:>100' type='get' } }}class="active"{{ /if }}>$100.00 - $200.00</a>
+        </li>
+        <li>
+          <a href="{{ statamify:url key='filter' value='price:>200;price:<500' arg='price' }}" {{ if { statamify:url key='filter' value='price:>200' type='get' } }}class="active"{{ /if }}>$200.00 - $500.00</a>
+        </li>
+        <li>
+          <a href="{{ statamify:url key='filter' value='price:>500' arg='price' }}" {{ if { statamify:url key='filter' value='price:>500' type='get' } }}class="active"{{ /if }}>$500.00+</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="filter colors">
+      <div class="title">Color (tags)</div>
+      <ul>
+
+        {{ taxonomy:colors sort="title:asc" }}
+
+          {{ if { statamify:url key='filter' value='colors:{ slug }' type='get' } }}
+
+            <li>
+              <a href="{{ statamify:url key='filter' value='colors:{ slug }' type='remove' }}" class="active {{ slug }}">
+                <i class="zmdi zmdi-close"></i> {{ title }}
+              </a>
+            </li>
+
+          {{ else }}
+
+            <li>
+              <a href="{{ statamify:url key='filter' value='colors:{ slug }' type='add' }}" class="{{ slug }}">
+                {{ title }}
+              </a>
+            </li>
+
+          {{ /if }}
+
+        {{ /taxonomy:colors }}
+
+      </ul>
+    </div>
+
+  </div>
+</div>

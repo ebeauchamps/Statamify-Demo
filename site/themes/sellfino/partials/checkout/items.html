@@ -1,0 +1,80 @@
+<div class="line">
+  <div class="grid vstart-xs">
+    <div class="col-8-md">
+      <div class="title">Your items</div>
+    </div>
+    <div class="col-16-md">
+      <div class="table">
+        <div class="head grid">
+          <div class="col-8-sm">Product</div>
+          <div class="col-4-sm text-center">Price</div>
+          <div class="col-8-sm text-center">Quantity</div>
+          <div class="col-4-sm text-right">Total</div>
+        </div>
+        <div class="body">
+
+          {{ items }}
+
+            <div class="item" data-id="{{ item_id }}">
+              <div class="grid vcenter-xs">
+
+                <div class="col-8-sm main">
+                  <div class="grid vcenter-xs">
+
+                    <div class="product-name">{{ product.title }}</div>
+
+                     {{ if variant }}<div class="info">{{ variant.attrs | statamify.attrs }}</div>{{ /if }}
+
+                  </div>
+                </div>
+
+                <div class="col-6-xs col-4-sm text-center">
+
+                  <label>Price:</label> 
+
+                  {{ if variant && variant.price }}
+
+                    {{ variant.price | statamify.money }}
+
+                  {{ else }}
+
+                    {{ product.price | statamify.money }}
+
+                  {{ /if }}
+
+                </div>
+
+                <div class="col-12-xs col-8-sm text-center">
+                  {{ quantity }}
+                </div>
+
+                <div class="col-6-xs col-4-sm text-right">
+
+                  <label>Total:</label> 
+
+                  <span class="total">
+
+                    {{ if variant && variant.price }}
+
+                      {{ variant.price | multiply:quantity | statamify.money }}
+
+                    {{ else }}
+
+                      {{ product.price | multiply:quantity | statamify.money }}
+
+                    {{ /if }}
+
+                  </span>
+
+                </div>
+
+              </div>
+            </div>
+
+          {{ /items }}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

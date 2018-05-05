@@ -1,0 +1,86 @@
+{{ section:title }}Edit address{{ /section:title }}
+
+{{ statamify:customer }}
+
+  <section class="cart">
+
+    <div class="container">
+
+      <form method="post" action="/statamify/account/address">
+
+        <input type="hidden" name="_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="address_index" value="{{ address_index }}" />
+
+        <div class="hide"><input type="text" name="addresso" class="validate[maxSize[0]]" /></div>
+
+        <div class="grid">
+          <div class="col-24-sm">
+            <h2 class="text-center">
+              {{ if address_index == 'new' }}Add new address{{ else }}Edit your address{{ /if }} 
+              <span><a href="/account">Go to account</a></span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="grid hcenter-xs">
+          <div class="col-16-sm">
+
+            {{ if errors }}
+
+              <div class="grid row errors">
+
+              {{ errors }}
+
+                <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert error active">{{ value }}</div></div>
+                
+              {{ /errors }}
+
+              </div>
+
+            {{ /if }}
+
+            <div class="totals" style="margin: 0">
+
+              <div class="line">
+                <div class="grid">
+                  <div class="col-24-sm">
+
+                    {{ addresses }}
+
+                      {{ if index == address_index }}
+
+                        {{ partial:address-fields }}
+
+                      {{ /if }}
+
+                    {{ /addresses }}
+
+                    {{ if address_index == 'new' }}
+
+                      {{ partial:address-fields }}
+
+                    {{ /if }}
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="line">
+                <div class="grid">
+                  <div class="col-24-sm text-center">
+                    <button type="submit" class="btn">Save address</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+  </section>
+
+{{ /statamify:customer }}

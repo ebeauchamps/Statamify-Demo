@@ -1,0 +1,50 @@
+collections:
+  blog: '/blog/{year}/{month}/{day}/{slug}'
+  things: '/things/{slug}'
+  store_categories: '/store/categories/{slug}'
+  store_products: '/store/products/{slug}'
+  store_types: '/store/types/{slug}'
+  store_vendors: '/store/vendors/{slug}'
+routes:
+  /account:
+    template: account/account
+    as: statamify.account
+    protect:
+      type: logged_in
+      login_url: /account/login
+  /account/order/{slug}:
+    template: account/order
+    as: statamify.account.order
+    protect:
+      type: logged_in
+      login_url: /account/login
+  /account/address/{address_index}:
+    template: account/address
+    as: statamify.account.address
+    protect:
+      type: logged_in
+      login_url: /account/login
+  /account/login: 
+    template: account/login
+    as: statamify.account.login
+  /account/register: 
+    template: account/register
+    as: statamify.account.register
+  /account/forgotten: 
+    template: account/forgotten
+    as: statamify.account.forgotten
+  /account/reset: 
+    template: account/reset
+    as: statamify.account.reset
+  /store: 
+    template: store/store
+    as: statamify.store
+  /store/cart: 
+    template: store/cart
+    as: statamify.store.cart
+  /store/checkout: 
+    template: store/checkout
+    as: statamify.store.checkout
+  /store/summary: 
+    template: store/summary
+    as: statamify.store.summary

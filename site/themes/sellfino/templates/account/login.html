@@ -1,0 +1,79 @@
+{{ section:title }}Login{{ /section:title }}
+
+<section class="cart">
+
+  <div class="container">
+
+    {{ user:login_form redirect="/account" allow_request_redirect="true" }}
+
+      <div class="hide"><input type="text" name="addresso" class="validate[maxSize[0]]" /></div>
+
+      <div class="grid">
+        <div class="col-24-sm">
+          <h2 class="text-center">Login to your account</h2>
+        </div>
+      </div>
+
+      <div class="grid hcenter-xs">
+        <div class="col-12-sm">
+
+          {{ if errors }}
+
+            <div class="grid row errors">
+
+            {{ errors }}
+
+              <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert error active">{{ value }}</div></div>
+              
+            {{ /errors }}
+
+            </div>
+
+          {{ /if }}
+
+          <div class="totals" style="margin: 0">
+
+            <div class="line">
+              <div class="grid">
+                <div class="col-24-sm">
+
+                  <div class="field">
+                    <label>Email address</label>
+                    <input name="username" type="text" type="text" value="{{ old.username }}" class="validate[required,custom[email]]">
+                  </div>
+
+                  <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" class="validate[required]" id="password">
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="line">
+              <div class="grid">
+                <div class="col-24-sm text-center">
+                  <button type="submit" class="btn">Login</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="line">
+              <div class="grid">
+                <div class="col-24-sm text-center">
+                  <a href="/account/forgotten" class="btn alt">Forgot password?</a>
+                  <a href="/account/register" class="btn alt">Register</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    {{ /user:login_form }}
+
+  </div>
+
+</section>

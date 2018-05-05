@@ -1,0 +1,29 @@
+<section class="main">
+  <div class="bg"></div>
+  <div class="container">
+    <div class="grid">
+      <div class="col-24-sm">
+        <h1>{{ title }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products">
+  <div class="container">
+    <div class="grid nomargin">
+      <div class="col-6-md">
+
+        {{ partial:sidebar }}
+        
+      </div>
+
+      {{ collection:store_products sort='{ statamify:sort }' filter='statamify' paginate='true' limit='9' type:is="{ id }" }}
+
+        {{ partial:results }}
+
+      {{ /collection:store_products }}
+
+    </div>
+  </div>
+</section>

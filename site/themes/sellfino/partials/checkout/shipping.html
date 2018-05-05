@@ -1,0 +1,148 @@
+{{ statamify:default_address }}
+
+  <div class="line">
+    <div class="grid vstart-xs">
+      <div class="col-8-md">
+        <div class="title">Shipping informations</div>
+      </div>
+      <div class="col-16-md total-sub">
+
+        <div class="grid">
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>First Name</label>
+              <input name="shipping[first_name]" type="text" value="{{ old.data.shipping.first_name or default.first_name or '' }}" class="validate[required]">
+            </div>
+          </div>
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Last name</label>
+              <input name="shipping[last_name]" type="text" value="{{ old.data.shipping.last_name or default.last_name or '' }}"  class="validate[required]">
+            </div>
+          </div>
+
+        </div>
+        
+        <div class="grid">
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Company</label>
+              <input name="shipping[company]" type="text" value="{{ old.data.shipping.company or default.company or '' }}">
+            </div>
+          </div>
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Phone</label>
+              <input name="shipping[phone]" type="text" value="{{ old.data.shipping.phone or default.phone or '' }}">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="grid">
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Address</label>
+              <input name="shipping[address]" type="text" value="{{ old.data.shipping.address or default.address or '' }}" class="validate[required]">
+            </div>
+          </div>
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Address 2nd line</label>
+              <input name="shipping[address_2]" type="text" value="{{ old.data.shipping.address_2 or default.address_2 or '' }}">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="grid">
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>City</label>
+              <input name="shipping[city]" type="text" value="{{ old.data.shipping.city or default.city or '' }}" class="validate[required]">
+            </div>
+          </div>
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Postal</label>
+              <input name="shipping[postal]" type="text" value="{{ old.data.shipping.postal or default.postal or '' }}" class="validate[required]">
+            </div>
+          </div>
+
+        </div>
+
+        {{ statamify:location }}
+
+          <div class="grid">
+
+            <div class="col-12-sm">
+
+              <div class="field country">
+                
+                <label>Country</label>
+                
+                <select name="shipping[country]" data-group="shipping" autocomplete="off" class="validate[condRequired[shipping_diff]]">
+                  
+                  <option value="">Choose country</option>
+
+                  {{ foreach:countries }}
+
+                    <option value="{{ key }}" {{ if key == old.data.shipping.country || key == country_code  }}selected{{ /if }}>{{ value }}</option>
+                  
+                  {{ /foreach:countries }}
+
+                </select>
+
+              </div>
+
+            </div>
+
+            <div class="col-12-sm">
+
+              <div class="field region" data-group="shipping">
+                
+                {{ if regions }}
+
+                  <label>State</label>
+
+                  <select name="shipping[region]" autocomplete="off" class="validate[condRequired[shipping_diff]]">
+                    
+                    <option value="">Choose state</option>
+                    
+                    {{ foreach:regions }}
+
+                      <option value="{{ key }}" {{ if key == old.data.shipping.region || key == default.region }}selected{{ /if }}>{{ value }}</option>
+                    
+                    {{ /foreach:regions }}
+
+                  </select>
+
+                {{ else }}
+
+                  <label>Region</label>
+
+                  <input name="shipping[region]" type="text" value="{{ old.data.shipping.region or region_code or '' }}">
+
+                {{ /if }}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        {{ /statamify:location }}
+
+      </div>
+    </div>
+  </div>
+
+{{ /statamify:default_address }}

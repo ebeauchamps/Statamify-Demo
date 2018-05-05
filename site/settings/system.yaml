@@ -1,0 +1,46 @@
+locales:
+  en:
+    full: en_US
+    name: English
+    url: http://localhost:8080/
+timezone: Europe/London
+date_format: F jS, Y H:i
+default_extension: md
+filesystems:
+  content:
+    driver: local
+    root: site/content
+  storage:
+    driver: local
+    root: site/storage
+  users:
+    driver: local
+    root: site/users
+  themes:
+    driver: local
+    root: site/themes
+    url: /site/themes
+app_key: tz5StKh5fJ7QAee41Z6dGvEDYgh85cvv
+redactor:
+  - 
+    name: Standard
+    settings:
+      buttons:
+        - formatting
+        - bold
+        - italic
+        - underline
+        - link
+        - unorderedlist
+        - orderedlist
+        - alignment
+        - html
+  - 
+    name: Basic
+    settings:
+      buttons:
+        - bold
+        - italic
+
+send_powered_by_header: true
+ensure_unique_ids: true

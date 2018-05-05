@@ -1,0 +1,78 @@
+{{ section:title }}Checkout{{ /section:title }}
+
+{{ statamify:cart }}
+
+  {{ unless items }}
+
+    {{ redirect to='/store/cart' }}
+
+  {{ else }}
+
+    <section class="cart">
+
+      <form action="/statamify/order/create" method="post" id="orderform" class="container">
+
+        <div class="hide"><input type="text" name="addresso" class="validate[maxSize[0]]" /></div>
+        <input type="hidden" name="_token" value="{{ csrf_token }}" />
+
+        <div class="grid">
+          <div class="col-24-sm">
+            <h2 class="text-center">Checkout</h2>
+          </div>
+        </div>
+
+        {{ if old.errors }}
+
+          <div class="grid row errors">
+
+          {{ old.errors }}
+
+            <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert">{{ value }}</div></div>
+            
+          {{ /old.errors }}
+
+          </div>
+
+        {{ /if }}
+
+        <div class="grid">
+          <div class="col-24-sm">
+            <div class="totals" style="margin: 0">
+
+              {{ partial:checkout/account }}
+
+              {{ partial:checkout/shipping }}
+
+              {{ partial:checkout/billing }}
+
+              {{ partial:checkout/items }}
+
+              {{ partial:checkout/total blockTitle='Subtotal' blockId='sub' :val='total.sub' }}
+
+              {{ partial:checkout/discount }}
+
+              {{ partial:checkout/shipment }}
+
+              {{ partial:checkout/total blockTitle='Total' blockId='grand' :val='total.grand' }}
+
+              {{ partial:checkout/payment }}
+
+              <div class="line">
+                <div class="grid">
+                  <div class="col-24-sm text-right">
+                    <a href="" id="finalize" class="btn">Finalize Order</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </section>
+
+  {{ /unless }}
+
+{{ /statamify:cart }}

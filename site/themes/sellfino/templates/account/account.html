@@ -1,0 +1,137 @@
+{{ section:title }}My Account{{ /section:title }}
+
+<section class="cart">
+  <div class="container">
+    <div class="grid">
+      <div class="col-24-sm">
+        <h2 class="text-center">My Account <span><a href="{{ user:logout_url }}">Logout</a></span></h2>
+      </div>
+    </div>
+
+    <div class="inside">
+      <div class="grid">
+        <div class="col-24-sm">
+          <div class="table">
+
+            {{ if { statamify:orders } }}
+
+              <div class="head grid">
+                <div class="col-4-sm">Order</div>
+                <div class="col-7-sm">Order Date</div>
+                <div class="col-6-sm">Status</div>
+                <div class="col-2-sm">Qty</div>
+                <div class="col-5-sm text-right">Total</div>
+              </div>
+
+            {{ else }}
+
+              <div class="body">
+                <div class="item item-row" style="border:0">There are no orders yet</div>
+              </div>
+
+            {{ /if }}
+
+            <div class="body">
+
+              {{ statamify:orders sort='date:desc' }}
+
+                {{ unless no_results }}
+
+                  <div class="item item-row">
+                    <div class="grid vcenter-xs">
+                      <div class="col-4-sm title"><a href="/account/order/{{ slug }}">{{ title }}</a></div>
+                      <div class="col-7-sm">{{ date }}</div>
+                      <div class="col-6-sm status">{{ status replace="_| " }}</div>
+                      <div class="col-2-sm">{{ summary.items | length }} {{ if (summary.items | length) == 1 }}item{{ else }}items{{ /if }}</div>
+                      <div class="col-5-sm text-right">{{ summary.total.grand | statamify.money }}</div>
+                    </div>
+                  </div>
+
+                {{ /unless }}
+
+              {{ /statamify:orders }}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+ {{ statamify:customer }}
+
+  <section class="cart">
+    <div class="container">
+      <div class="grid">
+        <div class="col-24-sm">
+          <h2 class="text-center">My Addresses <span><a href="/account/address/new">Add new address</a></span></h2>
+        </div>
+      </div>
+
+      <div class="inside">
+        <div class="grid">
+          <div class="col-24-sm">
+            <div class="table">
+
+              {{ if addresses }}
+
+                <div class="head grid">
+                  <div class="col-6-sm">Name & Company</div>
+                  <div class="col-3-sm">Phone</div>
+                  <div class="col-8-sm">Address</div>
+                  <div class="col-3-sm">City & Postal</div>
+                  <div class="col-4-sm text-right alt">Region & Country</div>
+                </div>
+
+              {{ else }}
+
+                <div class="body">
+                  <div class="item item-row" style="border:0">There are no addresses saved</div>
+                </div>
+
+              {{ /if }}
+
+              <div class="body">
+
+                {{ addresses }}
+
+                  <div class="item item-row">
+                    <div class="grid vcenter-xs">
+                      <div class="col-6-sm title">
+
+                         {{ if default }}
+
+                           <i class="zmdi zmdi-star" title="Default"></i>
+
+                         {{ else }}
+
+                          <a href="/statamify/account/address-remove/{{ index }}" class="remove" title="Remove address">
+                            <i class="zmdi zmdi-delete"></i>
+                          </a>
+
+                         {{ /if }}
+
+                        <a href="/account/address/{{ index }}">{{ first_name }} {{ last_name }}{{ if company}}, {{ company }}{{ /if }}</a>
+
+                      </div>
+                      <div class="col-3-sm">{{ phone or '-' }}</div>
+                      <div class="col-8-sm">{{ address }}{{ if address_2 }}, {{ address_2 }}{{ /if }}</div>
+                      <div class="col-3-sm">{{ city }} {{ postal }}</div>
+                      <div class="col-4-sm text-right alt">{{ statamify:location :country='country' }}{{ if region }}{{ region }}, {{ /if }}{{ country }}{{ /statamify:location }}</div>
+                    </div>
+                  </div>
+
+                {{ /addresses }}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+{{ /statamify:customer }}

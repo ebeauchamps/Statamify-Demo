@@ -1,0 +1,163 @@
+productID = '{{ id }}'
+variantID = ''
+price = {{ price or "''" }}
+compare_at_price = {{ compare_at_price or "''" }}
+sku = '{{ sku or "-" }}'
+attrsChoosen = []
+
+{{ if class == 'complex' }}
+
+  var variants = {{ variants | to_json }}
+
+{{ else }}
+
+  var variants = false
+
+{{ /if }}
+
+// CHOOSE VARIANT
+
+$('.variants select').on('change', function() {
+
+  attrsChoosen = []
+  error('remove')
+
+  $.each($('.variants select'), function() {
+    if ($(this).val()) {
+      attrsChoosen.push($(this).val())
+    }
+  })
+
+  found = false
+
+  $.each(variants, function(key, val) {
+    if (val.attrs == attrsChoosen.join('|')) {
+      found = true
+      variantID = val.id
+
+      if (val.price) {
+        $('section.product .price').text(money(parseFloat(val.price)))
+      } else {
+        $('section.product .price').text(money(price))
+      }
+
+      if (val.compare_at_price) {
+        $('section.product .price strike').text(money(parseFloat(val.compare_at_price)))
+      } else {
+        if (compare_at_price) {
+          $('section.product .price strike').text(money(compare_at_price))
+        } else {
+          $('section.product .price strike').text('')
+        }
+      }
+
+      if (val.sku) {
+        $('#sku').text(val.sku)
+      } else {
+        $('#sku').text(sku)
+      }
+
+      $('[name="quantity"]').val(1).attr('data-max', (val.inventory ? val.inventory : 999))
+
+      {{ if track_inventory }}
+
+        if (val.inventory > 0) {
+          $('.add-to-cart a').removeClass('disabled')
+        } else {
+          error('Product is out of stock')
+        }
+
+      {{ else }}
+
+        $('.add-to-cart a').removeClass('disabled')
+
+      {{ /if }}
+
+    }
+  })
+
+  if (!found) {
+
+    variantID = ''
+    prefix = '{{ if class == "complex" }}from {{ /if }}'
+
+    $('section.product .price').text(prefix + money(price))
+
+    if (compare_at_price) {
+      $('section.product .price strike').text(money(prefix + compare_at_price))
+    } else {
+      $('section.product .price strike').text('')
+    }
+
+    $('#sku').text(sku)
+    $('[name="quantity"]').val(1).attr('data-max', '')
+    $('.add-to-cart a').addClass('disabled')
+  }
+
+})
+
+// ADD TO CART
+
+$('.add-to-cart a').on('click', function() {
+
+  error('remove')
+
+  if (variants && !variantID) {
+
+    error('Choose all attributes before adding product to cart')
+    return false
+
+  }
+
+  btn = $(this)
+  btn.addClass('loading').text('Processing')
+
+  $.ajax({
+    method: 'post',
+    url: '/statamify/cart/add',
+    data: {
+      product: productID,
+      variant: variantID,
+      quantity: $('[name="quantity"]').val(),
+      _token: $('meta[name="_token"]').attr('content')
+    },
+    success: function(res) {
+      btn.removeClass('loading').text('Add to cart')
+
+      basket = ''
+      $.each(res.items, function() {
+
+        if (this.variant) {
+          itemPrice = this.variant.price ? parseFloat(this.variant.price) : parseFloat(this.product.price)
+          itemVariant = this.variant.attrs.split('|').join(', ')
+        } else {
+          itemPrice = this.product.price
+          itemVariant = ''
+        }
+
+        basket += tmpl.basket_item
+          .replace('[id]', this.item_id)
+          .replace('[image]', this.product.image)
+          .replace('[url]', this.product.url)
+          .replace('[title]', this.product.title)
+          .replace('[quantity]', this.quantity)
+          .replace('[price]', money(itemPrice))
+          .replace('[variant]',itemVariant)
+      })
+
+      $('#cart .items ul').html(basket)
+      $('body').addClass('cart-opened')
+      setTimeout(function() { $('body').removeClass('cart-opened') }, 3000)
+      $('header .cart').attr('data-cart-items', res.items.length)
+      $('.total-sub').text(money(res.total.sub))
+    },
+    error: function(err) {
+      console.log(err)
+      btn.removeClass('loading').text('Add to cart')
+      error(err.responseJSON.message)
+    }
+  })
+
+  return false
+
+})

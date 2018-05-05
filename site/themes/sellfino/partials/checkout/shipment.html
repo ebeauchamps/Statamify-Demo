@@ -1,0 +1,60 @@
+<div class="line">
+  <div class="grid vstart-xs">
+    <div class="col-8-md">
+      <div class="title">Shipping</div>
+    </div>
+    <div class="col-16-md">
+      <div class="grid">
+        <div class="col-24-sm">
+
+          {{ if shipping }}
+
+            <ul class="radios" id="shipping-methods">
+
+              {{ foreach:shipping.methods as='id|method' }}
+
+                <li>
+
+                  <input type="radio" value="{{ shipping.zone }}|{{ id }}" id="ship_{{ id }}" name="shipping_method" {{ if method.active }}checked{{ /if }}>
+
+                  <label for="ship_{{ id }}">
+                    <strong>{{ method.name }}</strong> : 
+
+                    <span>
+
+                      {{ if method.rate }}
+
+                        {{ method.rate | statamify.money }}
+
+                      {{ else }}
+
+                        {{ statamify:money get="zero" }}
+
+                      {{ /if }}
+
+                    </span>
+
+                  </label>
+
+                  <div class="info">{{ method.note }}</div>
+
+                </li>
+
+              {{ /foreach:shipping.methods }}
+
+            </ul>
+
+          {{ else }}
+
+            There are no shipping methods available.
+
+          {{ /if }}
+
+        </div>
+      </div>
+
+      <div id="errors-shipment" class="alert error"></div>
+
+    </div>
+  </div>
+</div>

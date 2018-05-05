@@ -1,0 +1,144 @@
+<section class="product">
+  <div class="container">
+    <div class="grid">
+      <div class="col-10-md">
+        <div class="slider">
+
+          {{ if gallery }}
+
+          {{ gallery }}
+
+          <div class="slide"><img src="{{ value }}"></div>
+          
+          {{ /gallery }}
+
+          {{ else }}
+
+          <div class="slide"><img src="{{ image }}"></div>
+
+          {{ /if }}
+
+        </div>
+      </div>
+      <div class="col-14-md">
+        <div class="details">
+
+          <h1>{{ title }}</h1>
+
+          <div class="price">
+
+            {{ if class == 'complex' }}<small>from</small>{{ /if }}
+
+            {{ price | statamify.money }}
+
+            &nbsp;&nbsp;
+
+            <strike>
+              {{ if class == 'complex' && compare_at_price }}<small>from</small>{{ /if }} 
+              {{ compare_at_price | statamify.money }}
+            </strike>
+
+          </div>
+
+          <div class="desc">{{ description }}</div>
+
+          {{ if class == 'complex' }}
+
+          <div class="variants">
+
+            {{ foreach:variants.settings }}
+
+            <div class="variant">
+
+              <div class="title">{{ value.option_name }}</div>
+
+              <select name="size">
+                <option>Choose an option</option>
+
+                {{ foreach:value.option_values }}
+
+                <option value="{{ value }}">{{ value }}</option>
+
+                {{ /foreach:value.option_values }}
+
+              </select>
+            </div>
+
+            {{ /foreach:variants.settings }}
+
+          </div>
+
+          {{ /if }}
+
+          {{ if { statamify:available } }}
+
+            <div class="action">
+              <div class="grid vcenter-xs">
+                <div class="quantity">
+                  <div class="grid">
+                    <a href="" class="minus"><i class="fs-16 zmdi zmdi-minus"></i></a>
+
+                    <input type="number" name="quantity" value="1" data-max="{{ if track_inventory }}{{ inventory }}{{ else }}999{{ /if }}">
+
+                    <a href="" class="plus"><i class="fs-16 zmdi zmdi-plus"></i></a>
+                  </div>
+                </div>
+
+                <div class="add-to-cart">
+                  <a href="" class="btn {{ if class == 'complex' }}disabled{{ /if }}">Add to cart</a>
+                </div>
+
+              </div>
+            </div>
+
+          {{ else }}
+
+            <div id="errors" class="alert active">Product is out of stock</div>
+
+          {{ /if }}
+
+          <div id="errors" class="alert"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="details">
+  <div class="container">
+    <div class="grid">
+      <div class="col-24-sm">
+        <ul>
+          <li>SKU: <span id="sku">{{ sku or '-' }}</span></li>
+          <li>Categories: {{ relate:categories }}<a href="{{ url }}">{{ title }}</a>{{ unless last }}, {{ /unless }}{{ /relate:categories }}</li>
+          <li>Type: {{ relate:type }}<a href="{{ url }}">{{ title }}</a>{{ /relate:type }}</li>
+          <li>Vendor: {{ relate:vendor }}<a href="{{ url }}">{{ title }}</a>{{ /relate:vendor }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products">
+  <div class="container">
+    <div class="grid">
+      <div class="col-24-sm">
+        <h2 class="text-center">Related products {{ partial:scripts/add-to-cart }}</h2>
+      </div>
+    </div>
+    <div class="grid hcenter-xs">
+
+      {{ collection:store_products limit='4' :type:is='type' :id:isnt='id' scope="item" }}
+
+      <div class="col-12-xs col-6-sm">
+
+        {{ partial:product-item }}
+
+      </div>
+
+      {{ /collection:store_products }}
+
+    </div>
+  </div>
+</section>

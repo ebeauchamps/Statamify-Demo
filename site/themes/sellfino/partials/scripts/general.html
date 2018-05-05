@@ -1,0 +1,227 @@
+currencySymbol = '{{ statamify:money get="symbol" }}'
+formatMoney = '{{ statamify:money get="format" }}'
+
+error = function(msg, c = '#errors') {
+  if (msg == 'remove') {
+    $(c).removeClass('active').text('')
+  } else {
+    $(c).addClass('active').text(msg)
+  }
+}
+
+money = function(price) {
+
+  minus = false
+  if (price < 0) {
+    price *= -1
+    minus = true
+  }
+
+  price = parseFloat(price).toFixed(2)
+  price = {{ statamify:money get='formatPriceJS' }}
+
+  return (minus ? '- ' : '') + formatMoney.replace('[symbol]', currencySymbol).replace('[price]', price)
+}
+
+$('section.cart form').validationEngine({
+  promptPosition: 'bottomLeft',
+  scroll: false
+})
+
+// REMOVE FROM CART
+
+$('body').on('click', '#cart .thumb a, section.cart .thumb a', function() {
+
+  id = $(this).parents('.item').attr('data-id')
+  $('[data-id="' + id + '"]').slideUp()
+
+  $.ajax({
+    method: 'post',
+    url: '/statamify/cart/update',
+    data: {
+      item_id: id,
+      quantity: 0,
+      _token: $('meta[name="_token"]').attr('content')
+    },
+    success: function(res) {
+      $('[data-id="' + id + '"]').remove()
+
+      $('header .cart').attr('data-cart-items', res.items.length)
+      $('.total-sub').text(money(res.total.sub))
+      $('.total-shipping').text(money(res.total.shipping))
+      $('.total-grand').text(money(res.total.grand))
+
+      if (res.items.length == 0) {
+
+        if ($('#orderform').length) {
+          window.location = '/store/cart'
+        } else {
+          $('#cart .items ul').html(tmpl.basket_empty)
+          $('section.cart .inside').html(tmpl.cart_empty)
+        }
+
+      }
+    },
+    error: function(err) {
+      console.log(err)
+      error(err.responseJSON.message)
+    }
+  })
+
+  return false
+
+})
+
+// QUANTITY FEATURE
+
+$('.quantity a').on('click', function() {
+
+  if ($(this).is('.plus')) {
+
+    quantity = parseInt($(this).prev().val())
+
+    if (parseInt($(this).prev().attr('data-max')) > quantity) {
+      quantity = quantity + 1
+      $(this).prev().val(quantity)
+
+      if ($('section.cart').length) {
+
+        updateCart($(this).parents('.item').attr('data-id'), quantity)
+
+      }
+
+    }
+
+  } else {
+
+    quantity = parseInt($(this).next().val())
+
+    if (quantity > 1) {
+      quantity = quantity - 1
+      $(this).next().val(quantity)
+
+      if ($('section.cart').length) {
+
+        updateCart($(this).parents('.item').attr('data-id'), quantity)
+
+      }
+    }
+
+  }
+
+  return false;
+
+})
+
+updateCart = function(id, quantity) {
+
+  $.ajax({
+    method: 'post',
+    url: '/statamify/cart/update',
+    data: {
+      item_id: id,
+      quantity: quantity,
+      _token: $('meta[name="_token"]').attr('content')
+    },
+    success: function(res) {
+
+      $('.total-sub').text(money(res.total.sub))
+      $('.total-shipping').text(money(res.total.shipping))
+      $('.total-grand').text(money(res.total.grand))
+      $('[data-id="' + id + '"] .q').text(quantity)
+
+      $.each(res.items, function() {
+        subtotal = this.variant && this.variant.price ? parseFloat(this.variant.price) * this.quantity : parseFloat(this.product.price) * this.quantity
+
+        $('[data-id="' + this.item_id + '"] .q').text(this.quantity)
+        $('[data-id="' + this.item_id + '"] .total').text(money(subtotal))
+      })
+
+      if (res.items.length == 0) {
+
+        $('#cart .items ul').html(tmpl.basket_empty)
+
+      }
+    },
+    error: function(err) {
+      console.log(err)
+      error(err.responseJSON.message)
+    }
+  })
+
+}
+
+// COUNTRY SELECT FOR CHECKOUT & ACCOUNT
+
+$('.country select').on('change', function() {
+  country = $(this).val();
+  group = $(this).attr('data-group');
+  name = group + '[region]';
+
+  if (group === 'shipping') {
+    method = 'post';
+    url = '/statamify/cart/set-shipping';
+    data = {
+      shipping_country: country,
+      _token: $('meta[name="_token"]').attr('content')
+    };
+  } else {
+    method = 'get';
+    url = '/statamify/countries';
+    data = false;
+  }
+
+  if (country) {
+
+    $.ajax({
+      method: method,
+      url: url,
+      data: data,
+      success: function(res) {
+        if (res.regions[country]) {
+          options = ''
+
+          $.each(res.regions[country], function(key, value) {
+            options += '<option value="' + key + '">' + value + '</option>'
+          })
+
+          $('.region[data-group="' + group + '"]').html(tmpl.region_select.replace('[name]', name).replace('[options]', options))
+
+        } else {
+
+          $('.region[data-group="' + group + '"]').html(tmpl.region_input.replace('[name]', name))
+
+        }
+
+        if (res.cart) {
+          if (res.cart.shipping && res.cart.shipping.methods) {
+            $('#shipping-methods').text('')
+
+            $.each(res.cart.shipping.methods, function(key) {
+              rate = money(this.rate ? this.rate : 0)
+              option = tmpl.shipping_method.split('[id]').join(key).replace('[name]', this.name).replace('[rate]', rate).replace('[zone]', res.cart.shipping.zone).replace('[note]', this.note ? this.note : '').replace('[checked]', this.active ? 'checked' : '')
+              
+              $('#shipping-methods').append(option)
+              
+              if (this.active) {
+                $('.total-shipping').text(rate)
+              }
+
+            });
+
+          } else {
+
+            $('#shipping-methods').html('<li>There are no shipping methods available</li>')
+
+          }
+          return $('.total-grand').text(money(res.cart.total.grand))
+        }
+      }
+    });
+
+  } else {
+
+    return $('.region[data-group="' + group + '"]').html(tmpl.region_input.replace('[name]', name))
+
+  }
+});

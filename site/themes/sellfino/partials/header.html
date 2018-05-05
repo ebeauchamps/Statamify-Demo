@@ -1,0 +1,102 @@
+<header>
+
+  <div class="top">
+    <div class="container">
+      <div class="grid vcenter-xs">
+        <div class="col-16-xs">Free shipping for standard order over $100</div>
+        <div class="col-8-xs text-right">
+          <a href="/account">My Account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="container">
+      <div class="grid vcenter-xs">
+        <div class="order-1-xs col-16-xs col-5-sm col-4-md">
+          <a href="{{ site_url }}" class="logo"></a>
+        </div>
+        <div class="order-3-xs order-2-sm col-13-sm col-14-md">
+          <nav>
+            <a href="" class="mobile">
+              <i class="zmdi zmdi-menu"></i>
+            </a>
+            <ul>
+              <li>
+                <a href="/" {{ if template == 'home' }}class="active"{{ /if }}>Home</a>
+              </li>
+
+              <li>
+                <a href="/store" {{ if template == 'store/store' }}class="active"{{ /if }}>Store</a>
+              </li>
+
+              <li class="dropdown">
+                <a {{ if template == 'store/type' }}class="active"{{ /if }}>Types</a>
+                <ul>
+
+                  {{ collection:store_types }}
+                  
+                    <li>
+                      <a href="{{ permalink }}">{{ title }}</a>
+                    </li>
+
+                  {{ /collection:store_types }}
+                
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a {{ if template == 'store/vendor' }}class="active"{{ /if }}>Vendors</a>
+                <ul>
+
+                  {{ collection:store_vendors }}
+                  
+                    <li>
+                      <a href="{{ permalink }}">{{ title }}</a>
+                    </li>
+
+                  {{ /collection:store_vendors }}
+                
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a {{ if template == 'store/category' }}class="active"{{ /if }}>Categories</a>
+
+                <ul>
+
+                  {{ collection:store_categories }}
+
+                    <li>
+                      <a href="{{ permalink }}" {{ if slug == page:slug }}class="active"{{ /if }}>{{ title }}</a>
+                    </li>
+
+                  {{ /collection:store_categories }}
+
+                </ul>
+              </li>
+
+            </ul>
+          </nav>
+        </div>
+
+        {{ statamify:cart }}
+
+          <div class="order-2-xs order-3-sm col-8-xs col-6-sm">
+            <ul class="text-right">
+              <li>
+                <a href="/store/cart" data-cart-items="{{ items | length }}" class="cart">
+                  <i class="zmdi zmdi-shopping-cart"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        {{ /statamify:cart }}
+
+      </div>
+    </div>
+  </div>
+
+</header>

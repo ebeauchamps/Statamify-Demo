@@ -1,0 +1,114 @@
+{{ user }}
+
+  {{ if no_results }}
+
+    <div class="line">
+      <div class="grid vstart-xs">
+        <div class="col-8-md">
+          <div class="title">Account informations</div>
+          <div class="desc">
+
+              Already have an account ? <a href="/account/login?redirect=/store/checkout">Login</a>
+
+          </div>
+        </div>
+        <div class="col-16-md">
+
+          <div class="grid">
+            <div class="col-24-sm">
+
+              <div class="field">
+                <label>Email address</label>
+                <input name="email" type="text" value="{{ old.data.email or '' }}" class="validate[required,custom[email]]">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="grid">
+
+            <div class="col-12-sm">
+
+              <div class="field">
+                <label>Password</label>
+                <input type="password" name="password" {{ if ! { statamify:guest } }}class="validate[required]"{{ /if }} id="password">
+              </div>
+
+            </div>
+
+            <div class="col-12-sm">
+
+              <div class="field">
+                <label>Confirm Password</label>
+                <input type="password" name="password_confirmation" {{ if ! { statamify:guest } }}class="validate[required,equals[password]]"{{ /if }}>
+              </div>
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {{ else }}
+
+    <div class="line">
+      <div class="grid vstart-xs">
+        <div class="col-8-md">
+          <div class="title">Saved addresses</div>
+        </div>
+        <div class="col-16-md">
+
+          <div class="grid">
+
+            {{ statamify:addresses }}
+
+              {{ if no_results }}
+
+                <div class="field">You don't have saved addresses.</div>
+
+              {{ else }}
+
+                <div class="col-12-sm">
+
+                  <label class="saved-address" for="saved_addresses_{{ zero_index }}">
+
+                    {{ statamify:default_address }}
+
+                      <input type="radio" name="saved_addresses" value="{{ zero_index }}" 
+                        id="saved_addresses_{{ zero_index }}" 
+                        {{ if zero_index == defaultKey }}checked{{ /if }} 
+                      /> 
+
+                    {{ /statamify:default_address }}
+
+                    <div class="block">
+
+                      <strong>{{ first_name }} {{ last_name }}{{ if company }}, {{ company }}{{ /if }}</strong> <br/>
+                      {{ if phone }}{{ phone }}<br/>{{ /if }}
+                      {{ address }}{{ if address_2 }}, {{ address_2 }}{{ /if }}<br/>
+
+                      {{ statamify:location }}
+                      {{ city }} {{ postal }} {{ if region }}, {{ region }}{{ /if }} <br/>
+                      {{ country }}
+                      {{ /statamify:location }}
+
+                    </div>
+
+                  </label>
+
+                </div>
+
+              {{ /if }}
+
+            {{ /statamify:addresses }}
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  {{ /if }}
+
+{{ /user }}

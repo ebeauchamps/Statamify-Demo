@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ if template != 'home' }}{{ yield:title }}{{ title }} - {{ /if }}{{ statamify get="store_name" }}</title>
+  <meta http-equiv="Cache-control" content="public">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/ico" href="{{ theme:asset src='/assets/img/favicon.png' }}">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="{{ theme:asset src='/assets/css/main.css' }}">
+  <link rel="canonical" href="/">
+
+  <meta name="description" content="{{ if desc }}{{ desc | strip_tags | safe_truncate:90:... }}{{ else }}{{ if {yield:seodesc} }}{{ yield:seodesc }}{{ else }}{{ site_desc }}{{ /if }}{{ /if }}" />
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@sellfino">
+  <meta name="twitter:title" content="{{ if slug != 'home' }}{{ yield:title }}{{ title }} - {{ /if }}{{ site_name }}<">
+  <meta name="twitter:description" content="{{ if desc }}{{ desc | strip_tags | safe_truncate:90:... }}{{ else }}{{ if {yield:seodesc} }}{{ yield:seodesc }}{{ else }}{{ site_desc }}{{ /if }}{{ /if }}">
+  <meta name="twitter:creator" content="@sellfino">
+  <meta name="twitter:image" content="{{ if image }}{{ glide:image width='600' absolute='true' }}{{ else }}{{ if {yield:seoimage} }}{{ yield:seoimage }}{{ else }}{{ get_content from="/" }}{{ glide:image width='600' absolute='true' }}{{ /get_content }}{{ /if }}{{ /if }}">
+
+  <meta property="og:title" content="{{ if slug != 'home' }}{{ yield:title }}{{ title }} - {{ /if }}{{ site_name }}<" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ permalink }}" />
+  <meta property="og:image" content="{{ if image }}{{ glide:image width='600' absolute='true' }}{{ else }}{{ if {yield:seoimage} }}{{ yield:seoimage }}{{ else }}{{ get_content from="/" }}{{ glide:image width='600' absolute='true' }}{{ /get_content }}{{ /if }}{{ /if }}" />
+  <meta property="og:description" content="{{ if desc }}{{ desc | strip_tags | safe_truncate:90:... }}{{ else }}{{ if {yield:seodesc} }}{{ yield:seodesc }}{{ else }}{{ site_desc }}{{ /if }}{{ /if }}" />
+  <meta property="og:site_name" content="Tenue de Ville" />
+
+  <meta name="_token" content="{{ csrf_token }}">
+
+  <script src="https://js.stripe.com/v3/"></script>
+
+</head>
+<body class="{{ slug }} {{ template }}">
+
+  <div class="over"></div>
+
+  {{ partial:cart }}
+
+  <div class="wrapper">
+
+    {{ partial:header }}
+
+    <main>
+
+      {{ template_content }}
+
+    </main>
+
+    {{ partial:footer }}
+
+  </div>
+
+  <script src="{{ theme:asset src='/assets/js/lib.js' }}"></script>
+
+  <!-- IMPORTANT - TO CALCULATE CURRENCY, YOU NEED THIS SCRIPT -->
+  <script src="{{ theme:asset src='/assets/js/num.js' }}"></script>
+  <!-- IMPORTANT - TO CALCULATE CURRENCY, YOU NEED THIS SCRIPT -->
+
+  <script>
+
+    tmpl = {
+      basket_item: '<li data-id="[id]"><div class="grid vcenter-xs"> <div class="thumb"><a href="" class="remove"><i class="zmdi zmdi-close"></i></a> <img src="[image]"></div><div class="details"><div class="product-name">[title] <small>[variant]</small></div><div class="cart-info"><span class="q">[quantity]</span> x [price] </div></div></div></li>',
+      basket_empty: '<li>No products in cart</li>',
+      cart_empty: '<div class="grid"><div class="col-24-sm text-center"> <br/><br/> Nothing found here :( <br/><br/><br/><br/><a href="/store" class="btn">Go Shopping!</a> <br/><br/><br/> </div></div>',
+      region_select: '<label>State</label><select name="[name]" autocomplete="off" class="validate[condRequired[shipping_diff]]"><option value="">Choose state</option>[options]</select>',
+      region_input: '<label>Region</label><input name="[name]" type="text">',
+      shipping_method: '<li><input type="radio" value="[zone]|[id]" id="ship_[id]" name="shipping_method" [checked]><label for="ship_[id]"><strong>[name]</strong> : <span>[rate]</span></label><div class="info">[note]</div></li>',
+      coupon_applied: '<div class="col-24-sm"><div class="field price">[discount]</div><label>Coupon applied: <strong>[code]</strong><a href="" class="remove-coupon" data-index="0"><i class="zmdi zmdi-delete"></i></label></div>',
+      coupon_form: '<div class="col-12-sm"><div class="field"><label>Coupon Code</label><input type="text" name="coupon-code"></div></div><div class="col-12-sm"><div class="field"> <label>&nbsp; <br/></label><a href="" class="btn apply-coupon">Apply coupon</a></div></div>'
+    }
+
+    {{ partial:scripts/general }}
+
+    {{ if template == 'store/product' }}
+
+      {{ partial:scripts/product }}
+
+    {{ /if }}
+
+    {{ if template == 'store/checkout' }}
+
+      {{ partial:scripts/checkout }}
+
+    {{ /if }}
+
+    {{ if template == 'account/address' }}
+
+      {{ partial:scripts/address }}
+
+    {{ /if }}
+
+  </script>
+
+  <script src="{{ theme:asset src='/assets/js/main.js' }}"></script>
+
+</body>
+</html>

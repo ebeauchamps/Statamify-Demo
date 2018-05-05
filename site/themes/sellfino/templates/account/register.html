@@ -1,0 +1,94 @@
+{{ section:title }}Register{{ /section:title }}
+
+
+<section class="cart">
+
+  <div class="container">
+
+    {{ user:register_form redirect="/account" allow_request_redirect="true" }}
+
+      <div class="hide"><input type="text" name="addresso" class="validate[maxSize[0]]" /></div>
+
+      <div class="grid">
+        <div class="col-24-sm">
+          <h2 class="text-center">Register new account</h2>
+        </div>
+      </div>
+
+      <div class="grid hcenter-xs">
+        <div class="col-12-sm">
+
+          {{ if errors }}
+
+            <div class="grid row errors">
+
+            {{ errors }}
+
+              <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert error active">{{ value }}</div></div>
+              
+            {{ /errors }}
+
+            </div>
+
+          {{ /if }}
+
+          <div class="totals" style="margin: 0">
+
+            <div class="line">
+              <div class="grid">
+                <div class="col-24-sm">
+
+                  <div class="field">
+                    <label>Email address</label>
+                    <input name="email" type="text" value="{{ old.email }}" class="validate[required,custom[email]]">
+                  </div>
+
+                  <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" class="validate[required]" id="password">
+                  </div>
+
+                  <div class="field">
+                    <label>Confirm Password</label>
+                    <input type="password" name="password_confirmation" class="validate[required,equals[password]]">
+                  </div>
+
+                  <div class="field">
+                    <label>First Name</label>
+                    <input name="first_name" type="text" value="{{ old.first_name }}" class="validate[required]">
+                  </div>
+
+                  <div class="field">
+                    <label>Last Name</label>
+                    <input name="last_name" type="text" value="{{ old.last_name }}"  class="validate[required]">
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="line">
+              <div class="grid">
+                <div class="col-24-sm text-center">
+                  <button type="submit" class="btn">Register</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="line">
+              <div class="grid">
+                <div class="col-24-sm text-center">
+                  <a href="/account/login" class="btn alt">Login</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    {{ /user:register_form }}
+
+  </div>
+
+</section>

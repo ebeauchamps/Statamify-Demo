@@ -1,0 +1,91 @@
+<div class="col-18-md">
+  <div class="grid">
+
+      {{ if no_results }}
+
+        <div class="alert">There are no products found. Please, change your criteria.</div>
+
+      {{ else }}
+
+        {{ entries }}
+
+          <div class="col-12-xs col-8-sm">
+            
+            {{ partial:product-item }}
+
+          </div>
+
+        {{ /entries }}
+
+      {{ /if }}
+
+  </div>
+
+  {{ paginate }}
+
+    <div class="grid paginate vcenter-xs">
+
+      <div class="col-12-sm">
+        <div class="info">{{ current_page }} of {{ total_pages }} pages. Results: {{ total_items }}</div>
+      </div>
+
+      <div class="col-12-sm">
+
+        <ul class="pagination">
+
+          {{ if prev_page }}
+              <li><a href="{{ prev_page }}">&laquo;</a></li>
+          {{ else }}
+              <li class="disabled"><a>&laquo;</a></li>
+          {{ /if }}
+
+          {{ links:segments }}
+
+              {{ first }}
+                  {{ if page == current_page }}
+                      <li><a class="active">{{ page }}</a></li>
+                  {{ else }}
+                      <li><a href="{{ url }}">{{ page }}</a></li>
+                  {{ /if }}
+              {{ /first }}
+
+              {{ if slider }}
+                  <li class="disabled"><span>...</span></li>
+              {{ /if }}
+
+              {{ slider }}
+                  {{ if page == current_page }}
+                      <li><a class="active">{{ page }}</a></li>
+                  {{ else }}
+                      <li><a href="{{ url }}">{{ page }}</a></li>
+                  {{ /if }}
+              {{ /slider }}
+
+              {{ if slider || (!slider && last) }}
+                  <li class="disabled"><span>...</span></li>
+              {{ /if }}
+
+              {{ last }}
+                  {{ if page == current_page }}
+                      <li><a class="active">{{ page }}</a></li>
+                  {{ else }}
+                      <li><a href="{{ url }}">{{ page }}</a></li>
+                  {{ /if }}
+              {{ /last }}
+
+          {{ /links:segments }}
+
+          {{ if next_page }}
+              <li><a href="{{ next_page }}">&raquo;</a></li>
+          {{ else }}
+              <li class="disabled"><span>&raquo;</span></li>
+          {{ /if }}
+
+        </ul>
+      </div>
+
+    </div>
+
+  {{ /paginate }}
+
+</div>

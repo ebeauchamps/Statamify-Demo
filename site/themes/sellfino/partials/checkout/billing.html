@@ -1,0 +1,156 @@
+<div class="line">
+  <div class="grid vstart-xs">
+    <div class="col-8-md">
+      <div class="title">Billing informations</div>
+    </div>
+    <div class="col-16-md">
+
+      <div class="grid">
+        <div class="col-24-sm">
+          <div class="field">
+            <input type="checkbox" value="1" id="billing_diff" name="billing_diff" {{ if old.data.billing_diff == '1' }}checked{{ /if }}>
+            <label for="billing_diff">Billing informations different than shipping?</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="billing" style="display:none">
+
+        <div class="grid">
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>First Name</label>
+              <input name="billing[first_name]" type="text" value="{{ old.data.billing.first_name or '' }}" class="validate[condRequired[billing_diff]]">
+            </div>
+          </div>
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Last name</label>
+              <input name="billing[last_name]" type="text" value="{{ old.data.billing.last_name or '' }}"  class="validate[condRequired[billing_diff]]">
+            </div>
+          </div>
+
+        </div>
+        
+        <div class="grid">
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Company</label>
+              <input name="billing[company]" type="text" value="{{ old.data.billing.company or '' }}">
+            </div>
+          </div>
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Phone</label>
+              <input name="billing[phone]" type="text" value="{{ old.data.billing.phone or '' }}">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="grid">
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Address</label>
+              <input name="billing[address]" type="text" value="{{ old.data.billing.address or '' }}" class="validate[condRequired[billing_diff]]">
+            </div>
+          </div>
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Address 2nd line</label>
+              <input name="billing[address_2]" type="text" value="{{ old.data.billing.address_2 or '' }}">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="grid">
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>City</label>
+              <input name="billing[city]" type="text" value="{{ old.data.billing.city or '' }}" class="validate[condRequired[billing_diff]]">
+            </div>
+          </div>
+
+          <div class="col-12-sm">
+            <div class="field">
+              <label>Postal</label>
+              <input name="billing[postal]" type="text" value="{{ old.data.billing.postal or '' }}" class="validate[condRequired[billing_diff]]">
+            </div>
+          </div>
+
+        </div>
+
+        {{ statamify:location }}
+
+          <div class="grid">
+
+            <div class="col-12-sm">
+
+              <div class="field country">
+                
+                <label>Country</label>
+                
+                <select name="billing[country]" data-group="billing" autocomplete="off" class="validate[condRequired[billing_diff]]">
+                  
+                  <option value="">Choose country</option>
+                  
+                  {{ foreach:countries }}
+
+                    <option value="{{ key }}" {{ if key == old.data.billing.country }}selected{{ /if }}>{{ value }}</option>
+                  
+                  {{ /foreach:countries }}
+
+                </select>
+
+              </div>
+            </div>
+
+            <div class="col-12-sm">
+
+              <div class="field region" data-group="billing">
+                
+                {{ if regions }}
+
+                  <label>State</label>
+
+                  <select name="billing[region]" autocomplete="off" class="validate[condRequired[billing_diff]]">
+                    
+                    <option value="">Choose state</option>
+                    
+                    {{ foreach:regions }}
+
+                      <option value="{{ key }}" {{ if key == old.data.billing.region }}selected{{ /if }}>{{ value }}</option>
+                    
+                    {{ /foreach:regions }}
+
+                  </select>
+
+                {{ else }}
+
+                  <label>Region</label>
+
+                  <input name="billing[region]" type="text" value="{{ old.data.billing.region or '' }}">
+
+                {{ /if }}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        {{ /statamify:location }}
+
+      </div>
+
+    </div>
+  </div>
+</div>

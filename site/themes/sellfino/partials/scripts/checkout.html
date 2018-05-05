@@ -1,0 +1,148 @@
+if ($('#billing_diff:checked').length) {
+  $('#billing').show();
+}
+
+$('#billing_diff').on('change', function() {
+  if ($(this)[0].checked) {
+    $('#billing').show()
+  } else {
+    $('#billing').hide()
+  }
+})
+
+$('[name="saved_addresses"]').on('change', function() {
+  address = $('[name="saved_addresses"]:checked').val();
+  $.post('/statamify/cart/default-address', {
+    address: address,
+    _token: $('meta[name="_token"]').attr('content')
+  }, function() {
+    location.reload();
+  });
+});
+
+$('body').on('change', '[name="shipping_method"]', function() {
+  error('remove', '#errors-shipment')
+
+  $.ajax({
+    method: 'post',
+    url: '/statamify/cart/set-shipping-method',
+    data: {
+      shipping: $(this).val(),
+      _token: $('meta[name="_token"]').attr('content')
+    },
+    success: function(res) {
+
+      $('.total-grand').text(money(res.total.grand));
+      $('.total-shipping').text(money(res.total.shipping));
+      $('.total-discount .price').text(money(res.total.discount));
+
+    },
+    error: function(err) {
+      console.log(err);
+      error(err.responseJSON.message, '#errors-shipment');
+    }
+  })
+
+})
+
+$('body').on('click', '.apply-coupon', function(e) {
+  coupon = $('[name="coupon-code"]').val()
+  error('remove', '#errors-coupons')
+
+  if (coupon != '') {
+
+    btn = $(this)
+    btn.addClass('loading').text('Processing')
+
+    $.ajax({
+      method: 'post',
+      url: '/statamify/cart/coupon',
+      data: {
+         coupon: coupon,
+        _token: $('meta[name="_token"]').attr('content')
+      },
+      success: function(res) {
+        btn.removeClass('loading').text('Apply coupon')
+
+        $('.total-discount').html(tmpl.coupon_applied.replace('[discount]', money(res.total.discount)).replace('[code]', coupon))
+        $('.total-grand').text(money(res.total.grand))
+
+      },
+      error: function(err) {
+        console.log(err);
+        btn.removeClass('loading').text('Apply coupon')
+        error(err.responseJSON.message, '#errors-coupons');
+      }
+    })
+
+  }
+
+  return false;
+})
+
+$('body').on('click', '.remove-coupon', function() {
+
+  error('remove', '#errors-coupons')
+
+  $.ajax({
+    method: 'post',
+    url: '/statamify/cart/coupon-remove',
+    data: {
+     index: $(this).attr('data-index'),
+     _token: $('meta[name="_token"]').attr('content')
+     },
+     success: function(res) {
+
+      $('.total-discount').html(tmpl.coupon_form)
+      $('.total-grand').text(money(res.total.grand))
+
+    },
+    error: function(err) {
+      console.log(err);
+      error(err.responseJSON.message, '#errors-coupons')
+    }
+  })
+
+  return false;
+})
+
+$('#finalize').on('click', function(e) {
+  e.preventDefault()
+
+  btn = $(this)
+
+  form = $('#orderform')
+
+  if ($(this).validationEngine('validate')) {
+
+    btn.addClass('loading').text('Processing')
+    method = $('[name="payment_method"]:checked').val()
+
+    if (method == 'stripe') {
+
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+
+          btn.removeClass('loading').text('Finalize order')
+
+        } else {
+
+          $('#orderform').append('<input type="hidden" name="payment_token" value="' + result.token.id + '" />')
+          
+          $('#orderform').submit()
+
+        }
+      });
+
+    } else {
+
+      $('#orderform').submit()
+
+    }
+
+  }
+
+})

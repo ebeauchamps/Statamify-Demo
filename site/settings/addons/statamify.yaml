@@ -1,0 +1,297 @@
+owner_email: tavando.dev@gmail.com
+store_name: 'Sellfino - Demo Store for Statamify'
+store_address: |
+  <p style="text-align: center;">Sellfino Store
+  </p>
+  <p style="text-align: center;">Shire 2, 10-00-01
+  </p>
+  <p style="text-align: center;">Middle-Earth, UK<br>
+  </p>
+order_id_format: '#[id]'
+order_next_id: 1025
+guest_checkout: true
+coupons_multiple: false
+shipping_zones:
+  - 
+    type: zone
+    name: Great Britain Zone
+    countries:
+      - GB
+    price_rates:
+      - 
+        name: Free Shipping
+        min: "100"
+        note: Delivery in 1-2 days
+    weight_rates:
+      - 
+        name: TNT Express
+        max: "5"
+        rate: "5"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "5.01"
+        max: "10"
+        rate: "8"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "10.01"
+        max: "20"
+        rate: "10"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "20.01"
+        rate: "15"
+        note: Delivery in 2-3 days
+      - 
+        name: Fedex
+        max: "5"
+        rate: "5.5"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "5.01"
+        max: "10"
+        rate: "9"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "10.01"
+        max: "20"
+        rate: "11"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "20.01"
+        rate: "16.5"
+        note: Delivery in 1-2 days
+  - 
+    type: zone
+    name: Europe
+    countries:
+      - AL
+      - AD
+      - AM
+      - AT
+      - AZ
+      - BY
+      - BE
+      - BA
+      - BG
+      - HR
+      - CY
+      - CZ
+      - DK
+      - EE
+      - FI
+      - FR
+      - GE
+      - DE
+      - GR
+      - HU
+      - IS
+      - IE
+      - IT
+      - KZ
+      - KV
+      - LV
+      - LI
+      - LT
+      - LU
+      - MK
+      - MT
+      - MD
+      - MC
+      - ME
+      - NL
+      - false
+      - PL
+      - PT
+      - RO
+      - RU
+      - SM
+      - RS
+      - SK
+      - SI
+      - ES
+      - CH
+      - TR
+      - UA
+      - VA
+    weight_rates:
+      - 
+        name: TNT Express
+        max: "5"
+        rate: "7.5"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "5.01"
+        max: "10"
+        rate: "12"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "10.01"
+        max: "20"
+        rate: "15"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "20.01"
+        rate: "22.5"
+        note: Delivery in 2-3 days
+      - 
+        name: Fedex
+        max: "5"
+        rate: "8.5"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "5.01"
+        max: "10"
+        rate: "13"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "10.01"
+        max: "20"
+        rate: "6.5"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "20.01"
+        rate: "24"
+        note: Delivery in 1-2 days
+  - 
+    type: zone
+    name: Middle East
+    countries:
+      - BH
+      - KW
+      - OM
+      - QA
+      - SA
+      - AE
+    weight_rates:
+      - 
+        name: TNT Express
+        max: "5"
+        rate: "10"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "5.01"
+        max: "10"
+        rate: "16"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "10.01"
+        max: "20"
+        rate: "20"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "20.01"
+        rate: "30"
+        note: Delivery in 2-3 days
+      - 
+        name: Fedex
+        max: "5"
+        rate: "11"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "5.01"
+        max: "10"
+        rate: "17.5"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "10.01"
+        max: "20"
+        rate: "22"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "20.01"
+        rate: "33"
+        note: Delivery in 1-2 days
+  - 
+    type: rest
+    name: Rest of the World
+    weight_rates:
+      - 
+        name: TNT Express
+        max: "5"
+        rate: "15"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "5.01"
+        max: "10"
+        rate: "24"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "10.01"
+        max: "20"
+        rate: "30"
+        note: Delivery in 2-3 days
+      - 
+        name: TNT Express
+        min: "20.01"
+        rate: "45"
+        note: Delivery in 2-3 days
+      - 
+        name: Fedex
+        max: "5"
+        rate: "16.5"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "5.01"
+        max: "10"
+        rate: "26"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "10.01"
+        max: "20"
+        rate: "33"
+        note: Delivery in 1-2 days
+      - 
+        name: Fedex
+        min: "20.01"
+        rate: "50"
+        note: Delivery in 1-2 days
+shipping_package_weight: "1"
+currency:
+  - 
+    code: USD
+    symbol: $
+    format: '[symbol][price]'
+    formatPrice: 4
+    rate: "1"
+gateways:
+  - 
+    type: cheque
+    active: true
+    info: |
+      Please send money to Great Bank.
+      Account No: 1234 5678 9000
+      Subject: Order Number
+  - 
+    type: stripe
+    active: true
+    keys:
+      public: ""
+      secret: ""
+    test_keys:
+      public: pk_test_0vu7RyP5qxKRYH4xHMzfAUAa
+      secret: sk_test_VZJtHVMJNj5eMg2Lt6pd91Xv
+    test: true
+queue_emails: true

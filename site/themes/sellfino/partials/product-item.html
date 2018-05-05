@@ -1,0 +1,52 @@
+
+<a href="{{ permalink }}" class="product-item">
+
+	{{ relate:categories }}
+
+		{{ if slug == 'new-stuff' }}
+
+			<div class="flag">New</div>
+
+		{{ /if }}
+
+	{{ /relate:categories }}
+
+  {{ if gallery }}
+
+    <div class="image">
+      
+      {{ gallery limit="2" }}
+
+        <img src="{{ glide:value width='400' fit='crop' quality='100' }}" />
+
+      {{ /gallery }}
+
+    </div>
+
+  {{ else }}
+
+    <div class="image" style="background-image: url({{ glide:image width='400' fit='crop' quality='100' }})"></div>
+
+  {{ /if }}
+
+  <div class="title">{{ title }}</div>
+
+  <div class="price">
+
+    {{ if { statamify:available } }}
+
+      {{ if class == 'complex' }}<small>from</small>{{ /if }}
+
+      {{ if compare_at_price }}<strike>{{ compare_at_price | statamify.money }}</strike> {{ /if }}
+
+      {{ price | statamify.money }}
+
+    {{ else }}
+
+      Out of stock
+
+    {{ /if }}
+
+  </div>
+
+</a>

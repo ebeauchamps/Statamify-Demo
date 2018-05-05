@@ -1,0 +1,139 @@
+<section class="main">
+  <div class="bg"></div>
+  <div class="container">
+    <div class="grid">
+      <div class="col-24-sm">
+        <div class="subtitle">New Collection</div>
+        <h1>New Season</h1>
+        <a href="/store" class="btn">Shop now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relations">
+  <div class="container">
+
+    <div class="grid">
+
+      <div class="col-12-m">
+        <a href="/store/categories/women" class="block">
+          <img src="{{ theme:asset src='/assets/img/women.jpg' }}">
+          <div class="inside">
+            <div class="title">Women</div>
+            <div class="subtitle">Category</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12-m">
+        <a href="/store/categories/men" class="block">
+          <img src="{{ theme:asset src='/assets/img/men.jpg' }}">
+          <div class="inside">
+            <div class="title">Men</div>
+            <div class="subtitle">Category</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="grid">
+
+      <div class="col-12-m col-8-sm">
+        <a href="/store/types/watches" class="block">
+          <img src="{{ theme:asset src='/assets/img/watches.jpg' }}">
+          <div class="inside">
+            <div class="title">Watches</div>
+            <div class="subtitle">Type</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12-m col-8-sm">
+        <a href="/store/types/bags" class="block">
+          <img src="{{ theme:asset src='/assets/img/bags.jpg' }}">
+          <div class="inside">
+            <div class="title">Bags</div>
+            <div class="subtitle">Type</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12-m col-8-sm">
+        <a href="/store/types/accessories" class="block">
+          <img src="{{ theme:asset src='/assets/img/accessories.jpg' }}">
+          <div class="inside">
+            <div class="title">Accessories</div>
+            <div class="subtitle">Type</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12-m col-6-sm">
+        <a href="/store/vendors/nike" class="block">
+          <img src="{{ theme:asset src='/assets/img/nike.jpg' }}">
+          <div class="inside">
+            <div class="title">Nike</div>
+            <div class="subtitle">Vendor</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12-m col-6-sm">
+        <a href="/store/vendors/timex" class="block">
+          <img src="{{ theme:asset src='/assets/img/timex.jpg' }}">
+          <div class="inside">
+            <div class="title">Timex</div>
+            <div class="subtitle">Vendor</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12-m col-6-sm">
+        <a href="/storevendors/zara" class="block">
+          <img src="{{ theme:asset src='/assets/img/zara.jpg' }}">
+          <div class="inside">
+            <div class="title">Zara</div>
+            <div class="subtitle">Vendor</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12-m col-6-sm">
+        <a href="/store/vendors/armani" class="block">
+          <img src="{{ theme:asset src='/assets/img/armani.jpg' }}">
+          <div class="inside">
+            <div class="title">Armani</div>
+            <div class="subtitle">Vendor</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="products">
+  <div class="container">
+    <div class="grid">
+      <div class="col-24-sm">
+        <h2>Products overview</h2>
+      </div>
+    </div>
+    <div class="grid">
+
+      {{ collection:store_products limit='8' }}
+
+        <div class="col-12-xs col-6-sm">
+          
+          {{ partial:product-item }}
+
+        </div>
+
+      {{ /collection:store_products }}
+
+    </div>
+  </div>
+</section>

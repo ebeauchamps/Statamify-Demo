@@ -1,0 +1,144 @@
+<div class="grid fields">
+
+  <div class="col-12-sm">
+    <div class="field">
+      <label>First name</label>
+      <input name="first_name" type="text" value="{{ old.data.first_name or first_name or '' }}" class="validate[required]">
+    </div>
+  </div>
+  
+  <div class="col-12-sm">
+    <div class="field">
+      <label>Last Name</label>
+      <input name="last_name" type="text" value="{{ old.data.last_name or last_name or '' }}"  class="validate[required]">
+    </div>
+  </div>
+
+</div>
+
+<div class="grid fields">
+
+  <div class="col-12-sm">
+    <div class="field">
+      <label>Company</label>
+      <input name="company" type="text" value="{{ old.data.company or company or '' }}">
+    </div>
+  </div>
+  
+  <div class="col-12-sm">
+    <div class="field">
+      <label>Phone</label>
+      <input name="phone" type="text" value="{{ old.data.phone or phone or '' }}">
+    </div>
+  </div>
+
+</div>
+
+<div class="grid fields">
+
+  <div class="col-12-sm">
+     <div class="field">
+      <label>Address</label>
+      <input name="address" type="text" value="{{ old.data.address or address or '' }}" class="validate[required]">
+    </div>
+  </div>
+
+  <div class="col-12-sm">
+    <div class="field">
+      <label>Address 2nd line</label>
+      <input name="address_2" type="text" value="{{ old.data.address_2 or address_2 or '' }}">
+    </div>
+  </div>
+
+</div>
+
+<div class="grid fields">
+
+  <div class="col-12-sm">
+     <div class="field">
+      <label>City</label>
+      <input name="city" type="text" value="{{ old.data.city or city or '' }}" class="validate[required]">
+    </div>
+  </div>
+
+  <div class="col-12-sm">
+    <div class="field">
+      <label>Postal</label>
+      <input name="postal" type="text" value="{{ old.data.postal or postal or '' }}" class="validate[required]">
+    </div>
+  </div>
+
+</div>
+
+{{ statamify:location }}
+
+  <div class="grid fields">
+
+    <div class="col-12-sm">
+       <div class="field country">
+                
+        <label>Country</label>
+        
+        <select name="country" data-group="account" autocomplete="off" class="validate[condRequired[shipping_diff]]">
+          
+          <option value="">Choose country</option>
+
+          {{ foreach:countries }}
+
+            <option value="{{ key }}" {{ if key == old.country || key == country_code || value == country }}{{ if address_index != 'new' }}selected{{ /if }}{{ /if }}>{{ value }}</option>
+          
+          {{ /foreach:countries }}
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="col-12-sm">
+      
+      <div class="field region" data-group="account">
+
+        {{ if regions && address_index != 'new' }}
+
+        <label>State</label>
+
+        <select name="region" autocomplete="off" class="validate[condRequired[shipping_diff]]">
+
+          <option value="">Choose state</option>
+
+          {{ foreach:regions }}
+
+            <option value="{{ key }}" {{ if key == old.data.region || key == region_code || value == region }}selected{{ /if }}>{{ value }}</option>
+
+          {{ /foreach:regions }}
+
+        </select>
+
+        {{ else }}
+
+        <label>Region</label>
+
+        <input name="region" type="text" value="{{ old.data.region or region or '' }}">
+
+        {{ /if }}
+
+      </div>
+
+    </div>
+
+  </div>
+
+{{ /statamify:location }}
+
+<div class="grid">
+  <div class="col-24-sm">
+    <div class="field">
+    <label>Default Address</label>
+    <select name="default">
+      <option value="false" {{ unless default }}selected{{ /unless }}>No</option>
+      <option value="true" {{ if default }}selected{{ /if }}>Yes</option>
+    </select>
+  </div>
+  </div>
+</div>

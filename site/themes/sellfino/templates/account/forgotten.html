@@ -1,0 +1,98 @@
+{{ section:title }}Forgotten password{{ /section:title }}
+
+<section class="cart">
+
+  <div class="container">
+
+    {{ user:forgot_password_form reset_url="/account/reset" }}
+
+      <div class="hide"><input type="text" name="addresso" class="validate[maxSize[0]]" /></div>
+
+      <div class="grid">
+        <div class="col-24-sm">
+          <h2 class="text-center">Forgotten password</h2>
+        </div>
+      </div>
+
+      <div class="grid hcenter-xs">
+        <div class="col-12-sm">
+
+          {{ if email_sent }}
+
+            <div class="grid row">
+
+              <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert success">Email was sent!</div></div>
+
+            </div>
+
+            <div class="totals" style="margin: 0">
+
+              <div class="line">
+                <div class="grid">
+                  <div class="col-24-sm text-center">
+                    <a href="/account/login" class="btn alt">Login</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          {{ else }}
+
+            {{ if errors }}
+
+              <div class="grid row errors">
+
+              {{ errors }}
+
+                <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert error active">{{ value }}</div></div>
+                
+              {{ /errors }}
+
+              </div>
+
+            {{ /if }}
+
+            <div class="totals" style="margin: 0">
+
+              <div class="line">
+                <div class="grid">
+                  <div class="col-24-sm">
+
+                    <div class="field">
+                      <label>Email address</label>
+                      <input name="username" type="text" value="{{ old.username }}" class="validate[required,custom[email]]">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="line">
+                <div class="grid">
+                  <div class="col-24-sm text-center">
+                    <button type="submit" class="btn">Reset</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="line">
+                <div class="grid">
+                  <div class="col-24-sm text-center">
+                    <a href="/account/login" class="btn alt">Login</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          {{ /if }}
+
+        </div>
+      </div>
+
+    {{ /user:forgot_password_form }}
+
+  </div>
+
+</section>
