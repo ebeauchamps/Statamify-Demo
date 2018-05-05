@@ -291,7 +291,7 @@ gateways:
       public: ""
       secret: ""
     test_keys:
-      public: pk_test_0vu7RyP5qxKRYH4xHMzfAUAa
-      secret: sk_test_VZJtHVMJNj5eMg2Lt6pd91Xv
+      public: ""
+      secret: ""
     test: true
 queue_emails: true
