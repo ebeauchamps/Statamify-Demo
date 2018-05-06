@@ -156,7 +156,7 @@ updateCart = function(id, quantity) {
 $('.country select').on('change', function() {
   country = $(this).val();
   group = $(this).attr('data-group');
-  name = group + '[region]';
+  name = group == 'account' ? 'region' : group + '[region]';
 
   if (group === 'shipping') {
     method = 'post';
