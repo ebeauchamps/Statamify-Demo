@@ -549,7 +549,7 @@ section { padding: 50px 0; }
 
 .btn.loading { pointer-events: none; }
 
-.btn.alt { background: #30384d; height: 40px; line-height: 42px; font-size: 13px; min-width: 133px; padding-left: 10px; padding-right: 10px; }
+.btn.alt { background: #30384d; height: 40px; line-height: 42px; font-size: 13px; min-width: 132px; padding-left: 10px; padding-right: 10px; }
 
 @media (min-width: 1025px) { .btn.alt:hover { background: #ff7000; } }
 
