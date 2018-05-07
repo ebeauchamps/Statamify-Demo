@@ -195,14 +195,18 @@
 
                           {{ if billing && billing_diff }}
 
-                            {{ first_name }} {{ last_name }}{{ if company }}, {{ company }}{{ /if }} <br/>
-                            {{ if phone }}{{ phone }}<br/>{{ /if }}
-                            {{ address }}{{ if address_2 }}, {{ address_2 }}{{ /if }}<br/>
+                            {{ billing }}
 
-                            {{ statamify:location }}
-                            {{ city }} {{ postal }} {{ if region }}, {{ region }}{{ /if }} <br/>
-                            {{ country }}
-                            {{ /statamify:location }}
+                              {{ first_name }} {{ last_name }}{{ if company }}, {{ company }}{{ /if }} <br/>
+                              {{ if phone }}{{ phone }}<br/>{{ /if }}
+                              {{ address }}{{ if address_2 }}, {{ address_2 }}{{ /if }}<br/>
+
+                              {{ statamify:location }}
+                              {{ city }} {{ postal }} {{ if region }}, {{ region }}{{ /if }} <br/>
+                              {{ country }}
+                              {{ /statamify:location }}
+
+                            {{ /billing }}
 
                           {{ else }}
 
