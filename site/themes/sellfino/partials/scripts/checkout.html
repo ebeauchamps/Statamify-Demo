@@ -113,7 +113,7 @@ $('#finalize').on('click', function(e) {
 
   form = $('#orderform')
 
-  if ($(this).validationEngine('validate')) {
+  if (form.validationEngine('validate')) {
 
     btn.addClass('loading').text('Processing')
     method = $('[name="payment_method"]:checked').val()
