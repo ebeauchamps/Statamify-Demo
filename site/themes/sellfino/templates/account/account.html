@@ -13,23 +13,27 @@
         <div class="col-24-sm">
           <div class="table">
 
-            {{ if { statamify:orders } }}
+            {{ statamify:orders }}
 
-              <div class="head grid">
-                <div class="col-4-sm">Order</div>
-                <div class="col-7-sm">Order Date</div>
-                <div class="col-6-sm">Status</div>
-                <div class="col-2-sm">Qty</div>
-                <div class="col-5-sm text-right">Total</div>
-              </div>
+              {{ if no_results }}
 
-            {{ else }}
+                <div class="body">
+                  <div class="item item-row" style="border:0">There are no orders yet</div>
+                </div>
 
-              <div class="body">
-                <div class="item item-row" style="border:0">There are no orders yet</div>
-              </div>
+              {{ elseif first }}
 
-            {{ /if }}
+                <div class="head grid">
+                  <div class="col-4-sm">Order</div>
+                  <div class="col-7-sm">Order Date</div>
+                  <div class="col-6-sm">Status</div>
+                  <div class="col-2-sm">Qty</div>
+                  <div class="col-5-sm text-right">Total</div>
+                </div>
+
+              {{ /if }}
+
+            {{ /statamify:orders }}
 
             <div class="body">
 

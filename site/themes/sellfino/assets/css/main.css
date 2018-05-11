@@ -638,11 +638,21 @@ header.scroll { box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2); }
 
 @media (max-width: 767px) { header.scroll .top { max-height: 0px; } }
 
-header .top { background: #191e2b; font-size: 12px; line-height: 3.5; color: #c5cbdd; overflow: hidden; transition: all 0.5s ease; max-height: 80px; }
+header .top { background: #191e2b; font-size: 12px; line-height: 3.5; color: #c5cbdd; transition: all 0.5s ease; max-height: 80px; }
 
 header .top a { color: #c5cbdd; border-left: 1px solid rgba(255, 255, 255, 0.3); border-right: 1px solid rgba(255, 255, 255, 0.3); padding: 0 20px; display: inline-block; }
 
 @media (min-width: 1025px) { header .top a:hover { color: #e6e6e6; } }
+
+header .top .currencies { padding: 0 20px; display: inline-block; vertical-align: top; text-align: center; position: relative; margin-left: -4px; }
+
+@media (min-width: 1025px) { header .top .currencies:hover .drop { opacity: 1; visibility: visible; } }
+
+header .top .currencies .drop { position: absolute; top: 100%; left: 0; width: 100%; background: #191e2b; z-index: 9; opacity: 0; visibility: hidden; transition: all .2s ease; }
+
+header .top .currencies .drop a { display: block; border: 0; line-height: 1.5; padding: 5px 20px; }
+
+@media (max-width: 767px) { header .top { overflow: hidden; } }
 
 @media (max-width: 479px) { header .top { line-height: 1.5; font-size: 10px; }
   header .top a { padding: 15px 10px; } }

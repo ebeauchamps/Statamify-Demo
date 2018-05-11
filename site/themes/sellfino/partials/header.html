@@ -6,6 +6,30 @@
         <div class="col-16-xs">Free shipping for standard order over $100</div>
         <div class="col-8-xs text-right">
           <a href="/account">My Account</a>
+
+          {{ statamify:currencies }}
+
+            <div class="currencies">
+              <div class="selected">{{ active }}</div>
+              <div class="drop">
+                <ul>
+
+                  {{ currencies }}
+
+                    {{ unless active == code }}
+
+                      <li><a href="">{{ code }}</a></li>
+
+                    {{ /unless }}
+
+                  {{ /currencies }}
+                  
+                </ul>
+              </div>
+            </div>
+
+          {{ /statamify:currencies }}
+
         </div>
       </div>
     </div>

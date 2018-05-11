@@ -276,6 +276,12 @@ currency:
     format: '[symbol][price]'
     formatPrice: 4
     rate: "1"
+  - 
+    code: EUR
+    symbol: €
+    format: '[price] [symbol]'
+    formatPrice: 4
+    rate: "0.8372"
 gateways:
   - 
     type: cheque

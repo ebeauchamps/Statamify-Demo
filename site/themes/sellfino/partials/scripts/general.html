@@ -1,5 +1,6 @@
 currencySymbol = '{{ statamify:money get="symbol" }}'
 formatMoney = '{{ statamify:money get="format" }}'
+currencyRate = '{{ statamify:money get="rate" }}'
 
 error = function(msg, c = '#errors') {
   if (msg == 'remove') {
@@ -17,6 +18,10 @@ money = function(price) {
     minus = true
   }
 
+  if (currencyRate != '1') {
+    price *= parseFloat(currencyRate)
+  }
+
   price = parseFloat(price).toFixed(2)
   price = {{ statamify:money get='formatPriceJS' }}
 
@@ -26,6 +31,29 @@ money = function(price) {
 $('section.cart form').validationEngine({
   promptPosition: 'bottomLeft',
   scroll: false
+})
+
+// CHANGE CURRENCY
+
+$('.currencies .drop a').on('click', function() {
+  currency = $(this).text()
+
+  $.ajax({
+    method: 'post',
+    url: '/statamify/currency',
+    data: {
+      currency: currency,
+      _token: $('meta[name="_token"]').attr('content')
+    },
+    success: function(res) {
+      location.reload()
+    },
+    error: function(err) {
+      console.log(err)
+    }
+  })
+
+  return false;
 })
 
 // REMOVE FROM CART
