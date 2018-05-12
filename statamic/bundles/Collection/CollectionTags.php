@@ -429,7 +429,6 @@ class CollectionTags extends Tags
             return $sort;
         }
 
-
         // If no sort order has been specified, we'll need to get a sensible default.
         // For date based entries it'll be by date. For number based it'll be by order, etc.
         $type = $this->collection->first()->collection()->order();

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe
+class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
 {
     public static $files = array (
         '95a22d2145ae40de20dc7ea7be07a610' => __DIR__ . '/../..' . '/bootstrap/helpers.php',
@@ -19,14 +19,13 @@ class ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
-        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
-        '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -134,6 +133,7 @@ class ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe
             'ComposerIncludeFiles\\' => 21,
             'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
+            'Carbon\\' => 7,
         ),
         'B' => 
         array (
@@ -309,9 +309,9 @@ class ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe
         ),
         'League\\Glide\\' => 
         array (
-            0 => __DIR__ . '/..' . '/league/glide-laravel/src',
-            1 => __DIR__ . '/..' . '/league/glide/src',
-            2 => __DIR__ . '/..' . '/league/glide-symfony/src',
+            0 => __DIR__ . '/..' . '/league/glide/src',
+            1 => __DIR__ . '/..' . '/league/glide-symfony/src',
+            2 => __DIR__ . '/..' . '/league/glide-laravel/src',
         ),
         'League\\Flysystem\\ZipArchive\\' => 
         array (
@@ -393,6 +393,10 @@ class ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe
         array (
             0 => __DIR__ . '/..' . '/classpreloader/classpreloader/src',
         ),
+        'Carbon\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
+        ),
         'Barryvdh\\Debugbar\\' => 
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src',
@@ -401,10 +405,6 @@ class ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe
         array (
             0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
         ),
-    );
-
-    public static $fallbackDirsPsr4 = array (
-        0 => __DIR__ . '/..' . '/nesbot/carbon/src',
     );
 
     public static $prefixesPsr0 = array (
@@ -491,6 +491,10 @@ class ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe
         ),
         'A' => 
         array (
+            'AlgoliaSearch\\Tests' => 
+            array (
+                0 => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/tests',
+            ),
             'AlgoliaSearch' => 
             array (
                 0 => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src',
@@ -573,12 +577,9 @@ class ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
         'Omnipay\\Omnipay' => __DIR__ . '/..' . '/omnipay/common/src/Omnipay/Omnipay.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
-        'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
-        'PHPUnit\\Framework\\Test' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Test.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
         'PHPUnit\\Framework\\TestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestListener.php',
-        'PHPUnit\\Framework\\TestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestSuite.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -1040,11 +1041,10 @@ class ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit7349215ff8230b4c764de8f8e3da38fe::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit292d8199c133a9d2b96574477fce8f5c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit292d8199c133a9d2b96574477fce8f5c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit292d8199c133a9d2b96574477fce8f5c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit292d8199c133a9d2b96574477fce8f5c::$classMap;
 
         }, null, ClassLoader::class);
     }

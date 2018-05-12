@@ -10,7 +10,6 @@ use Psr\Http\Message\UriInterface;
 class S3UriParser
 {
     private $pattern = '/^(.+\\.)?s3[.-]([A-Za-z0-9-]+)\\./';
-    private $streamWrapperScheme = 's3';
 
     private static $defaultResult = [
         'path_style' => true,
@@ -20,8 +19,7 @@ class S3UriParser
     ];
 
     /**
-     * Parses a URL or S3 StreamWrapper Uri (s3://) into an associative array
-     * of Amazon S3 data including:
+     * Parses a URL into an associative array of Amazon S3 data including:
      *
      * - bucket: The Amazon S3 bucket (null if none)
      * - key: The Amazon S3 key (null if none)
@@ -36,11 +34,6 @@ class S3UriParser
     public function parse($uri)
     {
         $url = Psr7\uri_for($uri);
-
-        if ($url->getScheme() == $this->streamWrapperScheme) {
-            return $this->parseStreamWrapper($url);
-        }
-
         if (!$url->getHost()) {
             throw new \InvalidArgumentException('No hostname found in URI: '
                 . $uri);
@@ -61,25 +54,9 @@ class S3UriParser
         return $result;
     }
 
-    private function parseStreamWrapper(UriInterface $url)
-    {
-        $result = self::$defaultResult;
-        $result['path_style'] = false;
-
-        $result['bucket'] = $url->getHost();
-        if ($url->getPath()) {
-            $key = ltrim($url->getPath(), '/ ');
-            if (!empty($key)) {
-                $result['key'] = $key;
-            }
-        }
-
-        return $result;
-    }
-
     private function parseCustomEndpoint(UriInterface $url)
     {
-        $result = self::$defaultResult;
+        $result = $result = self::$defaultResult;
         $path = ltrim($url->getPath(), '/ ');
         $segments = explode('/', $path, 2);
 

@@ -42,6 +42,8 @@ class ArgvInput extends Input
     private $parsed;
 
     /**
+     * Constructor.
+     *
      * @param array|null           $argv       An array of parameters from the CLI (in the argv format)
      * @param InputDefinition|null $definition A InputDefinition instance
      */
@@ -279,11 +281,7 @@ class ArgvInput extends Input
 
         foreach ($this->tokens as $token) {
             foreach ($values as $value) {
-                // Options with values:
-                //   For long options, test for '--option=' at beginning
-                //   For short options, test for '-o' at beginning
-                $leading = 0 === strpos($value, '--') ? $value.'=' : $value;
-                if ($token === $value || '' !== $leading && 0 === strpos($token, $leading)) {
+                if ($token === $value || 0 === strpos($token, $value.'=')) {
                     return true;
                 }
             }
@@ -304,15 +302,12 @@ class ArgvInput extends Input
             $token = array_shift($tokens);
 
             foreach ($values as $value) {
-                if ($token === $value) {
+                if ($token === $value || 0 === strpos($token, $value.'=')) {
+                    if (false !== $pos = strpos($token, '=')) {
+                        return substr($token, $pos + 1);
+                    }
+
                     return array_shift($tokens);
-                }
-                // Options with values:
-                //   For long options, test for '--option=' at beginning
-                //   For short options, test for '-o' at beginning
-                $leading = 0 === strpos($value, '--') ? $value.'=' : $value;
-                if ('' !== $leading && 0 === strpos($token, $leading)) {
-                    return substr($token, strlen($leading));
                 }
             }
         }
@@ -333,7 +328,7 @@ class ArgvInput extends Input
                 return $match[1].$self->escapeToken($match[2]);
             }
 
-            if ($token && '-' !== $token[0]) {
+            if ($token && $token[0] !== '-') {
                 return $self->escapeToken($token);
             }
 

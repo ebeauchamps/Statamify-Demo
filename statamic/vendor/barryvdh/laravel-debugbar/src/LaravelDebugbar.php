@@ -348,45 +348,21 @@ class LaravelDebugbar extends DebugBar
                     \Illuminate\Database\Events\TransactionBeginning::class,
                     'connection.*.beganTransaction',
                 ], function ($transaction) use ($queryCollector) {
-
-                    // Laravel 5.2 changed the way some core events worked. We must account for
-                    // the first argument being an "event object", where arguments are passed
-                    // via object properties, instead of individual arguments.
-                    if($transaction instanceof \Illuminate\Database\Events\TransactionBeginning) {
-                        $connection = $transaction->connection;
-                    } else {
-                        $connection = $transaction;
-                    }
-
-                    $queryCollector->collectTransactionEvent('Begin Transaction', $connection);
+                    $queryCollector->collectTransactionEvent('Begin Transaction', $transaction->connection);
                 });
 
                 $db->getEventDispatcher()->listen([
                     \Illuminate\Database\Events\TransactionCommitted::class,
                     'connection.*.committed',
                 ], function ($transaction) use ($queryCollector) {
-
-                    if($transaction instanceof \Illuminate\Database\Events\TransactionCommitted) {
-                        $connection = $transaction->connection;
-                    } else {
-                        $connection = $transaction;
-                    }
-
-                    $queryCollector->collectTransactionEvent('Commit Transaction', $connection);
+                    $queryCollector->collectTransactionEvent('Commit Transaction', $transaction->connection);
                 });
 
                 $db->getEventDispatcher()->listen([
                     \Illuminate\Database\Events\TransactionRolledBack::class,
                     'connection.*.rollingBack',
                 ], function ($transaction) use ($queryCollector) {
-
-                    if($transaction instanceof \Illuminate\Database\Events\TransactionRolledBack) {
-                        $connection = $transaction->connection;
-                    } else {
-                        $connection = $transaction;
-                    }
-
-                    $queryCollector->collectTransactionEvent('Rollback Transaction', $connection);
+                    $queryCollector->collectTransactionEvent('Rollback Transaction', $transaction->connection);
                 });
             } catch (\Exception $e) {
                 $this->addThrowable(
@@ -684,7 +660,6 @@ class LaravelDebugbar extends DebugBar
             ($response->headers->has('Content-Type') &&
                 strpos($response->headers->get('Content-Type'), 'html') === false)
             || $request->getRequestFormat() !== 'html'
-            || $response->getContent() === false
         ) {
             try {
                 // Just collect + store data, don't inject it.

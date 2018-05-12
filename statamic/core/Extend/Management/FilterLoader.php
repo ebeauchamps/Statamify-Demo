@@ -20,7 +20,6 @@ class FilterLoader
 
     private function init($class, $properties)
     {
-
         return tap(app($class), function ($filter) use ($properties) {
             $filter->setProperties($properties);
         });
