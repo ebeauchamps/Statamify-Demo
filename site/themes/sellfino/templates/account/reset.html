@@ -1,4 +1,4 @@
-{{ section:title }}Reset password{{ /section:title }}
+{{ section:title }}{{ trans:cp.reset_password }}{{ /section:title }}
 
 <section class="cart">
 
@@ -10,7 +10,7 @@
 
       <div class="grid">
         <div class="col-24-sm">
-          <h2 class="text-center">Forgotten password</h2>
+          <h2 class="text-center">{{ trans:cp.reset_password }}</h2>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
 
             <div class="grid row">
 
-              <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert success">Password has been reset!</div></div>
+              <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert success">{{ trans:passwords.reset }}</div></div>
 
             </div>
 
@@ -30,7 +30,7 @@
               <div class="line">
                 <div class="grid">
                   <div class="col-24-sm text-center">
-                    <a href="/account/login" class="btn alt">Login</a>
+                    <a href="{{ locale_url }}account/login" class="btn alt">{{ trans:cp.login }}</a>
                   </div>
                 </div>
               </div>
@@ -41,7 +41,7 @@
 
             <div class="grid row errors">
 
-              <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert">This reset URL is invalid</div></div>
+              <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert">{{ trans:passwords.token }}</div></div>
 
             </div>
 
@@ -68,12 +68,12 @@
                   <div class="col-24-sm">
 
                     <div class="field">
-                      <label>Password</label>
+                      <label>{{ trans:cp.password }}</label>
                       <input type="password" name="password" placeholder="Password" class="validate[required]" id="password">
                     </div>
 
                     <div class="field">
-                      <label>Confirm Password</label>
+                      <label>{{ trans:cp.confirm_password }}</label>
                       <input type="password" name="password_confirmation" class="validate[required,equals[password]]">
                     </div>
 
@@ -84,7 +84,7 @@
               <div class="line">
                 <div class="grid">
                   <div class="col-24-sm text-center">
-                    <button type="submit" class="btn">Reset password</button>
+                    <button type="submit" class="btn">{{ trans:cp.reset_password }}</button>
                   </div>
                 </div>
               </div>
@@ -92,7 +92,7 @@
               <div class="line">
                 <div class="grid">
                   <div class="col-24-sm text-center">
-                    <a href="/account/login" class="btn alt">Login</a>
+                    <a href="{{ locale_url }}account/login" class="btn alt">{{ trans:cp.login }}</a>
                   </div>
                 </div>
               </div>

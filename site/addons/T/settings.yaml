@@ -1,0 +1,28 @@
+fields:
+  trans:
+    type: grid
+    display: Strings
+    replicator_preview: false
+    width: 100
+    fields:
+      string:
+        type: text
+        display: String
+        width: 30
+      translation:
+        type: grid
+        display: Translations
+        fields:
+          code:
+            type: text
+            display: Code
+            width: 30
+          trans:
+            type: text
+            display: Translation
+            width: 70
+        add_row: Add Translation
+        width: 70
+        mode: table
+    mode: table
+    add_row: Add String

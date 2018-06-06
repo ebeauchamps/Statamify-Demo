@@ -147,8 +147,8 @@ abstract class Publisher
     {
         // If there's a slug, use it. Otherwise make one from the title field.
         // If there's no title field, an error should be thrown elsewhere.
-        return ($this->request->has('slug'))
-               ? $this->request->input('slug')
+        return ($this->request->has('fields.slug'))
+               ? $this->request->input('fields.slug')
                : Str::slug($this->request->input('fields.title'));
     }
 
@@ -279,6 +279,8 @@ abstract class Publisher
      *
      * If its localized, remove any fields that are the same as the default.
      *
+     * Additionally, any non-localizable fields should be stripped out.
+     *
      * @return array
      */
     protected function getIsolatedLocalizedData()
@@ -289,15 +291,26 @@ abstract class Publisher
         }
 
         $default = $this->content->defaultData();
-
         $data = $this->fields;
+        $fieldsetFields = $this->content->fieldset()->fields();
 
         foreach ($data as $key => $value) {
             if ($key === 'id') {
                 continue;
             }
 
+            // If the value is the same as what is in the default locale's content, we'll remove it.
             if ($value === array_get($default, $key)) {
+                unset($data[$key]);
+            }
+
+            // These fields are always localizable
+            if (in_array($key, ['title', 'slug'])) {
+                continue;
+            }
+
+            // If the given field exists in the fieldset, but its *not* localizable, we'll remove it.
+            if (array_has($fieldsetFields, $key) && !array_get($fieldsetFields, "{$key}.localizable", false)) {
                 unset($data[$key]);
             }
         }

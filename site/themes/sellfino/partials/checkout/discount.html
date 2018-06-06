@@ -1,7 +1,7 @@
 <div class="line">
   <div class="grid vstart-xs">
     <div class="col-8-md">
-      <div class="title">Discount</div>
+      <div class="title">{{ statamify:t key='discount' }}</div>
     </div>
 
     <div class="col-16-md">
@@ -12,7 +12,7 @@
 
           <div class="col-24-sm">
             <div class="field price">{{ total.discount | statamify.money }}</div>
-            <label>Coupon applied: <strong>{{ coupons join=", " }}</strong> 
+            <label>{{ statamify:t key='coupon_applied' }}: <strong>{{ coupons join=", " }}</strong> 
               <a href="" class="remove-coupon" data-index="0"><i class="zmdi zmdi-delete"></i></a>
             </label>
           </div>
@@ -21,14 +21,14 @@
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Coupon Code</label>
+              <label>{{ statamify:t key='coupon_code' }}</label>
               <input type="text" name="coupon-code">
             </div>
           </div>
 
           <div class="col-12-sm">
             <div class="field">
-              <label>&nbsp; <br/></label><a href="" class="btn apply-coupon">Apply coupon</a>
+              <label>&nbsp; <br/></label><a href="" class="btn apply-coupon">{{ statamify:t key='coupon_apply' }}</a>
             </div>
           </div>
 

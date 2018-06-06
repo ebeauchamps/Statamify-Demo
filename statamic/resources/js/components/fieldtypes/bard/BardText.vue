@@ -54,7 +54,9 @@
 
 <script>
 
+    import autosize from 'autosize';
     import AutoList from './AutoList';
+    import AutoHR from 'medium-editor-autohr';
     import InsertsAssets from '../InsertsAssets';
 
     export default {
@@ -226,7 +228,8 @@
 
                 let extensions = Object.assign({
                     imageDragging: {},
-                    autolist: new AutoList
+                    autolist: new AutoList,
+                    autohr: new AutoHR
                 }, _.map(Statamic.MediumEditorExtensions, ext => new ext));
 
                 if (this.$parent.config.container) {

@@ -4,26 +4,28 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
+class ComposerStaticInitca2d04aebae570290a9c0b4f0ca0f12c
 {
     public static $files = array (
         '95a22d2145ae40de20dc7ea7be07a610' => __DIR__ . '/../..' . '/bootstrap/helpers.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        'ddc0a4d7e61c0286f0f8593b1903e894' => __DIR__ . '/..' . '/clue/stream-filter/src/functions.php',
+        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
-        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
+        '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
     );
@@ -85,11 +87,12 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
         'O' => 
         array (
             'Omnipay\\Stripe\\' => 15,
-            'Omnipay\\PayPal\\' => 15,
+            'Omnipay\\Common\\' => 15,
         ),
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Money\\' => 6,
         ),
         'L' => 
         array (
@@ -110,6 +113,14 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
         array (
             'Intervention\\Image\\' => 19,
             'Illuminate\\' => 11,
+        ),
+        'H' => 
+        array (
+            'Http\\Promise\\' => 13,
+            'Http\\Message\\' => 13,
+            'Http\\Discovery\\' => 15,
+            'Http\\Client\\' => 12,
+            'Http\\Adapter\\Guzzle6\\' => 21,
         ),
         'G' => 
         array (
@@ -132,6 +143,7 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
             'Cron\\' => 5,
             'ComposerIncludeFiles\\' => 21,
             'Collective\\Html\\' => 16,
+            'Clue\\StreamFilter\\' => 18,
             'ClassPreloader\\' => 15,
             'Carbon\\' => 7,
         ),
@@ -295,13 +307,17 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
         array (
             0 => __DIR__ . '/..' . '/omnipay/stripe/src',
         ),
-        'Omnipay\\PayPal\\' => 
+        'Omnipay\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/omnipay/paypal/src',
+            0 => __DIR__ . '/..' . '/omnipay/common/src/Common',
         ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Money\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/moneyphp/money/src',
         ),
         'League\\OAuth1\\' => 
         array (
@@ -310,8 +326,8 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
         'League\\Glide\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/glide/src',
-            1 => __DIR__ . '/..' . '/league/glide-symfony/src',
-            2 => __DIR__ . '/..' . '/league/glide-laravel/src',
+            1 => __DIR__ . '/..' . '/league/glide-laravel/src',
+            2 => __DIR__ . '/..' . '/league/glide-symfony/src',
         ),
         'League\\Flysystem\\ZipArchive\\' => 
         array (
@@ -348,6 +364,27 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
+        ),
+        'Http\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/promise/src',
+        ),
+        'Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/message-factory/src',
+            1 => __DIR__ . '/..' . '/php-http/message/src',
+        ),
+        'Http\\Discovery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/discovery/src',
+        ),
+        'Http\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/httplug/src',
+        ),
+        'Http\\Adapter\\Guzzle6\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/guzzle6-adapter/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -389,6 +426,10 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
         array (
             0 => __DIR__ . '/..' . '/laravelcollective/html/src',
         ),
+        'Clue\\StreamFilter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/clue/stream-filter/src',
+        ),
         'ClassPreloader\\' => 
         array (
             0 => __DIR__ . '/..' . '/classpreloader/classpreloader/src',
@@ -426,13 +467,6 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
                 0 => __DIR__ . '/..' . '/phpspec/phpspec/src',
             ),
         ),
-        'O' => 
-        array (
-            'Omnipay\\Common\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/omnipay/common/src',
-            ),
-        ),
         'N' => 
         array (
             'Netcarver\\Textile' => 
@@ -461,17 +495,6 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
             'JakubOnderka\\PhpConsoleColor' => 
             array (
                 0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
-            ),
-        ),
-        'G' => 
-        array (
-            'Guzzle\\Tests' => 
-            array (
-                0 => __DIR__ . '/..' . '/guzzle/guzzle/tests',
-            ),
-            'Guzzle' => 
-            array (
-                0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
             ),
         ),
         'D' => 
@@ -575,7 +598,7 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
-        'Omnipay\\Omnipay' => __DIR__ . '/..' . '/omnipay/common/src/Omnipay/Omnipay.php',
+        'Omnipay\\Omnipay' => __DIR__ . '/..' . '/omnipay/common/src/Omnipay.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
@@ -1041,10 +1064,10 @@ class ComposerStaticInit292d8199c133a9d2b96574477fce8f5c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit292d8199c133a9d2b96574477fce8f5c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit292d8199c133a9d2b96574477fce8f5c::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit292d8199c133a9d2b96574477fce8f5c::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit292d8199c133a9d2b96574477fce8f5c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitca2d04aebae570290a9c0b4f0ca0f12c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitca2d04aebae570290a9c0b4f0ca0f12c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitca2d04aebae570290a9c0b4f0ca0f12c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitca2d04aebae570290a9c0b4f0ca0f12c::$classMap;
 
         }, null, ClassLoader::class);
     }

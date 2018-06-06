@@ -597,7 +597,7 @@ h2 span a { color: #ff7000; text-decoration: underline !important; }
 
 .product-item .price .old:after { content: ''; display: block; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: red; margin-top: -1px; }
 
-.product-item .flag { position: absolute; top: 0; right: 0; text-transform: uppercase; background: #000; padding: 5px 10px; color: #fff; font-size: 11px; }
+.product-item .flag { position: absolute; top: 0; right: 0; text-transform: uppercase; background: #000; padding: 5px 10px; color: #fff; z-index: 1; font-size: 11px; }
 
 @media (max-width: 479px) { .product-item { font-size: 12px; } }
 
@@ -644,13 +644,15 @@ header .top a { color: #c5cbdd; border-left: 1px solid rgba(255, 255, 255, 0.3);
 
 @media (min-width: 1025px) { header .top a:hover { color: #e6e6e6; } }
 
-header .top .currencies { padding: 0 20px; display: inline-block; vertical-align: top; text-align: center; position: relative; margin-left: -4px; }
+header .top .currencies, header .top .langs { padding: 0 20px; display: inline-block; vertical-align: top; text-align: center; position: relative; margin-left: -4px; }
 
-@media (min-width: 1025px) { header .top .currencies:hover .drop { opacity: 1; visibility: visible; } }
+@media (min-width: 1025px) { header .top .currencies:hover .drop, header .top .langs:hover .drop { opacity: 1; visibility: visible; } }
 
-header .top .currencies .drop { position: absolute; top: 100%; left: 0; width: 100%; background: #191e2b; z-index: 9; opacity: 0; visibility: hidden; transition: all .2s ease; }
+header .top .currencies .drop, header .top .langs .drop { position: absolute; top: 100%; left: 0; width: 100%; background: #191e2b; z-index: 9; opacity: 0; visibility: hidden; transition: all .2s ease; }
 
-header .top .currencies .drop a { display: block; border: 0; line-height: 1.5; padding: 5px 20px; }
+header .top .currencies .drop a, header .top .langs .drop a { display: block; border: 0; line-height: 1.5; padding: 5px 20px; }
+
+header .top .langs { border-left: 1px solid rgba(255, 255, 255, 0.3); }
 
 @media (max-width: 767px) { header .top { overflow: hidden; } }
 

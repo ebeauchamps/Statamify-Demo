@@ -1,7 +1,7 @@
 <div class="line">
   <div class="grid vstart-xs">
     <div class="col-8-md">
-      <div class="title">Shipping</div>
+      <div class="title">{{ statamify:t key='shipping' }}</div>
     </div>
     <div class="col-16-md">
       <div class="grid">
@@ -36,7 +36,7 @@
 
                   </label>
 
-                  <div class="info">{{ method.note }}</div>
+                  <div class="info">{{ t string='{method.note}' }}</div>
 
                 </li>
 
@@ -48,7 +48,7 @@
 
             <ul class="radios" id="shipping-methods">
 
-              <li>There are no shipping methods available.</li>
+              <li>{{ statamify:t key='shipping_not_found' }}</li>
 
             </ul>
 

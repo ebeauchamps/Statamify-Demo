@@ -29,8 +29,10 @@
 </template>
 
 <script>
+import moment from 'moment';
+import Calendar from 'baremetrics-calendar';
 
-module.exports = {
+export default {
 
     mixins: [Fieldtype],
 

@@ -3,6 +3,10 @@ locales:
     full: en_US
     name: English
     url: http://localhost:8080/
+  pl:
+    full: pl_PL
+    name: Polski
+    url: http://localhost:8080/pl/
 timezone: Europe/London
 date_format: F jS, Y H:i
 default_extension: md

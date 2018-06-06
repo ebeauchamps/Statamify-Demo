@@ -1,7 +1,7 @@
 <div class="line">
   <div class="grid vstart-xs">
     <div class="col-8-md">
-      <div class="title">Billing informations</div>
+      <div class="title">{{ statamify:t key='billing_info' }}</div>
     </div>
     <div class="col-16-md">
 
@@ -9,7 +9,7 @@
         <div class="col-24-sm">
           <div class="field">
             <input type="checkbox" value="1" id="billing_diff" name="billing_diff" {{ if old.data.billing_diff == '1' }}checked{{ /if }}>
-            <label for="billing_diff">Billing informations different than shipping?</label>
+            <label for="billing_diff">{{ statamify:t key='billing_info_diff' }}</label>
           </div>
         </div>
       </div>
@@ -20,14 +20,14 @@
 
           <div class="col-12-sm">
             <div class="field">
-              <label>First Name</label>
+              <label>{{ statamify:t key='address_first_name' }}</label>
               <input name="billing[first_name]" type="text" value="{{ old.data.billing.first_name or '' }}" class="validate[condRequired[billing_diff]]">
             </div>
           </div>
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Last name</label>
+              <label>{{ statamify:t key='address_last_name' }}</label>
               <input name="billing[last_name]" type="text" value="{{ old.data.billing.last_name or '' }}"  class="validate[condRequired[billing_diff]]">
             </div>
           </div>
@@ -38,14 +38,14 @@
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Company</label>
+              <label>{{ statamify:t key='address_company' }}</label>
               <input name="billing[company]" type="text" value="{{ old.data.billing.company or '' }}">
             </div>
           </div>
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Phone</label>
+              <label>{{ statamify:t key='address_phone' }}</label>
               <input name="billing[phone]" type="text" value="{{ old.data.billing.phone or '' }}">
             </div>
           </div>
@@ -56,14 +56,14 @@
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Address</label>
+              <label>{{ statamify:t key='address' }}</label>
               <input name="billing[address]" type="text" value="{{ old.data.billing.address or '' }}" class="validate[condRequired[billing_diff]]">
             </div>
           </div>
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Address 2nd line</label>
+              <label>{{ statamify:t key='address' }} {{ statamify:t key='2nd_line' }}</label>
               <input name="billing[address_2]" type="text" value="{{ old.data.billing.address_2 or '' }}">
             </div>
           </div>
@@ -74,14 +74,14 @@
 
           <div class="col-12-sm">
             <div class="field">
-              <label>City</label>
+              <label>{{ statamify:t key='address_city' }}</label>
               <input name="billing[city]" type="text" value="{{ old.data.billing.city or '' }}" class="validate[condRequired[billing_diff]]">
             </div>
           </div>
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Postal</label>
+              <label>{{ statamify:t key='address_postal' }}</label>
               <input name="billing[postal]" type="text" value="{{ old.data.billing.postal or '' }}" class="validate[condRequired[billing_diff]]">
             </div>
           </div>
@@ -96,11 +96,11 @@
 
               <div class="field country">
                 
-                <label>Country</label>
+                <label>{{ statamify:t key='address_country' }}</label>
                 
                 <select name="billing[country]" data-group="billing" autocomplete="off" class="validate[condRequired[billing_diff]]">
                   
-                  <option value="">Choose country</option>
+                  <option value="">{{ statamify:t key='address_country_choose' }}</option>
                   
                   {{ foreach:countries }}
 
@@ -119,11 +119,11 @@
                 
                 {{ if regions }}
 
-                  <label>State</label>
+                  <label>{{ statamify:t key='address_state' }}</label>
 
                   <select name="billing[region]" autocomplete="off" class="validate[condRequired[billing_diff]]">
                     
-                    <option value="">Choose state</option>
+                    <option value="">{{ statamify:t key='address_state_choose' }}</option>
                     
                     {{ foreach:regions }}
 
@@ -135,7 +135,7 @@
 
                 {{ else }}
 
-                  <label>Region</label>
+                  <label>{{ statamify:t key='address_region' }}</label>
 
                   <input name="billing[region]" type="text" value="{{ old.data.billing.region or '' }}">
 

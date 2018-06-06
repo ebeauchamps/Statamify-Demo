@@ -62,13 +62,13 @@
 
     tmpl = {
       basket_item: '<li data-id="[id]"><div class="grid vcenter-xs"> <div class="thumb"><a href="" class="remove"><i class="zmdi zmdi-close"></i></a> <img src="[image]"></div><div class="details"><div class="product-name">[title] <small>[variant]</small></div><div class="cart-info"><span class="q">[quantity]</span> x [price] </div></div></div></li>',
-      basket_empty: '<li>No products in cart</li>',
-      cart_empty: '<div class="grid"><div class="col-24-sm text-center"> <br/><br/> Nothing found here :( <br/><br/><br/><br/><a href="/store" class="btn">Go Shopping!</a> <br/><br/><br/> </div></div>',
-      region_select: '<label>State</label><select name="[name]" autocomplete="off" class="validate[condRequired[shipping_diff]]"><option value="">Choose state</option>[options]</select>',
-      region_input: '<label>Region</label><input name="[name]" type="text">',
+      basket_empty: '<li>{{ statamify:t key='no_p_in_cart' }}</li>',
+      cart_empty: '<div class="grid"><div class="col-24-sm text-center"> <br/><br/> {{ statamify:t key='nothing_found' }} :( <br/><br/><br/><br/><a href="/store" class="btn">{{ statamify:t key='go_shopping' }}</a> <br/><br/><br/> </div></div>',
+      region_select: '<label>{{ statamify:t key='address_state' }}</label><select name="[name]" autocomplete="off" class="validate[condRequired[shipping_diff]]"><option value="">{{ statamify:t key='address_state_choose' }}</option>[options]</select>',
+      region_input: '<label>{{ statamify:t key='address_region' }}</label><input name="[name]" type="text">',
       shipping_method: '<li><input type="radio" value="[zone]|[id]" id="ship_[id]" name="shipping_method" [checked]><label for="ship_[id]"><strong>[name]</strong> : <span>[rate]</span></label><div class="info">[note]</div></li>',
-      coupon_applied: '<div class="col-24-sm"><div class="field price">[discount]</div><label>Coupon applied: <strong>[code]</strong><a href="" class="remove-coupon" data-index="0"><i class="zmdi zmdi-delete"></i></label></div>',
-      coupon_form: '<div class="col-12-sm"><div class="field"><label>Coupon Code</label><input type="text" name="coupon-code"></div></div><div class="col-12-sm"><div class="field"> <label>&nbsp; <br/></label><a href="" class="btn apply-coupon">Apply coupon</a></div></div>'
+      coupon_applied: '<div class="col-24-sm"><div class="field price">[discount]</div><label>{{ statamify:t key='coupon_applied' }}: <strong>[code]</strong><a href="" class="remove-coupon" data-index="0"><i class="zmdi zmdi-delete"></i></label></div>',
+      coupon_form: '<div class="col-12-sm"><div class="field"><label>{{ statamify:t key='coupon_code' }}</label><input type="text" name="coupon-code"></div></div><div class="col-12-sm"><div class="field"> <label>&nbsp; <br/></label><a href="" class="btn apply-coupon">{{ statamify:t key='coupon_apply' }}</a></div></div>'
     }
 
     {{ partial:scripts/general }}

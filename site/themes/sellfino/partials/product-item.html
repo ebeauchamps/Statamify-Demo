@@ -5,7 +5,7 @@
 
 		{{ if slug == 'new-stuff' }}
 
-			<div class="flag">New</div>
+			<div class="flag"> {{ statamify:t key='new' }}</div>
 
 		{{ /if }}
 
@@ -35,7 +35,7 @@
 
     {{ if { statamify:available } }}
 
-      {{ if class == 'complex' }}<small>from</small>{{ /if }}
+      {{ if class == 'complex' }}<small>{{ statamify:t key='from' }}</small>{{ /if }}
 
       {{ if compare_at_price }}<strike>{{ compare_at_price | statamify.money }}</strike> {{ /if }}
 
@@ -43,7 +43,7 @@
 
     {{ else }}
 
-      Out of stock
+      {{ statamify:t key='out_of_stock' }}
 
     {{ /if }}
 

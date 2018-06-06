@@ -15,7 +15,7 @@
 <script>
 import GetsSuggestKey from './GetsSuggestKey';
 
-module.exports = {
+export default {
 
     mixins: [Fieldtype, GetsSuggestKey],
 

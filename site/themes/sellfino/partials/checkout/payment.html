@@ -1,7 +1,7 @@
 <div class="line">
   <div class="grid vstart-xs">
     <div class="col-8-md">
-      <div class="title">Payment</div>
+      <div class="title">{{ statamify:t key='payment' }}</div>
     </div>
     <div class="col-16-md">
       <div class="grid">
@@ -16,7 +16,7 @@
 
                   <input type="radio" value="cheque" id="pay0" name="payment_method" {{ if index == 1 }}checked{{ /if }}>
 
-                  <label for="pay0">Cheque</label>
+                  <label for="pay0">{{ statamify:t key='cheque' }}</label>
 
                   <div class="info hidden">{{ info | nl2br }}</div>
 

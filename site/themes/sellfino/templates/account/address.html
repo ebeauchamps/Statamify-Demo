@@ -1,4 +1,4 @@
-{{ section:title }}Edit address{{ /section:title }}
+{{ section:title }}{{ statamify:t key='edit_address' }}{{ /section:title }}
 
 {{ statamify:customer }}
 
@@ -6,7 +6,7 @@
 
     <div class="container">
 
-      <form method="post" action="/statamify/account/address">
+      <form method="post" action="{{ locale_url }}statamify/account/address">
 
         <input type="hidden" name="_token" value="{{ csrf_token }}" />
         <input type="hidden" name="address_index" value="{{ address_index }}" />
@@ -16,8 +16,8 @@
         <div class="grid">
           <div class="col-24-sm">
             <h2 class="text-center">
-              {{ if address_index == 'new' }}Add new address{{ else }}Edit your address{{ /if }} 
-              <span><a href="/account">Go to account</a></span>
+              {{ if address_index == 'new' }}{{ statamify:t key='add_address' }}{{ else }}{{ statamify:t key='edit_address' }}{{ /if }} 
+              <span><a href="{{ locale_url }}account">{{ statamify:t key='go_account' }}</a></span>
             </h2>
           </div>
         </div>
@@ -68,7 +68,7 @@
               <div class="line">
                 <div class="grid">
                   <div class="col-24-sm text-center">
-                    <button type="submit" class="btn">Save address</button>
+                    <button type="submit" class="btn">{{ statamify:t key='save_address' }}</button>
                   </div>
                 </div>
               </div>

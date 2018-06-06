@@ -1,4 +1,4 @@
-{{ section:title }}Forgotten password{{ /section:title }}
+{{ section:title }}{{ trans:cp.forgot_password }}{{ /section:title }}
 
 <section class="cart">
 
@@ -10,7 +10,7 @@
 
       <div class="grid">
         <div class="col-24-sm">
-          <h2 class="text-center">Forgotten password</h2>
+          <h2 class="text-center">{{ trans:cp.forgot_password }}</h2>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
 
             <div class="grid row">
 
-              <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert success">Email was sent!</div></div>
+              <div class="col-24-sm" style="padding-bottom: 20px"><div class="alert success">{{ trans:passwords.sent }}</div></div>
 
             </div>
 
@@ -30,7 +30,7 @@
               <div class="line">
                 <div class="grid">
                   <div class="col-24-sm text-center">
-                    <a href="/account/login" class="btn alt">Login</a>
+                    <a href="{{ locale_url }}account/login" class="btn alt">{{ trans:cp.login }}</a>
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@
                   <div class="col-24-sm">
 
                     <div class="field">
-                      <label>Email address</label>
+                      <label>{{ trans:cp.email }}</label>
                       <input name="username" type="text" value="{{ old.username }}" class="validate[required,custom[email]]">
                     </div>
 
@@ -71,7 +71,7 @@
               <div class="line">
                 <div class="grid">
                   <div class="col-24-sm text-center">
-                    <button type="submit" class="btn">Reset</button>
+                    <button type="submit" class="btn">{{ trans:cp.reset_password }}</button>
                   </div>
                 </div>
               </div>
@@ -79,7 +79,7 @@
               <div class="line">
                 <div class="grid">
                   <div class="col-24-sm text-center">
-                    <a href="/account/login" class="btn alt">Login</a>
+                    <a href="{{ locale_url }}account/login" class="btn alt">{{ trans:cp.login }}</a>
                   </div>
                 </div>
               </div>
