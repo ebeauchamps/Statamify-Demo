@@ -549,7 +549,7 @@ section { padding: 50px 0; }
 
 .btn.loading { pointer-events: none; }
 
-.btn.alt { background: #30384d; height: 40px; line-height: 42px; font-size: 13px; min-width: 133px; padding-left: 10px; padding-right: 10px; }
+.btn.alt { background: #30384d; height: 40px; line-height: 42px; font-size: 13px; min-width: 132px; padding-left: 10px; padding-right: 10px; }
 
 @media (min-width: 1025px) { .btn.alt:hover { background: #ff7000; } }
 
@@ -597,7 +597,7 @@ h2 span a { color: #ff7000; text-decoration: underline !important; }
 
 .product-item .price .old:after { content: ''; display: block; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: red; margin-top: -1px; }
 
-.product-item .flag { position: absolute; top: 0; right: 0; text-transform: uppercase; background: #000; padding: 5px 10px; color: #fff; font-size: 11px; }
+.product-item .flag { position: absolute; top: 0; right: 0; text-transform: uppercase; background: #000; padding: 5px 10px; color: #fff; z-index: 1; font-size: 11px; }
 
 @media (max-width: 479px) { .product-item { font-size: 12px; } }
 
@@ -638,11 +638,23 @@ header.scroll { box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2); }
 
 @media (max-width: 767px) { header.scroll .top { max-height: 0px; } }
 
-header .top { background: #191e2b; font-size: 12px; line-height: 3.5; color: #c5cbdd; overflow: hidden; transition: all 0.5s ease; max-height: 80px; }
+header .top { background: #191e2b; font-size: 12px; line-height: 3.5; color: #c5cbdd; transition: all 0.5s ease; max-height: 80px; }
 
 header .top a { color: #c5cbdd; border-left: 1px solid rgba(255, 255, 255, 0.3); border-right: 1px solid rgba(255, 255, 255, 0.3); padding: 0 20px; display: inline-block; }
 
 @media (min-width: 1025px) { header .top a:hover { color: #e6e6e6; } }
+
+header .top .currencies, header .top .langs { padding: 0 20px; display: inline-block; vertical-align: top; text-align: center; position: relative; margin-left: -4px; }
+
+@media (min-width: 1025px) { header .top .currencies:hover .drop, header .top .langs:hover .drop { opacity: 1; visibility: visible; } }
+
+header .top .currencies .drop, header .top .langs .drop { position: absolute; top: 100%; left: 0; width: 100%; background: #191e2b; z-index: 9; opacity: 0; visibility: hidden; transition: all .2s ease; }
+
+header .top .currencies .drop a, header .top .langs .drop a { display: block; border: 0; line-height: 1.5; padding: 5px 20px; }
+
+header .top .langs { border-left: 1px solid rgba(255, 255, 255, 0.3); }
+
+@media (max-width: 767px) { header .top { overflow: hidden; } }
 
 @media (max-width: 479px) { header .top { line-height: 1.5; font-size: 10px; }
   header .top a { padding: 15px 10px; } }

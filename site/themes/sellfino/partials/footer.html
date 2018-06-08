@@ -2,7 +2,7 @@
   <div class="container">
     <div class="grid">
       <div class="col-8-xs col-6-sm">
-        <div class="title">Categories</div>
+        <div class="title">{{ statamify:t key='categories' }}</div>
         <ul>
           {{ collection:store_categories }}
           <li><a href="{{ permalink }}">{{ title }}</a></li>
@@ -10,7 +10,7 @@
         </ul>
       </div>
       <div class="col-8-xs col-6-sm">
-        <div class="title">Vendors</div>
+        <div class="title">{{ statamify:t key='vendors' }}</div>
         <ul>
           {{ collection:store_vendors }}
           <li><a href="{{ permalink }}">{{ title }}</a></li>
@@ -18,7 +18,7 @@
         </ul>
       </div>
       <div class="col-8-xs col-6-sm">
-        <div class="title">Types</div>
+        <div class="title">{{ statamify:t key='types' }}</div>
         <ul>
           {{ collection:store_types }}
           <li><a href="{{ permalink }}">{{ title }}</a></li>
@@ -29,8 +29,8 @@
         <div class="hidden-sm">
           <div class="padding"></div>
         </div>
-        <div class="title">About</div>
-        <div class="desc">This is demo store of Statamify - free Shopify-like ecommerce addon for wonderful Statamic. You can download it and many other amazing stuff on the Marketplace!</div>
+        <div class="title">{{ t string='About' }}</div>
+        <div class="desc">{{ t string='This is demo store of Statamify - free Shopify-like ecommerce addon for wonderful Statamic. You can download it and many other amazing stuff on the Marketplace!' }}</div>
       </div>
     </div>
     <div class="grid">

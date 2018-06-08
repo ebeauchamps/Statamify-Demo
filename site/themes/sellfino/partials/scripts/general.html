@@ -1,5 +1,6 @@
 currencySymbol = '{{ statamify:money get="symbol" }}'
 formatMoney = '{{ statamify:money get="format" }}'
+currencyRate = '{{ statamify:money get="rate" }}'
 
 error = function(msg, c = '#errors') {
   if (msg == 'remove') {
@@ -17,6 +18,10 @@ money = function(price) {
     minus = true
   }
 
+  if (currencyRate != '1') {
+    price *= parseFloat(currencyRate)
+  }
+
   price = parseFloat(price).toFixed(2)
   price = {{ statamify:money get='formatPriceJS' }}
 
@@ -28,6 +33,29 @@ $('section.cart form').validationEngine({
   scroll: false
 })
 
+// CHANGE CURRENCY
+
+$('.currencies .drop a').on('click', function() {
+  currency = $(this).text()
+
+  $.ajax({
+    method: 'post',
+    url: '{{ locale_url }}statamify/currency',
+    data: {
+      currency: currency,
+      _token: $('meta[name="_token"]').attr('content')
+    },
+    success: function(res) {
+      location.reload()
+    },
+    error: function(err) {
+      console.log(err)
+    }
+  })
+
+  return false;
+})
+
 // REMOVE FROM CART
 
 $('body').on('click', '#cart .thumb a, section.cart .thumb a', function() {
@@ -37,7 +65,7 @@ $('body').on('click', '#cart .thumb a, section.cart .thumb a', function() {
 
   $.ajax({
     method: 'post',
-    url: '/statamify/cart/update',
+    url: '{{ locale_url }}statamify/cart/update',
     data: {
       item_id: id,
       quantity: 0,
@@ -117,7 +145,7 @@ updateCart = function(id, quantity) {
 
   $.ajax({
     method: 'post',
-    url: '/statamify/cart/update',
+    url: '{{ locale_url }}statamify/cart/update',
     data: {
       item_id: id,
       quantity: quantity,
@@ -156,18 +184,18 @@ updateCart = function(id, quantity) {
 $('.country select').on('change', function() {
   country = $(this).val();
   group = $(this).attr('data-group');
-  name = group + '[region]';
+  name = group == 'account' ? 'region' : group + '[region]';
 
   if (group === 'shipping') {
     method = 'post';
-    url = '/statamify/cart/set-shipping';
+    url = '{{ locale_url }}statamify/cart/set-shipping';
     data = {
       shipping_country: country,
       _token: $('meta[name="_token"]').attr('content')
     };
   } else {
     method = 'get';
-    url = '/statamify/countries';
+    url = '{{ locale_url }}statamify/countries';
     data = false;
   }
 
@@ -211,7 +239,7 @@ $('.country select').on('change', function() {
 
           } else {
 
-            $('#shipping-methods').html('<li>There are no shipping methods available</li>')
+            $('#shipping-methods').html('<li>{{ statamify:t key='no_shipping_available' }}</li>')
 
           }
           return $('.total-grand').text(money(res.cart.total.grand))

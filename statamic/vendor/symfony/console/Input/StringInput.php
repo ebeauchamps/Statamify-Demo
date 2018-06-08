@@ -26,7 +26,9 @@ class StringInput extends ArgvInput
     const REGEX_QUOTED_STRING = '(?:"([^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'([^\'\\\\]*(?:\\\\.[^\'\\\\]*)*)\')';
 
     /**
-     * @param string          $input      A string representing the parameters from the CLI
+     * Constructor.
+     *
+     * @param string          $input      An array of parameters from the CLI (in the argv format)
      * @param InputDefinition $definition A InputDefinition instance
      *
      * @deprecated The second argument is deprecated as it does not work (will be removed in 3.0), use 'bind' method instead

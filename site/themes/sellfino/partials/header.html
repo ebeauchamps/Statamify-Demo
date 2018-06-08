@@ -3,9 +3,52 @@
   <div class="top">
     <div class="container">
       <div class="grid vcenter-xs">
-        <div class="col-16-xs">Free shipping for standard order over $100</div>
+        <div class="col-16-xs">{{ t string='Free shipping for standard order over $100' }}</div>
         <div class="col-8-xs text-right">
-          <a href="/account">My Account</a>
+          <a href="{{ locale_url }}account">{{ statamify:t key='my_account' }}</a>
+
+          {{ statamify:currencies }}
+
+            <div class="currencies">
+              <div class="selected">{{ active }}</div>
+              <div class="drop">
+                <ul>
+
+                  {{ currencies }}
+
+                    {{ unless active == code }}
+
+                      <li><a href="">{{ code }}</a></li>
+
+                    {{ /unless }}
+
+                  {{ /currencies }}
+                  
+                </ul>
+              </div>
+            </div>
+
+          {{ /statamify:currencies }}
+
+          <div class="langs">
+            <div class="selected">{{ locale | upper }}</div>
+              <div class="drop">
+                <ul>
+
+                  {{ locales }}
+
+                    {{ unless locale.key == current }}
+
+                      <li><a href="{{ if uri }}{{ url }}{{ else }}{{ url | remove_right:/ }}{{ current_uri }}{{ /if }}">{{ locale.key | upper }}</a></li>
+
+                    {{ /unless }}
+
+                  {{ /locales }}
+                  
+                </ul>
+              </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -24,15 +67,15 @@
             </a>
             <ul>
               <li>
-                <a href="/" {{ if template == 'home' }}class="active"{{ /if }}>Home</a>
+                <a href="{{ locale_url }}" {{ if template == 'home' }}class="active"{{ /if }}>Home</a>
               </li>
 
               <li>
-                <a href="/store" {{ if template == 'store/store' }}class="active"{{ /if }}>Store</a>
+                <a href="{{ locale_url }}store" {{ if template == 'store/store' }}class="active"{{ /if }}>{{ statamify:t key='store' }}</a>
               </li>
 
               <li class="dropdown">
-                <a {{ if template == 'store/type' }}class="active"{{ /if }}>Types</a>
+                <a {{ if template == 'store/type' }}class="active"{{ /if }}>{{ statamify:t key='types' }}</a>
                 <ul>
 
                   {{ collection:store_types }}
@@ -47,7 +90,7 @@
               </li>
 
               <li class="dropdown">
-                <a {{ if template == 'store/vendor' }}class="active"{{ /if }}>Vendors</a>
+                <a {{ if template == 'store/vendor' }}class="active"{{ /if }}>{{ statamify:t key='vendors' }}</a>
                 <ul>
 
                   {{ collection:store_vendors }}
@@ -62,7 +105,7 @@
               </li>
 
               <li class="dropdown">
-                <a {{ if template == 'store/category' }}class="active"{{ /if }}>Categories</a>
+                <a {{ if template == 'store/category' }}class="active"{{ /if }}>{{ statamify:t key='categories' }}</a>
 
                 <ul>
 
@@ -86,7 +129,7 @@
           <div class="order-2-xs order-3-sm col-8-xs col-6-sm">
             <ul class="text-right">
               <li>
-                <a href="/store/cart" data-cart-items="{{ items | length }}" class="cart">
+                <a href="{{ locale_url }}store/cart" data-cart-items="{{ items | length }}" class="cart">
                   <i class="zmdi zmdi-shopping-cart"></i>
                 </a>
               </li>

@@ -12,7 +12,7 @@ $('#billing_diff').on('change', function() {
 
 $('[name="saved_addresses"]').on('change', function() {
   address = $('[name="saved_addresses"]:checked').val();
-  $.post('/statamify/cart/default-address', {
+  $.post('{{ locale_url }}statamify/cart/default-address', {
     address: address,
     _token: $('meta[name="_token"]').attr('content')
   }, function() {
@@ -25,7 +25,7 @@ $('body').on('change', '[name="shipping_method"]', function() {
 
   $.ajax({
     method: 'post',
-    url: '/statamify/cart/set-shipping-method',
+    url: '{{ locale_url }}statamify/cart/set-shipping-method',
     data: {
       shipping: $(this).val(),
       _token: $('meta[name="_token"]').attr('content')
@@ -52,17 +52,17 @@ $('body').on('click', '.apply-coupon', function(e) {
   if (coupon != '') {
 
     btn = $(this)
-    btn.addClass('loading').text('Processing')
+    btn.addClass('loading').text('{{ statamify:t key='processing' }}')
 
     $.ajax({
       method: 'post',
-      url: '/statamify/cart/coupon',
+      url: '{{ locale_url }}statamify/cart/coupon',
       data: {
          coupon: coupon,
         _token: $('meta[name="_token"]').attr('content')
       },
       success: function(res) {
-        btn.removeClass('loading').text('Apply coupon')
+        btn.removeClass('loading').text('{{ statamify:t key='coupon_apply' }}')
 
         $('.total-discount').html(tmpl.coupon_applied.replace('[discount]', money(res.total.discount)).replace('[code]', coupon))
         $('.total-grand').text(money(res.total.grand))
@@ -70,7 +70,7 @@ $('body').on('click', '.apply-coupon', function(e) {
       },
       error: function(err) {
         console.log(err);
-        btn.removeClass('loading').text('Apply coupon')
+        btn.removeClass('loading').text('{{ statamify:t key='coupon_apply' }}')
         error(err.responseJSON.message, '#errors-coupons');
       }
     })
@@ -86,7 +86,7 @@ $('body').on('click', '.remove-coupon', function() {
 
   $.ajax({
     method: 'post',
-    url: '/statamify/cart/coupon-remove',
+    url: '{{ locale_url }}statamify/cart/coupon-remove',
     data: {
      index: $(this).attr('data-index'),
      _token: $('meta[name="_token"]').attr('content')
@@ -115,7 +115,7 @@ $('#finalize').on('click', function(e) {
 
   if ($(this).validationEngine('validate')) {
 
-    btn.addClass('loading').text('Processing')
+    btn.addClass('loading').text('{{ statamify:t key='processing' }}')
     method = $('[name="payment_method"]:checked').val()
 
     if (method == 'stripe') {
@@ -126,7 +126,7 @@ $('#finalize').on('click', function(e) {
           var errorElement = document.getElementById('card-errors');
           errorElement.textContent = result.error.message;
 
-          btn.removeClass('loading').text('Finalize order')
+          btn.removeClass('loading').text('{{ statamify:t key='finalize' }}')
 
         } else {
 

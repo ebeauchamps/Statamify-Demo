@@ -109,7 +109,7 @@ class ClientContext
 
         if ($this->readHostsArray == null || count($this->readHostsArray) == 0) {
             $this->readHostsArray = $this->getDefaultReadHosts($placesEnabled);
-            $this->writeHostsArray = $this->getDefaultWriteHosts($placesEnabled);
+            $this->writeHostsArray = $this->getDefaultWriteHosts();
         }
 
         if (($this->applicationID == null || mb_strlen($this->applicationID) == 0) && $placesEnabled === false) {
@@ -167,24 +167,10 @@ class ClientContext
     }
 
     /**
-     * @param bool $placesEnabled
-     *
      * @return array
      */
-    private function getDefaultWriteHosts($placesEnabled)
+    private function getDefaultWriteHosts()
     {
-        if ($placesEnabled) {
-            $hosts = array(
-                'places-1.algolianet.com',
-                'places-2.algolianet.com',
-                'places-3.algolianet.com',
-            );
-            shuffle($hosts);
-            array_unshift($hosts, 'places.algolia.net');
-
-            return $hosts;
-        }
-
         $hosts = array(
             $this->applicationID.'-1.algolianet.com',
             $this->applicationID.'-2.algolianet.com',

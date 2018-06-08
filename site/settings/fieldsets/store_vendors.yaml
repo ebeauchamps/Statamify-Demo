@@ -1,9 +1,12 @@
 taxonomies: false
-title: "Store: Vendors"
-fields:
-  products:
-    type: collection
-    display: Products
-    collection:
-      - store_products
-    mode: panes
+title: 'Store: Vendors'
+sections:
+  main:
+    display: Main
+    fields:
+      products:
+        type: collection
+        display: Products
+        collection:
+          - store_products
+        mode: panes

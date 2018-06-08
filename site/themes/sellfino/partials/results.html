@@ -3,7 +3,7 @@
 
       {{ if no_results }}
 
-        <div class="alert">There are no products found. Please, change your criteria.</div>
+        <div class="alert">{{ statamify:t key='no_p_in_results' }}</div>
 
       {{ else }}
 
@@ -26,7 +26,7 @@
     <div class="grid paginate vcenter-xs">
 
       <div class="col-12-sm">
-        <div class="info">{{ current_page }} of {{ total_pages }} pages. Results: {{ total_items }}</div>
+        <div class="info">{{ statamify:t key='page' }} {{ current_page }} {{ statamify:t key='of' }} {{ total_pages }}. {{ statamify:t key='results' }}: {{ total_items }}</div>
       </div>
 
       <div class="col-12-sm">

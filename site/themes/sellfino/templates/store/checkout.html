@@ -1,4 +1,4 @@
-{{ section:title }}Checkout{{ /section:title }}
+{{ section:title }}{{ statamify:t key='checkout' }}{{ /section:title }}
 
 {{ statamify:cart }}
 
@@ -14,10 +14,11 @@
 
         <div class="hide"><input type="text" name="addresso" class="validate[maxSize[0]]" /></div>
         <input type="hidden" name="_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="locale" value="{{ locale }}" />
 
         <div class="grid">
           <div class="col-24-sm">
-            <h2 class="text-center">Checkout</h2>
+            <h2 class="text-center">{{ statamify:t key='checkout' }}</h2>
           </div>
         </div>
 
@@ -47,20 +48,20 @@
 
               {{ partial:checkout/items }}
 
-              {{ partial:checkout/total blockTitle='Subtotal' blockId='sub' :val='total.sub' }}
+              {{ partial:checkout/total blockTitle={statamify:t key='subtotal'} blockId='sub' :val='total.sub' }}
 
               {{ partial:checkout/discount }}
 
               {{ partial:checkout/shipment }}
 
-              {{ partial:checkout/total blockTitle='Total' blockId='grand' :val='total.grand' }}
+              {{ partial:checkout/total blockTitle={statamify:t key='total'} blockId='grand' :val='total.grand' }}
 
               {{ partial:checkout/payment }}
 
               <div class="line">
                 <div class="grid">
                   <div class="col-24-sm text-right">
-                    <a href="" id="finalize" class="btn">Finalize Order</a>
+                    <a href="" id="finalize" class="btn">{{ statamify:t key='finalize' }}</a>
                   </div>
                 </div>
               </div>

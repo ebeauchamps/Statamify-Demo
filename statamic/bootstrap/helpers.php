@@ -112,7 +112,7 @@ function cp_route($route, $params = [])
         return null;
     }
 
-    return route($route, $params, false);
+    return route($route, $params);
 }
 
 function cp_resource_url($url)
@@ -331,14 +331,12 @@ function col_class($width)
 /**
  * SVG helper
  *
- * Outputs a tag to reference a symbol in the sprite.
- *
  * @param string $name Name of svg
  * @return string
  */
 function svg($name)
 {
-    return '<svg><use xlink:href="#'.$name.'" /></svg>';
+    return inline_svg($name);
 }
 
 /**
@@ -377,7 +375,7 @@ function active_for($url)
  */
 function nav_is($url)
 {
-    $current = URL::getCurrent();
+    $current = URL::makeAbsolute(URL::getCurrent());
 
     return $url === $current || Str::startsWith($current, $url . '/');
 }

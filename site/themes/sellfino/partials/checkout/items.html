@@ -1,15 +1,15 @@
 <div class="line">
   <div class="grid vstart-xs">
     <div class="col-8-md">
-      <div class="title">Your items</div>
+      <div class="title">{{ statamify:t key='your_items' }}</div>
     </div>
     <div class="col-16-md">
       <div class="table">
         <div class="head grid">
-          <div class="col-8-sm">Product</div>
-          <div class="col-4-sm text-center">Price</div>
-          <div class="col-8-sm text-center">Quantity</div>
-          <div class="col-4-sm text-right">Total</div>
+          <div class="col-8-sm">{{ statamify:t key='product' }}</div>
+          <div class="col-4-sm text-center">{{ statamify:t key='price' }}</div>
+          <div class="col-8-sm text-center">{{ statamify:t key='quantity' }}</div>
+          <div class="col-4-sm text-right">{{ statamify:t key='total' }}</div>
         </div>
         <div class="body">
 
@@ -30,7 +30,7 @@
 
                 <div class="col-6-xs col-4-sm text-center">
 
-                  <label>Price:</label> 
+                  <label>{{ statamify:t key='price' }}:</label> 
 
                   {{ if variant && variant.price }}
 
@@ -50,7 +50,7 @@
 
                 <div class="col-6-xs col-4-sm text-right">
 
-                  <label>Total:</label> 
+                  <label>{{ statamify:t key='total' }}:</label> 
 
                   <span class="total">
 

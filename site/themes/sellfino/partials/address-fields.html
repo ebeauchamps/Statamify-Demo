@@ -2,14 +2,14 @@
 
   <div class="col-12-sm">
     <div class="field">
-      <label>First name</label>
+      <label>{{ statamify:t key='address_first_name' }}</label>
       <input name="first_name" type="text" value="{{ old.data.first_name or first_name or '' }}" class="validate[required]">
     </div>
   </div>
   
   <div class="col-12-sm">
     <div class="field">
-      <label>Last Name</label>
+      <label>{{ statamify:t key='address_last_name' }}</label>
       <input name="last_name" type="text" value="{{ old.data.last_name or last_name or '' }}"  class="validate[required]">
     </div>
   </div>
@@ -20,14 +20,14 @@
 
   <div class="col-12-sm">
     <div class="field">
-      <label>Company</label>
+      <label>{{ statamify:t key='address_company' }}</label>
       <input name="company" type="text" value="{{ old.data.company or company or '' }}">
     </div>
   </div>
   
   <div class="col-12-sm">
     <div class="field">
-      <label>Phone</label>
+      <label>{{ statamify:t key='address_phone' }}</label>
       <input name="phone" type="text" value="{{ old.data.phone or phone or '' }}">
     </div>
   </div>
@@ -38,14 +38,14 @@
 
   <div class="col-12-sm">
      <div class="field">
-      <label>Address</label>
+      <label>{{ statamify:t key='address' }}</label>
       <input name="address" type="text" value="{{ old.data.address or address or '' }}" class="validate[required]">
     </div>
   </div>
 
   <div class="col-12-sm">
     <div class="field">
-      <label>Address 2nd line</label>
+      <label>{{ statamify:t key='address' }} {{ statamify:t key='2nd_line' }}</label>
       <input name="address_2" type="text" value="{{ old.data.address_2 or address_2 or '' }}">
     </div>
   </div>
@@ -56,14 +56,14 @@
 
   <div class="col-12-sm">
      <div class="field">
-      <label>City</label>
+      <label>{{ statamify:t key='address_city' }}</label>
       <input name="city" type="text" value="{{ old.data.city or city or '' }}" class="validate[required]">
     </div>
   </div>
 
   <div class="col-12-sm">
     <div class="field">
-      <label>Postal</label>
+      <label>{{ statamify:t key='address_postal' }}</label>
       <input name="postal" type="text" value="{{ old.data.postal or postal or '' }}" class="validate[required]">
     </div>
   </div>
@@ -77,11 +77,11 @@
     <div class="col-12-sm">
        <div class="field country">
                 
-        <label>Country</label>
+        <label>{{ statamify:t key='address_country' }}</label>
         
         <select name="country" data-group="account" autocomplete="off" class="validate[condRequired[shipping_diff]]">
           
-          <option value="">Choose country</option>
+          <option value="">{{ statamify:t key='address_country_choose' }}</option>
 
           {{ foreach:countries }}
 
@@ -101,11 +101,11 @@
 
         {{ if regions && address_index != 'new' }}
 
-        <label>State</label>
+        <label>{{ statamify:t key='address_state' }}</label>
 
         <select name="region" autocomplete="off" class="validate[condRequired[shipping_diff]]">
 
-          <option value="">Choose state</option>
+          <option value="">{{ statamify:t key='address_state_choose' }}</option>
 
           {{ foreach:regions }}
 
@@ -117,7 +117,7 @@
 
         {{ else }}
 
-        <label>Region</label>
+        <label>{{ statamify:t key='address_region' }}</label>
 
         <input name="region" type="text" value="{{ old.data.region or region or '' }}">
 
@@ -134,10 +134,10 @@
 <div class="grid">
   <div class="col-24-sm">
     <div class="field">
-    <label>Default Address</label>
+    <label>{{ statamify:t key='default_address' }}</label>
     <select name="default">
-      <option value="false" {{ unless default }}selected{{ /unless }}>No</option>
-      <option value="true" {{ if default }}selected{{ /if }}>Yes</option>
+      <option value="false" {{ unless default }}selected{{ /unless }}>{{ statamify:t key='no' }}</option>
+      <option value="true" {{ if default }}selected{{ /if }}>{{ statamify:t key='yes' }}</option>
     </select>
   </div>
   </div>

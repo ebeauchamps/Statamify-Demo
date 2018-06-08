@@ -34,11 +34,7 @@ class MultiAuthCollector extends AuthCollector
         $names = '';
 
         foreach($this->guards as $guardName) {
-            try {
-                $user = $this->resolveUser($this->auth->guard($guardName));
-            } catch (\Exception $e) {
-                continue;
-            }
+            $user = $this->resolveUser($this->auth->guard($guardName));
 
             $data['guards'][$guardName] = $this->getUserInformation($user);
 

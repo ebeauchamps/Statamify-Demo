@@ -1,10 +1,10 @@
-{{ section:title }}My Account{{ /section:title }}
+{{ section:title }}{{ statamify:t key='my_account' }}{{ /section:title }}
 
 <section class="cart">
   <div class="container">
     <div class="grid">
       <div class="col-24-sm">
-        <h2 class="text-center">My Account <span><a href="{{ user:logout_url }}">Logout</a></span></h2>
+        <h2 class="text-center">{{ statamify:t key='my_account' }} <span><a href="{{ user:logout_url }}">{{ trans:cp.logout }}</a></span></h2>
       </div>
     </div>
 
@@ -13,23 +13,27 @@
         <div class="col-24-sm">
           <div class="table">
 
-            {{ if { statamify:orders } }}
+            {{ statamify:orders }}
 
-              <div class="head grid">
-                <div class="col-4-sm">Order</div>
-                <div class="col-7-sm">Order Date</div>
-                <div class="col-6-sm">Status</div>
-                <div class="col-2-sm">Qty</div>
-                <div class="col-5-sm text-right">Total</div>
-              </div>
+              {{ if no_results }}
 
-            {{ else }}
+                <div class="body">
+                  <div class="item item-row" style="border:0">{{ statamify:t key='orders_not_found' }}</div>
+                </div>
 
-              <div class="body">
-                <div class="item item-row" style="border:0">There are no orders yet</div>
-              </div>
+              {{ elseif first }}
 
-            {{ /if }}
+                <div class="head grid">
+                  <div class="col-4-sm">{{ statamify:t key='order' }}</div>
+                  <div class="col-7-sm">{{ statamify:t key='order_date' }}</div>
+                  <div class="col-6-sm">{{ statamify:t key='status' }}</div>
+                  <div class="col-2-sm">{{ statamify:t key='qty' }}</div>
+                  <div class="col-5-sm text-right">{{ statamify:t key='total' }}</div>
+                </div>
+
+              {{ /if }}
+
+            {{ /statamify:orders }}
 
             <div class="body">
 
@@ -39,10 +43,10 @@
 
                   <div class="item item-row">
                     <div class="grid vcenter-xs">
-                      <div class="col-4-sm title"><a href="/account/order/{{ slug }}">{{ title }}</a></div>
+                      <div class="col-4-sm title"><a href="{{ locale_url }}account/order/{{ slug }}">{{ title }}</a></div>
                       <div class="col-7-sm">{{ date }}</div>
-                      <div class="col-6-sm status">{{ status replace="_| " }}</div>
-                      <div class="col-2-sm">{{ summary.items | length }} {{ if (summary.items | length) == 1 }}item{{ else }}items{{ /if }}</div>
+                      <div class="col-6-sm status">{{ statamify:t key='status.{status}' }}</div>
+                      <div class="col-2-sm">{{ summary.items | length }}</div>
                       <div class="col-5-sm text-right">{{ summary.total.grand | statamify.money }}</div>
                     </div>
                   </div>
@@ -66,7 +70,7 @@
     <div class="container">
       <div class="grid">
         <div class="col-24-sm">
-          <h2 class="text-center">My Addresses <span><a href="/account/address/new">Add new address</a></span></h2>
+          <h2 class="text-center">{{ statamify:t key='my_addresses' }} <span><a href="{{ locale_url }}account/address/new">{{ statamify:t key='add_address' }}</a></span></h2>
         </div>
       </div>
 
@@ -78,17 +82,17 @@
               {{ if addresses }}
 
                 <div class="head grid">
-                  <div class="col-6-sm">Name & Company</div>
-                  <div class="col-3-sm">Phone</div>
-                  <div class="col-8-sm">Address</div>
-                  <div class="col-3-sm">City & Postal</div>
-                  <div class="col-4-sm text-right alt">Region & Country</div>
+                  <div class="col-6-sm">{{ statamify:t key='address_name' }} & {{ statamify:t key='address_company' }}</div>
+                  <div class="col-3-sm">{{ statamify:t key='address_phone' }}</div>
+                  <div class="col-8-sm">{{ statamify:t key='address' }}</div>
+                  <div class="col-3-sm">{{ statamify:t key='address_city' }} & {{ statamify:t key='address_postal' }}</div>
+                  <div class="col-4-sm text-right alt">{{ statamify:t key='address_region' }} & {{ statamify:t key='address_country' }}</div>
                 </div>
 
               {{ else }}
 
                 <div class="body">
-                  <div class="item item-row" style="border:0">There are no addresses saved</div>
+                  <div class="item item-row" style="border:0">{{ statamify:t key='saved_addresses_not_found' }}</div>
                 </div>
 
               {{ /if }}
@@ -113,7 +117,7 @@
 
                          {{ /if }}
 
-                        <a href="/account/address/{{ index }}">{{ first_name }} {{ last_name }}{{ if company}}, {{ company }}{{ /if }}</a>
+                        <a href="{{ locale_url }}account/address/{{ index }}">{{ first_name }} {{ last_name }}{{ if company}}, {{ company }}{{ /if }}</a>
 
                       </div>
                       <div class="col-3-sm">{{ phone or '-' }}</div>

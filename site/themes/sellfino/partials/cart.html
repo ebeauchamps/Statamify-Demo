@@ -2,7 +2,7 @@
 
   <a href="" class="close"><i class="zmdi zmdi-close"></i></a>
 
-  <div class="title">Your Cart</div>
+  <div class="title">{{ statamify:t key='your_cart' }}</div>
 
   {{ statamify:cart }}
 
@@ -11,7 +11,7 @@
 
         {{ unless ( items | length ) }}
 
-          <li>No products in cart</li>
+          <li>{{ statamify:t key='no_p_in_cart' }}</li>
 
         {{ else }}
 
@@ -56,11 +56,11 @@
       </ul>
     </div>
 
-    <div class="total">Total: <span class="total-sub">{{ total.sub | statamify.money }}</span></div>
+    <div class="total">{{ statamify:t key='total' }}: <span class="total-sub">{{ total.sub | statamify.money }}</span></div>
 
     <div class="buttons">
-      <a href="/store/cart" class="btn alt">View Cart</a>
-      <a href="/store/checkout" class="btn alt">Checkout</a>
+      <a href="{{ locale_url }}store/cart" class="btn alt">{{ statamify:t key='view_cart' }}</a>
+      <a href="{{ locale_url }}store/checkout" class="btn alt">{{ statamify:t key='checkout' }}</a>
     </div>
 
   {{ /statamify:cart }}

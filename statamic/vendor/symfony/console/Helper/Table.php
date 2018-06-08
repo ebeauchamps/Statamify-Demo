@@ -24,23 +24,29 @@ class Table
 {
     /**
      * Table headers.
+     *
+     * @var array
      */
     private $headers = array();
 
     /**
      * Table rows.
+     *
+     * @var array
      */
     private $rows = array();
 
     /**
      * Column widths cache.
+     *
+     * @var array
      */
     private $columnWidths = array();
 
     /**
      * Number of columns cache.
      *
-     * @var int
+     * @var array
      */
     private $numberOfColumns;
 
@@ -182,7 +188,6 @@ class Table
      * Renders table to output.
      *
      * Example:
-     * <code>
      * +---------------+-----------------------+------------------+
      * | ISBN          | Title                 | Author           |
      * +---------------+-----------------------+------------------+
@@ -190,7 +195,6 @@ class Table
      * | 9971-5-0210-0 | A Tale of Two Cities  | Charles Dickens  |
      * | 960-425-059-0 | The Lord of the Rings | J. R. R. Tolkien |
      * +---------------+-----------------------+------------------+
-     * </code>
      */
     public function render()
     {
@@ -222,7 +226,7 @@ class Table
     /**
      * Renders horizontal header separator.
      *
-     * Example: <code>+-----+-----------+-------+</code>
+     * Example: +-----+-----------+-------+
      */
     private function renderRowSeparator()
     {
@@ -253,7 +257,7 @@ class Table
     /**
      * Renders table row.
      *
-     * Example: <code>| 9971-5-0210-0 | A Tale of Two Cities  | Charles Dickens  |</code>
+     * Example: | 9971-5-0210-0 | A Tale of Two Cities  | Charles Dickens  |
      *
      * @param array  $row
      * @param string $cellFormat
@@ -370,7 +374,7 @@ class Table
      *
      * @return array
      */
-    private function fillNextRows(array $rows, $line)
+    private function fillNextRows($rows, $line)
     {
         $unmergedRows = array();
         foreach ($rows[$line] as $column => $cell) {
@@ -421,6 +425,8 @@ class Table
     /**
      * fill cells for a row that contains colspan > 1.
      *
+     * @param array $row
+     *
      * @return array
      */
     private function fillCells($row)
@@ -445,7 +451,7 @@ class Table
      *
      * @return array
      */
-    private function copyRow(array $rows, $line)
+    private function copyRow($rows, $line)
     {
         $row = $rows[$line];
         foreach ($row as $cellKey => $cellValue) {
@@ -460,6 +466,8 @@ class Table
 
     /**
      * Gets number of columns by row.
+     *
+     * @param array $row
      *
      * @return int
      */
@@ -476,9 +484,11 @@ class Table
     /**
      * Gets list of columns for the given row.
      *
+     * @param array $row
+     *
      * @return array
      */
-    private function getRowColumns(array $row)
+    private function getRowColumns($row)
     {
         $columns = range(0, $this->numberOfColumns - 1);
         foreach ($row as $cellKey => $cell) {

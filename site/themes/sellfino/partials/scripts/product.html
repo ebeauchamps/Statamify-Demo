@@ -104,17 +104,17 @@ $('.add-to-cart a').on('click', function() {
 
   if (variants && !variantID) {
 
-    error('Choose all attributes before adding product to cart')
+    error('{{ statamify:t key='choose_attrs' }}')
     return false
 
   }
 
   btn = $(this)
-  btn.addClass('loading').text('Processing')
+  btn.addClass('loading').text('{{ statamify:t key='processing' }}')
 
   $.ajax({
     method: 'post',
-    url: '/statamify/cart/add',
+    url: '{{ locale_url }}statamify/cart/add',
     data: {
       product: productID,
       variant: variantID,
@@ -122,7 +122,7 @@ $('.add-to-cart a').on('click', function() {
       _token: $('meta[name="_token"]').attr('content')
     },
     success: function(res) {
-      btn.removeClass('loading').text('Add to cart')
+      btn.removeClass('loading').text('{{ statamify:t key='add_to_cart' }}')
 
       basket = ''
       $.each(res.items, function() {
@@ -153,7 +153,7 @@ $('.add-to-cart a').on('click', function() {
     },
     error: function(err) {
       console.log(err)
-      btn.removeClass('loading').text('Add to cart')
+      btn.removeClass('loading').text('{{ statamify:t key='add_to_cart' }}')
       error(err.responseJSON.message)
     }
   })

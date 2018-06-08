@@ -27,14 +27,14 @@
 
           <div class="price">
 
-            {{ if class == 'complex' }}<small>from</small>{{ /if }}
+            {{ if class == 'complex' }}<small>{{ statamify:t key='from' }}</small>{{ /if }}
 
             {{ price | statamify.money }}
 
             &nbsp;&nbsp;
 
             <strike>
-              {{ if class == 'complex' && compare_at_price }}<small>from</small>{{ /if }} 
+              {{ if class == 'complex' && compare_at_price }}<small>{{ statamify:t key='from' }}</small>{{ /if }} 
               {{ compare_at_price | statamify.money }}
             </strike>
 
@@ -50,14 +50,14 @@
 
             <div class="variant">
 
-              <div class="title">{{ value.option_name }}</div>
+              <div class="title">{{ value.option_name | t }}</div>
 
               <select name="size">
-                <option>Choose an option</option>
+                <option>{{ statamify:t key='choose' }}</option>
 
                 {{ foreach:value.option_values }}
 
-                <option value="{{ value }}">{{ value }}</option>
+                <option value="{{ value }}">{{ value | t }}</option>
 
                 {{ /foreach:value.option_values }}
 
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="add-to-cart">
-                  <a href="" class="btn {{ if class == 'complex' }}disabled{{ /if }}">Add to cart</a>
+                  <a href="" class="btn {{ if class == 'complex' }}disabled{{ /if }}">{{ statamify:t key='add_to_cart' }}</a>
                 </div>
 
               </div>
@@ -93,7 +93,7 @@
 
           {{ else }}
 
-            <div id="errors" class="alert active">Product is out of stock</div>
+            <div id="errors" class="alert active">{{ statamify:t key='out_of_stock' }}</div>
 
           {{ /if }}
 
@@ -111,9 +111,9 @@
       <div class="col-24-sm">
         <ul>
           <li>SKU: <span id="sku">{{ sku or '-' }}</span></li>
-          <li>Categories: {{ relate:categories }}<a href="{{ url }}">{{ title }}</a>{{ unless last }}, {{ /unless }}{{ /relate:categories }}</li>
-          <li>Type: {{ relate:type }}<a href="{{ url }}">{{ title }}</a>{{ /relate:type }}</li>
-          <li>Vendor: {{ relate:vendor }}<a href="{{ url }}">{{ title }}</a>{{ /relate:vendor }}</li>
+          <li>{{ statamify:t key='categories' }}: {{ relate:categories }}<a href="{{ url }}">{{ title }}</a>{{ unless last }}, {{ /unless }}{{ /relate:categories }}</li>
+          <li>{{ statamify:t key='type' }}: {{ relate:type }}<a href="{{ url }}">{{ title }}</a>{{ /relate:type }}</li>
+          <li>{{ statamify:t key='vendor' }}: {{ relate:vendor }}<a href="{{ url }}">{{ title }}</a>{{ /relate:vendor }}</li>
         </ul>
       </div>
     </div>
@@ -124,7 +124,7 @@
   <div class="container">
     <div class="grid">
       <div class="col-24-sm">
-        <h2 class="text-center">Related products {{ partial:scripts/add-to-cart }}</h2>
+        <h2 class="text-center">{{ statamify:t key='related_products' }} {{ partial:scripts/add-to-cart }}</h2>
       </div>
     </div>
     <div class="grid hcenter-xs">

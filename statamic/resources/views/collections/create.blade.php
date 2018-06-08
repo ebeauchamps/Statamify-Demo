@@ -5,7 +5,7 @@
     <form method="post" action="{{ route('collection.store') }}">
         {!! csrf_field() !!}
 
-        <div class="flexy mb-24">
+        <div class="flexy mb-3">
             <h1 class="fill">{{ translate('cp.create_collection') }}</h1>
             <button type="submit" class="btn btn-primary">{{ translate('cp.save') }}</button>
         </div>

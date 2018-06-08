@@ -1,4 +1,4 @@
-{{ section:title }}My Cart{{ /section:title }}
+{{ section:title }}{{ statamify:t key='your_cart' }}{{ /section:title }}
 
 {{ statamify:cart }}
 
@@ -6,7 +6,7 @@
     <div class="container">
       <div class="grid">
         <div class="col-24-sm">
-          <h2 class="text-center">My Cart</h2>
+          <h2 class="text-center">{{ statamify:t key='your_cart' }}</h2>
         </div>
       </div>
 
@@ -18,10 +18,10 @@
             <div class="col-16-md">
               <div class="table">
                 <div class="head grid">
-                  <div class="col-8-sm">Product</div>
-                  <div class="col-4-sm text-center">Price</div>
-                  <div class="col-8-sm text-center">Quantity</div>
-                  <div class="col-4-sm text-right">Total</div>
+                  <div class="col-8-sm">{{ statamify:t key='product' }}</div>
+                  <div class="col-4-sm text-center">{{ statamify:t key='price' }}</div>
+                  <div class="col-8-sm text-center">{{ statamify:t key='quantity' }}</div>
+                  <div class="col-4-sm text-right">{{ statamify:t key='total' }}</div>
                 </div>
                 <div class="body">
 
@@ -83,7 +83,7 @@
 
                         <div class="col-6-xs col-4-sm text-right">
 
-                          <label>Total:</label> 
+                          <label>{{ statamify:t key='total' }}:</label> 
 
                           <span class="total">
 
@@ -114,7 +114,7 @@
                 <div class="line">
                   <div class="grid vstart-xs">
                     <div class="col-10-sm">
-                      <div class="title">Subtotal</div>
+                      <div class="title">{{ statamify:t key='subtotal' }}</div>
                     </div>
                     <div class="col-14-sm total-sub">{{ total.sub | statamify.money }}</div>
                   </div>
@@ -122,7 +122,7 @@
                 <div class="line">
                   <div class="grid vstart-xs">
                     <div class="col-10-sm">
-                      <div class="title">Shipping</div>
+                      <div class="title">{{ statamify:t key='shipping' }}</div>
                     </div>
                     <div class="col-14-sm total-shipping">
 
@@ -132,7 +132,7 @@
 
                       {{ else }}
 
-                        <div class="desc">There are no shipping methods available.</div>
+                        <div class="desc">{{ statamify:t key='no_shipping_available' }}</div>
 
                       {{ /if }}
 
@@ -142,14 +142,14 @@
                 <div class="line">
                   <div class="grid vstart-xs">
                     <div class="col-10-sm">
-                      <div class="title">Total</div>
+                      <div class="title">{{ statamify:t key='total' }}</div>
                     </div>
 
                     <div class="col-14-sm total-grand">{{ total.grand | statamify.money }}</div>
 
                   </div>
                 </div>
-                <div class="action"><a href="/store/checkout" class="btn">Proceed to checkout</a></div>
+                <div class="action"><a href="{{ locale_url }}store/checkout" class="btn">{{ statamify:t key='proceed' }}</a></div>
               </div>
             </div>
           </div>
@@ -158,8 +158,8 @@
 
         <div class="grid">
           <div class="col-24-sm text-center">
-            <br/><br/> Nothing found here :( <br/><br/><br/><br/>
-            <a href="/store" class="btn">Go Shopping!</a>
+            <br/><br/> {{ statamify:t key='nothing_found' }} :( <br/><br/><br/><br/>
+            <a href="/store" class="btn">{{ statamify:t key='go' }}</a>
             <br/><br/><br/>
           </div>
         </div>

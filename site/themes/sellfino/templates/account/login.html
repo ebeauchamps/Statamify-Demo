@@ -1,4 +1,4 @@
-{{ section:title }}Login{{ /section:title }}
+{{ section:title }}{{ trans:cp.login }}{{ /section:title }}
 
 <section class="cart">
 
@@ -10,7 +10,7 @@
 
       <div class="grid">
         <div class="col-24-sm">
-          <h2 class="text-center">Login to your account</h2>
+          <h2 class="text-center">{{ statamify:t key='login_to' }}</h2>
         </div>
       </div>
 
@@ -38,12 +38,12 @@
                 <div class="col-24-sm">
 
                   <div class="field">
-                    <label>Email address</label>
+                    <label>{{ trans:cp.email }}</label>
                     <input name="username" type="text" type="text" value="{{ old.username }}" class="validate[required,custom[email]]">
                   </div>
 
                   <div class="field">
-                    <label>Password</label>
+                    <label>{{ trans:cp.password }}</label>
                     <input type="password" name="password" class="validate[required]" id="password">
                   </div>
 
@@ -54,7 +54,7 @@
             <div class="line">
               <div class="grid">
                 <div class="col-24-sm text-center">
-                  <button type="submit" class="btn">Login</button>
+                  <button type="submit" class="btn">{{ trans:cp.login }}</button>
                 </div>
               </div>
             </div>
@@ -62,8 +62,8 @@
             <div class="line">
               <div class="grid">
                 <div class="col-24-sm text-center">
-                  <a href="/account/forgotten" class="btn alt">Forgot password?</a>
-                  <a href="/account/register" class="btn alt">Register</a>
+                  <a href="{{ locale_url }}account/forgotten" class="btn alt">{{ trans:cp.forgot_password }}</a>
+                  <a href="{{ locale_url }}account/register" class="btn alt">{{ statamify:t key='register' }}</a>
                 </div>
               </div>
             </div>

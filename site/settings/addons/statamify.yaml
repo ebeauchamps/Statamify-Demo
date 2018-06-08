@@ -1,4 +1,4 @@
-owner_email: tavando.dev@gmail.com
+owner_email: store@admin.com
 store_name: 'Sellfino - Demo Store for Statamify'
 store_address: |
   <p style="text-align: center;">Sellfino Store
@@ -276,6 +276,12 @@ currency:
     format: '[symbol][price]'
     formatPrice: 4
     rate: "1"
+  - 
+    code: EUR
+    symbol: €
+    format: '[price] [symbol]'
+    formatPrice: 4
+    rate: "0.8372"
 gateways:
   - 
     type: cheque
@@ -291,7 +297,7 @@ gateways:
       public: ""
       secret: ""
     test_keys:
-      public: pk_test_0vu7RyP5qxKRYH4xHMzfAUAa
-      secret: sk_test_VZJtHVMJNj5eMg2Lt6pd91Xv
+      public: ""
+      secret: ""
     test: true
 queue_emails: true

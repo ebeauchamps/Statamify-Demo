@@ -82,12 +82,7 @@ class SignatureV4 implements SignatureInterface
         $expires,
         array $options = []
     ) {
-
-        $startTimestamp = isset($options['start_time'])
-                            ? $this->convertToTimestamp($options['start_time'], null)
-                            : time();
-        
-        $expiresTimestamp = $this->convertToTimestamp($expires, $startTimestamp);
+        $startTimestamp = isset($options['start_time']) ? $this->convertToTimestamp($options['start_time']) : time();
 
         $parsed = $this->createPresignedRequest($request, $credentials);
         $payload = $this->getPresignedPayload($request);
@@ -99,7 +94,7 @@ class SignatureV4 implements SignatureInterface
         $parsed['query']['X-Amz-Credential'] = $credential;
         $parsed['query']['X-Amz-Date'] = gmdate('Ymd\THis\Z', $startTimestamp);
         $parsed['query']['X-Amz-SignedHeaders'] = 'host';
-        $parsed['query']['X-Amz-Expires'] = $this->convertExpires($expiresTimestamp, $startTimestamp);
+        $parsed['query']['X-Amz-Expires'] = $this->convertExpires($expires, $startTimestamp);
         $context = $this->createContext($parsed, $payload);
         $stringToSign = $this->createStringToSign($httpDate, $scope, $context['creq']);
         $key = $this->getSigningKey(
@@ -290,14 +285,12 @@ class SignatureV4 implements SignatureInterface
         return substr($qs, 0, -1);
     }
 
-    private function convertToTimestamp($dateValue, $relativeTimeBase = null)
+    private function convertToTimestamp($dateValue)
     {
         if ($dateValue instanceof \DateTime) {
             $timestamp = $dateValue->getTimestamp();
         } elseif (!is_numeric($dateValue)) {
-            $timestamp = strtotime($dateValue,
-                                   $relativeTimeBase === null ? time() : $relativeTimeBase
-            );
+            $timestamp = strtotime($dateValue);
         } else {
             $timestamp = $dateValue;
         }
@@ -305,9 +298,9 @@ class SignatureV4 implements SignatureInterface
         return $timestamp;
     }
 
-    private function convertExpires($expiresTimestamp, $startTimestamp)
+    private function convertExpires($expires, $startTimestamp)
     {
-        $duration = $expiresTimestamp - $startTimestamp;
+        $duration = $this->convertToTimestamp($expires) - $startTimestamp;
 
         // Ensure that the duration of the signature is not longer than a week
         if ($duration > 604800) {

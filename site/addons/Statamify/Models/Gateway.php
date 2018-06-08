@@ -144,14 +144,53 @@ class Gateway
     $gateway->setApiKey($config[($config['test'] ? 'test_keys' : 'keys')]['secret']);
     
     $token = $this->order['payment_token'];
+
+    /*
+    $client = new \GuzzleHttp\Client();
+    $client_res = $client->get('https://api.stripe.com/v1/customers?email=' . $this->order['email'], ['headers' => [ 'Authorization' => 'Basic ' . base64_encode($gateway->getApiKey() . ':') ]  ]);
+    $customers = json_decode($client_res->getBody()->getContents(), true);
+
+    if (count($customers['data'])) {
+
+      $customer = $customers['data'][0]['id'];
+
+    } else {
+
+      if (isset($this->order['billing_diff']) && $this->order['billing_diff']) {
+        $description = $this->order['billing']['first_name'] . ' ' . $this->order['billing']['last_name'];
+      } else {
+        $description = $this->order['shipping']['first_name'] . ' ' . $this->order['shipping']['last_name'];
+      }
+
+      $response = $gateway->createCustomer(array(
+       'description' => $description,
+       'email' => $this->order['email'],
+       'source'  => $token
+      ))->send();
+
+      $customer_data = $response->getData();
+      $customer = $customer_data['id'];
+
+    }*/
+
+    $currency = session('statamify.currency');
+    $amount = $this->cart['total']['grand'];
+
+    if ($currency['rate'] != '1') {
+
+      $amount *= (float) $currency['rate'];
+
+    }
+
     $request = $gateway->purchase([
-      'amount' => $this->cart['total']['grand'],
-      'currency' => 'USD',
+      'amount' => number_format($amount, 2, '.', ''),
+      'currency' => $currency['code'],
       'description' => $this->order['title'] . ' ' . env('STATAMIFY_PAYMENT_DESC', ''),
       'source' => $token
     ]);
 
     $request_data = $request->getData();
+    // $request_data['customer'] = $customer;
     $request_data['expand[]'] = 'balance_transaction';
 
     $response = $request->sendData($request_data);
@@ -164,7 +203,8 @@ class Gateway
       $this->data = [
         'name' => 'Stripe', 
         'fee' => isset($data['balance_transaction']['fee']) ? $data['balance_transaction']['fee']/100 : 0, 
-        'id' => $data['id']
+        'id' => $data['id'],
+        // 'customer_id' => $customer
       ];
 
     } else {

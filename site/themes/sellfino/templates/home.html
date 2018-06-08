@@ -3,9 +3,9 @@
   <div class="container">
     <div class="grid">
       <div class="col-24-sm">
-        <div class="subtitle">New Collection</div>
-        <h1>New Season</h1>
-        <a href="/store" class="btn">Shop now</a>
+        <div class="subtitle">{{ t string='New Collection' }}</div>
+        <h1>{{ t string='New Season' }}</h1>
+        <a href="{{ locale_url }}store" class="btn">{{ t string='Shop now' }}</a>
       </div>
     </div>
   </div>
@@ -17,21 +17,21 @@
     <div class="grid">
 
       <div class="col-12-m">
-        <a href="/store/categories/women" class="block">
+        <a href="{{ locale_url }}store/categories/women" class="block">
           <img src="{{ theme:asset src='/assets/img/women.jpg' }}">
           <div class="inside">
-            <div class="title">Women</div>
-            <div class="subtitle">Category</div>
+            <div class="title">{{ get_content from='/store/categories/women' }}{{ title }}{{ /get_content }}</div>
+            <div class="subtitle">{{ statamify:t key='category' }}</div>
           </div>
         </a>
       </div>
 
       <div class="col-12-m">
-        <a href="/store/categories/men" class="block">
+        <a href="{{ locale_url }}store/categories/men" class="block">
           <img src="{{ theme:asset src='/assets/img/men.jpg' }}">
           <div class="inside">
-            <div class="title">Men</div>
-            <div class="subtitle">Category</div>
+            <div class="title">{{ get_content from='/store/categories/men' }}{{ title }}{{ /get_content }}</div>
+            <div class="subtitle">{{ statamify:t key='category' }}</div>
           </div>
         </a>
       </div>
@@ -41,71 +41,71 @@
     <div class="grid">
 
       <div class="col-12-m col-8-sm">
-        <a href="/store/types/watches" class="block">
+        <a href="{{ locale_url }}store/types/watches" class="block">
           <img src="{{ theme:asset src='/assets/img/watches.jpg' }}">
           <div class="inside">
-            <div class="title">Watches</div>
-            <div class="subtitle">Type</div>
+            <div class="title">{{ get_content from='/store/types/watches' }}{{ title }}{{ /get_content }}</div>
+            <div class="subtitle">{{ statamify:t key='type' }}</div>
           </div>
         </a>
       </div>
 
       <div class="col-12-m col-8-sm">
-        <a href="/store/types/bags" class="block">
+        <a href="{{ locale_url }}store/types/bags" class="block">
           <img src="{{ theme:asset src='/assets/img/bags.jpg' }}">
           <div class="inside">
-            <div class="title">Bags</div>
-            <div class="subtitle">Type</div>
+            <div class="title">{{ get_content from='/store/types/bags' }}{{ title }}{{ /get_content }}</div>
+            <div class="subtitle">{{ statamify:t key='type' }}</div>
           </div>
         </a>
       </div>
 
       <div class="col-12-m col-8-sm">
-        <a href="/store/types/accessories" class="block">
+        <a href="{{ locale_url }}store/types/accessories" class="block">
           <img src="{{ theme:asset src='/assets/img/accessories.jpg' }}">
           <div class="inside">
-            <div class="title">Accessories</div>
-            <div class="subtitle">Type</div>
+            <div class="title">{{ get_content from='/store/types/accessories' }}{{ title }}{{ /get_content }}</div>
+            <div class="subtitle">{{ statamify:t key='type' }}</div>
           </div>
         </a>
       </div>
 
       <div class="col-12-m col-6-sm">
-        <a href="/store/vendors/nike" class="block">
+        <a href="{{ locale_url }}store/vendors/nike" class="block">
           <img src="{{ theme:asset src='/assets/img/nike.jpg' }}">
           <div class="inside">
             <div class="title">Nike</div>
-            <div class="subtitle">Vendor</div>
+            <div class="subtitle">{{ statamify:t key='vendor' }}</div>
           </div>
         </a>
       </div>
 
       <div class="col-12-m col-6-sm">
-        <a href="/store/vendors/timex" class="block">
+        <a href="{{ locale_url }}store/vendors/timex" class="block">
           <img src="{{ theme:asset src='/assets/img/timex.jpg' }}">
           <div class="inside">
             <div class="title">Timex</div>
-            <div class="subtitle">Vendor</div>
+            <div class="subtitle">{{ statamify:t key='vendor' }}</div>
           </div>
         </a>
       </div>
 
       <div class="col-12-m col-6-sm">
-        <a href="/storevendors/zara" class="block">
+        <a href="{{ locale_url }}storevendors/zara" class="block">
           <img src="{{ theme:asset src='/assets/img/zara.jpg' }}">
           <div class="inside">
             <div class="title">Zara</div>
-            <div class="subtitle">Vendor</div>
+            <div class="subtitle">{{ statamify:t key='vendor' }}</div>
           </div>
         </a>
       </div>
 
       <div class="col-12-m col-6-sm">
-        <a href="/store/vendors/armani" class="block">
+        <a href="{{ locale_url }}store/vendors/armani" class="block">
           <img src="{{ theme:asset src='/assets/img/armani.jpg' }}">
           <div class="inside">
             <div class="title">Armani</div>
-            <div class="subtitle">Vendor</div>
+            <div class="subtitle">{{ statamify:t key='vendor' }}</div>
           </div>
         </a>
       </div>
@@ -119,7 +119,7 @@
   <div class="container">
     <div class="grid">
       <div class="col-24-sm">
-        <h2>Products overview</h2>
+        <h2>{{ t string='Products overview' }}</h2>
       </div>
     </div>
     <div class="grid">

@@ -3,7 +3,7 @@
   <div class="line">
     <div class="grid vstart-xs">
       <div class="col-8-md">
-        <div class="title">Shipping informations</div>
+        <div class="title">{{ statamify:t key='shipping_info' }}</div>
       </div>
       <div class="col-16-md total-sub">
 
@@ -11,14 +11,14 @@
 
           <div class="col-12-sm">
             <div class="field">
-              <label>First Name</label>
+              <label>{{ statamify:t key='address_first_name' }}</label>
               <input name="shipping[first_name]" type="text" value="{{ old.data.shipping.first_name or default.first_name or '' }}" class="validate[required]">
             </div>
           </div>
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Last name</label>
+              <label>{{ statamify:t key='address_last_name' }}</label>
               <input name="shipping[last_name]" type="text" value="{{ old.data.shipping.last_name or default.last_name or '' }}"  class="validate[required]">
             </div>
           </div>
@@ -29,14 +29,14 @@
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Company</label>
+              <label>{{ statamify:t key='address_company' }}</label>
               <input name="shipping[company]" type="text" value="{{ old.data.shipping.company or default.company or '' }}">
             </div>
           </div>
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Phone</label>
+              <label>{{ statamify:t key='address_phone' }}</label>
               <input name="shipping[phone]" type="text" value="{{ old.data.shipping.phone or default.phone or '' }}">
             </div>
           </div>
@@ -47,14 +47,14 @@
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Address</label>
+              <label>{{ statamify:t key='address' }}</label>
               <input name="shipping[address]" type="text" value="{{ old.data.shipping.address or default.address or '' }}" class="validate[required]">
             </div>
           </div>
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Address 2nd line</label>
+              <label>{{ statamify:t key='address' }} {{ statamify:t key='2nd_line' }}</label>
               <input name="shipping[address_2]" type="text" value="{{ old.data.shipping.address_2 or default.address_2 or '' }}">
             </div>
           </div>
@@ -65,14 +65,14 @@
 
           <div class="col-12-sm">
             <div class="field">
-              <label>City</label>
+              <label>{{ statamify:t key='address_city' }}</label>
               <input name="shipping[city]" type="text" value="{{ old.data.shipping.city or default.city or '' }}" class="validate[required]">
             </div>
           </div>
 
           <div class="col-12-sm">
             <div class="field">
-              <label>Postal</label>
+              <label>{{ statamify:t key='address_postal' }}</label>
               <input name="shipping[postal]" type="text" value="{{ old.data.shipping.postal or default.postal or '' }}" class="validate[required]">
             </div>
           </div>
@@ -87,11 +87,11 @@
 
               <div class="field country">
                 
-                <label>Country</label>
+                <label>{{ statamify:t key='address_country' }}</label>
                 
                 <select name="shipping[country]" data-group="shipping" autocomplete="off" class="validate[condRequired[shipping_diff]]">
                   
-                  <option value="">Choose country</option>
+                  <option value="">{{ statamify:t key='address_country_choose' }}</option>
 
                   {{ foreach:countries }}
 
@@ -111,11 +111,11 @@
                 
                 {{ if regions }}
 
-                  <label>State</label>
+                  <label>{{ statamify:t key='address_state' }}</label>
 
                   <select name="shipping[region]" autocomplete="off" class="validate[condRequired[shipping_diff]]">
                     
-                    <option value="">Choose state</option>
+                    <option value="">{{ statamify:t key='address_state_choose' }}</option>
                     
                     {{ foreach:regions }}
 
@@ -127,7 +127,7 @@
 
                 {{ else }}
 
-                  <label>Region</label>
+                  <label>{{ statamify:t key='address_region' }}</label>
 
                   <input name="shipping[region]" type="text" value="{{ old.data.shipping.region or region_code or '' }}">
 

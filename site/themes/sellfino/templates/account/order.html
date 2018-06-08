@@ -1,10 +1,10 @@
-{{ section:title }}Order Summary{{ /section:title }}
+{{ section:title }}{{ statamify:t key='order_summary' }}{{ /section:title }}
 
 {{ statamify:orders slug="{ slug }" }}
 
   {{ if no_results }}
 
-    {{ redirect to='/account' }}
+    {{ redirect to='{ locale_url}account' }}
   
   {{ else }}
 
@@ -12,7 +12,7 @@
       <div class="container">
         <div class="grid">
           <div class="col-24-sm">
-            <h2 class="text-center">Order {{ title }} <span><a href="/account">Go to account</a></span></h2>
+            <h2 class="text-center">{{ statamify:t key='order' }} {{ title }} <span><a href="{{ locale_url }}account">{{ statamify:t key='go_account' }}</a></span></h2>
           </div>
         </div>
 
@@ -21,10 +21,10 @@
             <div class="col-16-md">
               <div class="table">
                 <div class="head grid">
-                  <div class="col-8-sm">Product</div>
-                  <div class="col-4-sm text-center">Price</div>
-                  <div class="col-8-sm text-center">Quantity</div>
-                  <div class="col-4-sm text-right">Total</div>
+                  <div class="col-8-sm">{{ statamify:t key='product' }}</div>
+                  <div class="col-4-sm text-center">{{ statamify:t key='price' }}</div>
+                  <div class="col-8-sm text-center">{{ statamify:t key='quantity' }}</div>
+                  <div class="col-4-sm text-right">{{ statamify:t key='total' }}</div>
                 </div>
                 <div class="body">
 
@@ -54,7 +54,7 @@
 
                         <div class="col-6-xs col-4-sm text-center">
 
-                          <label>Price:</label> 
+                          <label>{{ statamify:t key='price' }}:</label> 
 
                           {{ price | statamify.money }}
 
@@ -62,7 +62,7 @@
 
                         <div class="col-12-xs col-8-sm text-center">
                           
-                          <label>Quantity:</label> 
+                          <label>{{ statamify:t key='quantity' }}:</label> 
 
                           {{ quantity }}
 
@@ -70,7 +70,7 @@
 
                         <div class="col-6-xs col-4-sm text-right">
 
-                          <label>Total:</label> 
+                          <label>{{ statamify:t key='total' }}:</label> 
 
                           {{ price | multiply:quantity | statamify.money }}
 
@@ -89,7 +89,7 @@
                 <div class="line">
                   <div class="grid vstart-xs">
                     <div class="col-10-sm">
-                      <div class="title">Date</div>
+                      <div class="title">{{ statamify:t key='date' }}</div>
                     </div>
                     <div class="col-14-sm total-sub">{{ date }}</div>
                   </div>
@@ -97,7 +97,7 @@
                 <div class="line">
                   <div class="grid vstart-xs">
                     <div class="col-10-sm">
-                      <div class="title">Subtotal</div>
+                      <div class="title">{{ statamify:t key='subtotal' }}</div>
                     </div>
                     <div class="col-14-sm total-sub">{{ summary.total.sub | statamify.money }}</div>
                   </div>
@@ -105,7 +105,7 @@
                 <div class="line">
                   <div class="grid vstart-xs">
                     <div class="col-10-sm">
-                      <div class="title">Discount</div>
+                      <div class="title">{{ statamify:t key='discount' }}</div>
                     </div>
                     <div class="col-14-sm total-discount">
 
@@ -117,7 +117,7 @@
 
                           {{ summary.coupons }}
 
-                            <br/>Applied coupon: <strong>{{ value }}</strong>
+                            <br/>{{ statamify:t key='coupon_applied' }}: <strong>{{ value }}</strong>
 
                           {{ /summary.coupons }}
 
@@ -131,7 +131,7 @@
                 <div class="line">
                   <div class="grid vstart-xs">
                     <div class="col-10-sm">
-                      <div class="title">Shipping</div>
+                      <div class="title">{{ statamify:t key='shipping' }}</div>
                     </div>
                     <div class="col-14-sm total-shipping">{{ summary.total.shipping | statamify.money }}</div>
                   </div>
@@ -139,7 +139,7 @@
                 <div class="line">
                   <div class="grid vstart-xs">
                     <div class="col-10-sm">
-                      <div class="title">Total</div>
+                      <div class="title">{{ statamify:t key='total' }}</div>
                     </div>
 
                     <div class="col-14-sm total-grand">{{ summary.total.grand | statamify.money }}</div>
@@ -157,7 +157,7 @@
               <div class="line">
                 <div class="grid vstart-xs">
                   <div class="col-8-md">
-                    <div class="title">Shipping / Billing</div>
+                    <div class="title">{{ statamify:t key='shipping' }} / {{ statamify:t key='billing' }}</div>
                   </div>
                   <div class="col-16-md">
                     <div class="grid">
@@ -167,7 +167,7 @@
 
                           <div class="block">
 
-                            <strong>Shipping Details:</strong> <br><br/>
+                            <strong>{{ statamify:t key='shipping_info' }}:</strong> <br><br/>
 
                             {{ shipping }}
 
@@ -182,7 +182,7 @@
 
                               <br/><br/>
 
-                              <strong>Shipping Method:&nbsp; </strong> {{ shipping_method.name }}
+                              <strong>{{ statamify:t key='address_shipping_method' }}:&nbsp; </strong> {{ shipping_method.name }}
 
                             {{ /shipping }}
 
@@ -197,28 +197,32 @@
 
                           <div class="block">
 
-                            <strong>Billing Details:</strong> <br>
+                            <strong>{{ statamify:t key='billing_info' }}:</strong> <br>
 
                             {{ if billing && billing_diff }}
 
-                              {{ first_name }} {{ last_name }}{{ if company }}, {{ company }}{{ /if }} <br/>
-                              {{ if phone }}{{ phone }}<br/>{{ /if }}
-                              {{ address }}{{ if address_2 }}, {{ address_2 }}{{ /if }}<br/>
+                              {{ billing }}
 
-                              {{ statamify:location }}
-                              {{ city }} {{ postal }} {{ if region }}, {{ region }}{{ /if }} <br/>
-                              {{ country }}
-                              {{ /statamify:location }}
+                                {{ first_name }} {{ last_name }}{{ if company }}, {{ company }}{{ /if }} <br/>
+                                {{ if phone }}{{ phone }}<br/>{{ /if }}
+                                {{ address }}{{ if address_2 }}, {{ address_2 }}{{ /if }}<br/>
+
+                                {{ statamify:location }}
+                                {{ city }} {{ postal }} {{ if region }}, {{ region }}{{ /if }} <br/>
+                                {{ country }}
+                                {{ /statamify:location }}
+
+                              {{ /billing }}
 
                             {{ else }}
 
-                              The same as shipping details
+                              {{ statamify:t key='address_same' }}
 
                             {{ /if }}
 
                             <br/><br/>
 
-                            <strong>Payment Method:&nbsp; </strong> {{ payment_method.name }}
+                            <strong>{{ statamify:t key='address_payment' }}:&nbsp; </strong> {{ t string='{payment_method.name}' }}
 
                             {{ if payment_method.name == 'Cheque' }}
     

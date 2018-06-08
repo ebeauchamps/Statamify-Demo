@@ -50,6 +50,17 @@ class Location
 			
 		}
 
+		if (!isset($country)) {
+
+			if (session('statamify.shipping_country')) {
+
+				$country = session('statamify.shipping_country');
+				$region = '';
+
+			}
+			
+		}
+
 		$countries = reset($countries);
 
 		if (isset($country)) {
@@ -69,7 +80,7 @@ class Location
 			return [ 
 				'countries' => $countries, 
 				'regions' => $regions,
-				'country' => $countries[$country],
+				'country' => @$countries[$country],
 				'region' => $regions ? (isset($regions[$region]) ? $regions[$region] : $region) : $region,
 				'country_code' => $country,
 				'region_code' => @$region

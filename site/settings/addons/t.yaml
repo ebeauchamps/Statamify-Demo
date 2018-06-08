@@ -1,0 +1,109 @@
+trans:
+  - 
+    string: Color
+    translation:
+      - 
+        code: pl
+        trans: Kolor
+  - 
+    string: Coating
+    translation:
+      - 
+        code: pl
+        trans: Powłoka
+  - 
+    string: Silver
+    translation:
+      - 
+        code: pl
+        trans: Srebrny
+  - 
+    string: White
+    translation:
+      - 
+        code: pl
+        trans: Biały
+  - 
+    string: Green
+    translation:
+      - 
+        code: pl
+        trans: Zielony
+  - 
+    string: Platinum
+    translation:
+      - 
+        code: pl
+        trans: Platynowy
+  - 
+    string: Black
+    translation:
+      - 
+        code: pl
+        trans: Czarny
+  - 
+    string: Gold
+    translation:
+      - 
+        code: pl
+        trans: Złoty
+  - 
+    string: New Season
+    translation:
+      - 
+        code: pl
+        trans: Nowy Sezon
+  - 
+    string: New Collection
+    translation:
+      - 
+        code: pl
+        trans: Nowa Kolekcja
+  - 
+    string: Products overview
+    translation:
+      - 
+        code: pl
+        trans: Wybrane produkty
+  - 
+    string: Shop now
+    translation:
+      - 
+        code: pl
+        trans: Sprawdź
+  - 
+    string: Free shipping for standard order over $100
+    translation:
+      - 
+        code: pl
+        trans: Darmowa przesyłka dla zamówień powyżej $100
+  - 
+    string: About
+    translation:
+      - 
+        code: pl
+        trans: O nas
+  - 
+    string: 'This is demo store of Statamify - free Shopify-like ecommerce addon for wonderful Statamic. You can download it and many other amazing stuff on the Marketplace!'
+    translation:
+      - 
+        code: pl
+        trans: 'To jest demo sklepu opartego o Statamify - darmowej wtyczki opartej o flow Shopify do wspaniałego systemu CMS - Statamic. Możesz pobrać ją oraz inne wtyczki z Marketplace!'
+  - 
+    string: Cheque
+    translation:
+      - 
+        code: pl
+        trans: Przelew
+  - 
+    string: Delivery in 1-2 days
+    translation:
+      - 
+        code: pl
+        trans: Dostawa w 1-2 dni
+  - 
+    string: Delivery in 2-3 days
+    translation:
+      - 
+        code: pl
+        trans: Dostawa w 2-3 dni

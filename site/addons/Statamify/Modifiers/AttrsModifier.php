@@ -17,7 +17,15 @@ class AttrsModifier extends Modifier
 	 */
 	public function index($value, $params, $context) {
 
-		return join(explode('|', $value), ', '); 
+		$values = explode('|', $value);
+
+		if (class_exists('\Statamic\Addons\T\TAPI')) {
+			$values = array_map(function($string) {
+				return app(\Statamic\Addons\T\TAPI::class)->api('T')->string($string);
+			}, $values);
+		}
+		
+		return join($values, ', '); 
 		
 	}
 

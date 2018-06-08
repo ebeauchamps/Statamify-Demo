@@ -5,12 +5,14 @@ namespace Statamic\Addons\Statamify;
 use Statamic\Addons\Statamify\Tags\Addresses;
 use Statamic\Addons\Statamify\Tags\Available;
 use Statamic\Addons\Statamify\Tags\Cart;
+use Statamic\Addons\Statamify\Tags\Currencies;
 use Statamic\Addons\Statamify\Tags\Customer;
 use Statamic\Addons\Statamify\Tags\Location;
 use Statamic\Addons\Statamify\Tags\Money;
 use Statamic\Addons\Statamify\Tags\Orders;
 use Statamic\Addons\Statamify\Tags\QueryUrl;
 use Statamic\Extend\Tags;
+use Statamic\Addons\Statamify\Tags\Translate;
 
 class StatamifyTags extends Tags
 {
@@ -67,6 +69,13 @@ class StatamifyTags extends Tags
     });
 
     return $gateways->get($index);
+
+  }
+
+  public function currencies()
+  {
+
+    return Currencies::tag($this);
 
   }
 
@@ -148,6 +157,13 @@ class StatamifyTags extends Tags
       return 'order:desc';
 
     }
+
+  }
+
+  public function t()
+  {
+
+    return Translate::tag($this);
 
   }
 
