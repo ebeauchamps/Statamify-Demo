@@ -1,5 +1,6 @@
 taxonomies:
   color: true
+hide: true
 title: 'Store: Products'
 sections:
   general:
