@@ -15,8 +15,8 @@ class TTags extends Tags
 
     if ($value) {
       
-    	$T = new T($this, $value);
-    	return $T->get();
+      $T = new T($this, $value);
+      return $T->get();
 
     }
     
