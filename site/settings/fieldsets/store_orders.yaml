@@ -1,4 +1,5 @@
 taxonomies: false
+hide: true
 title: "Store: Orders"
 date:
   allow_time: true

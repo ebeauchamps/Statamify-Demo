@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{ if template != 'home' }}{{ yield:title }}{{ title }} - {{ /if }}{{ statamify get="store_name" }}</title>
+  <title>{{ if template != 'home' }}{{ yield:title }}{{ title }} - {{ /if }}{{ statamify get='store_name' }}</title>
   <meta http-equiv="Cache-control" content="public">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/ico" href="{{ theme:asset src='/assets/img/favicon.png' }}">
@@ -18,12 +18,12 @@
   <meta name="twitter:title" content="{{ if slug != 'home' }}{{ yield:title }}{{ title }} - {{ /if }}{{ site_name }}<">
   <meta name="twitter:description" content="{{ if desc }}{{ desc | strip_tags | safe_truncate:90:... }}{{ else }}{{ if {yield:seodesc} }}{{ yield:seodesc }}{{ else }}{{ site_desc }}{{ /if }}{{ /if }}">
   <meta name="twitter:creator" content="@sellfino">
-  <meta name="twitter:image" content="{{ if image }}{{ glide:image width='600' absolute='true' }}{{ else }}{{ if {yield:seoimage} }}{{ yield:seoimage }}{{ else }}{{ get_content from="/" }}{{ glide:image width='600' absolute='true' }}{{ /get_content }}{{ /if }}{{ /if }}">
+  <meta name="twitter:image" content="{{ if image }}{{ asset:image }}{{ glide:url width='600' absolute='true' }}{{ /asset:image }}{{ else }}{{ if {yield:seoimage} }}{{ yield:seoimage }}{{ else }}{{ get_content from="/" }}{{ asset:image }}{{ glide:url width='600' absolute='true' }}{{ /asset:image }}{{ /get_content }}{{ /if }}{{ /if }}">
 
   <meta property="og:title" content="{{ if slug != 'home' }}{{ yield:title }}{{ title }} - {{ /if }}{{ site_name }}<" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{{ permalink }}" />
-  <meta property="og:image" content="{{ if image }}{{ glide:image width='600' absolute='true' }}{{ else }}{{ if {yield:seoimage} }}{{ yield:seoimage }}{{ else }}{{ get_content from="/" }}{{ glide:image width='600' absolute='true' }}{{ /get_content }}{{ /if }}{{ /if }}" />
+  <meta property="og:image" content="{{ if image }}{{ asset:image }}{{ glide:url width='600' absolute='true' }}{{ /asset:image }}{{ else }}{{ if {yield:seoimage} }}{{ yield:seoimage }}{{ else }}{{ get_content from="/" }}{{ asset:image }}{{ glide:url width='600' absolute='true' }}{{ /asset:image }}{{ /get_content }}{{ /if }}{{ /if }}" />
   <meta property="og:description" content="{{ if desc }}{{ desc | strip_tags | safe_truncate:90:... }}{{ else }}{{ if {yield:seodesc} }}{{ yield:seodesc }}{{ else }}{{ site_desc }}{{ /if }}{{ /if }}" />
   <meta property="og:site_name" content="Tenue de Ville" />
 

@@ -8,12 +8,12 @@ use Statamic\Extend\API;
 class TAPI extends API
 {
 
-	public function string($value)
+  public function string($value)
   {
 
-		$T = new T($this, $value);
+    $T = new T($this, $value);
     return $T->get();
 
-	}
+  }
 
 }
